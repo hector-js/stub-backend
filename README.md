@@ -1,4 +1,4 @@
-STUB BACKEND (WORK IN PROGRESSS)
+STUB BACKEND (WIP)
 ============
 * **Description** The aim of this project is to _mock the backend_  building different responses with authentication and different status.
 
