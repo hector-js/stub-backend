@@ -45,6 +45,7 @@ describe('stub backend project', () => {
             });
 
         });
+
     });
 
     describe('with Authentication', () => {

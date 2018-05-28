@@ -1,21 +1,21 @@
 const jsonServer = require('json-server');
-const environment = require('./resources/environment.local');
-const utils = require('./resources/utils');
+const environment = require('./environment/index');
+const utils = require('./config/utils');
 const path = require('path');
-const db = require('./resources/db.json');
+const pathToDb = environment.pathDb ||'./config/db.json';
+const db = require(pathToDb);
 
 const server = jsonServer.create();
 
 const middlewares = jsonServer.defaults({noCors: false, bodyParser: true,  logger: false});
 server.use(middlewares);
 
-const router = jsonServer.router(path.join('stub-backend', './resources/db.json'));
+const router = jsonServer.router(path.join('stub-backend', pathToDb));
 
 
 server.use((req, res, next) => {
     var idFound;
     var contextPath;
-
     switch (req.method) {
         case 'GET':
             const segmentsUrl = req.url.split('/');
@@ -50,10 +50,8 @@ server.use((req, res, next) => {
                 idFound = true;
                 const token = req.get('Authorization')
                 if (req.get('Authorization') && utils.isNotAuthorized(req.get('Authorization'))) {
-                    console.log(':(')
                     res.sendStatus(401)
                 }else{
-                    console.log(':)')
                     next();
                 }
             }
@@ -71,7 +69,7 @@ server.use((req, res, next) => {
 server.use(router);
    
 server.listen(environment.port, () => {
-    console.log('JSON Server is running in the port ' +environment.port)
+    console.log('JSON Server (' + environment.env + ' environment) is running in the port ' + environment.port)
 });
 
 module.exports = server;
