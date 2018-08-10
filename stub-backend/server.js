@@ -2,12 +2,12 @@ const jsonServer = require('json-server');
 const environment = require('./environment/index');
 const utils = require('./config/utils');
 const path = require('path');
-const pathToDb = environment.pathDb ||'./config/db.json';
+const pathToDb = environment.pathDb || './config/db.json';
 const db = require(pathToDb);
 
 const server = jsonServer.create();
 
-const middlewares = jsonServer.defaults({noCors: false, bodyParser: true,  logger: false});
+const middlewares = jsonServer.defaults({ noCors: false, bodyParser: true, logger: false });
 server.use(middlewares);
 
 const router = jsonServer.router(path.join('stub-backend', pathToDb));
@@ -31,7 +31,7 @@ server.use((req, res, next) => {
                             res.sendStatus(mockStatus(contextPath[j]))
                             break;
                         }
-                        if (securityCheck(contextPath[j],req)) {
+                        if (securityCheck(contextPath[j], req)) {
                             res.sendStatus(401)
                             break;
                         }
@@ -67,17 +67,17 @@ server.use((req, res, next) => {
 });
 
 server.use(router);
-   
+
 server.listen(environment.port, () => {
     console.log('JSON Server (' + environment.env + ' environment) is running in the port ' + environment.port)
 });
 
 module.exports = server;
 
-const securityCheck =(contextPath, req) =>{
+const securityCheck = (contextPath, req) => {
     return contextPath.auth && utils.isNotAuthorized(req.get('Authorization'));
 }
 
-const mockStatus =(contextPath) =>{
+const mockStatus = (contextPath) => {
     return contextPath.status;
 }
