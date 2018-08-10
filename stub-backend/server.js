@@ -27,11 +27,11 @@ server.use((req, res, next) => {
                 for (j in contextPath) {
                     if (contextPath[j].id === identifier) {
                         idFound = true;
-                        if (contextPath[j].status) {
-                            res.sendStatus(contextPath[j].status)
+                        if (mockStatus(contextPath[j])) {
+                            res.sendStatus(mockStatus(contextPath[j]))
                             break;
                         }
-                        if (contextPath[j].auth && utils.isNotAuthorized(req.get('Authorization'))) {
+                        if (securityCheck(contextPath[j],req)) {
                             res.sendStatus(401)
                             break;
                         }
@@ -44,14 +44,14 @@ server.use((req, res, next) => {
         case 'POST':
             const context = db[req.url.split('/').pop()];
 
-            if(!context){
+            if (!context) {
                 res.sendStatus(400);
-            }else{
+            } else {
                 idFound = true;
                 const token = req.get('Authorization')
                 if (req.get('Authorization') && utils.isNotAuthorized(req.get('Authorization'))) {
                     res.sendStatus(401)
-                }else{
+                } else {
                     next();
                 }
             }
@@ -63,7 +63,7 @@ server.use((req, res, next) => {
     if (!idFound) {
         res.sendStatus(404);
     }
- 
+
 });
 
 server.use(router);
@@ -74,3 +74,10 @@ server.listen(environment.port, () => {
 
 module.exports = server;
 
+const securityCheck =(contextPath, req) =>{
+    return contextPath.auth && utils.isNotAuthorized(req.get('Authorization'));
+}
+
+const mockStatus =(contextPath) =>{
+    return contextPath.status;
+}

@@ -11,7 +11,7 @@ HOW TO USE IT
 
     ```npm install json-server --save-dev```
 
-* My recomendation is to use this project in the root and include it in your repository as well because you will be able to manage versions in it.
+* My advise is to use this project in the root and include it in your repository as well because you will be able to manage versions in it.
 
 * There are three files in the resources:
     - _environment.js_  you can add the data related to the environment like tokens, headers, endpoints, etc.
