@@ -4,6 +4,7 @@ const utils = require('./config/utils');
 const path = require('path');
 const pathToDb = environment.pathDb || './config/db.json';
 const db = require(pathToDb);
+var get = require("./service/get-service")
 
 const server = jsonServer.create();
 
@@ -18,28 +19,7 @@ server.use((req, res, next) => {
     var contextPath;
     switch (req.method) {
         case 'GET':
-            const segmentsUrl = req.url.split('/');
-            const identifier = segmentsUrl.pop();
-            contextPath = db[segmentsUrl.pop()];
-            if (!contextPath) {
-                res.sendStatus(400);
-            } else {
-                for (j in contextPath) {
-                    if (contextPath[j].id === identifier) {
-                        idFound = true;
-                        if (mockStatus(contextPath[j])) {
-                            res.sendStatus(mockStatus(contextPath[j]))
-                            break;
-                        }
-                        if (securityCheck(contextPath[j], req)) {
-                            res.sendStatus(401)
-                            break;
-                        }
-                        next()
-                        break;
-                    }
-                }
-            }
+            idFound = get.handleGetRequest(req, res, next, db);
             break;
         case 'POST':
             const context = db[req.url.split('/').pop()];

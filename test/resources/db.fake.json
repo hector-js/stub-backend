@@ -2,42 +2,42 @@
     "challenge": [
       {
         "id": "1",
-        "auth": false,
-        "description": "right response without auth",
+        "auth_": false,
+        "description_": "right response without auth",
         "name": "Federico"
       },
       {
         "id": "2",
-        "auth": false,
-        "status": 500,
-        "description": "Internal server error without auth",
+        "auth_": false,
+        "status_": 500,
+        "description_": "Internal server error without auth",
         "name": "Beatriz"
       },
       {
         "id": "3",
-        "auth": false,
-        "status": 503,
-        "description": "Service unavailable",
+        "auth_": false,
+        "status_": 503,
+        "description_": "Service unavailable",
         "name": "Beatriz"
       },
       {
         "id": "4",
-        "auth": true,
-        "description": "right response with auth",
+        "auth_": true,
+        "description_": "right response with auth",
         "name": "Maria"
       },
       {
         "id": "5",
-        "auth": true,
-        "status":500,
-        "description": "Internal server error with auth",
+        "auth_": true,
+        "status_":500,
+        "description_": "Internal server error with auth",
         "name": "Federico"
       },
       {
         "id": "6",
-        "auth": true,
-        "status":503,
-        "description": "service unavailable with auth",
+        "auth_": true,
+        "status_":503,
+        "description_": "service unavailable with auth",
         "name": "Mark"
       }
      
