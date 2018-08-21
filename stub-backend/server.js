@@ -4,8 +4,8 @@ const utils = require('./config/utils');
 const path = require('path');
 const pathToDb = environment.pathDb || './config/db.json';
 const db = require(pathToDb);
-const getService = require("./service/get-service")
-const postService = require("./service/get-service")
+
+const stubController = require("./app/controller/stub.controller")
 
 const server = jsonServer.create();
 
@@ -15,37 +15,12 @@ server.use(middlewares);
 const router = jsonServer.router(path.join('stub-backend', pathToDb));
 
 
-server.use((req, res, next) => {
-    var idFound;
-    switch (req.method) {
-        case 'GET':
-            idFound = getService.handleGetRequest(req, res, next, db);
-            break;
-        case 'POST':
-            idFound = postService.handleGetRequest(req,res,next,db);
-            break;
-        case 'PUT':
-        case 'DELETE':
-        default:
-    }
-    if (!idFound) {
-        res.sendStatus(404);
-    }
-
-});
+server.use((req, res, next) => stubController.handleRequest(req,res,next,db));
 
 server.use(router);
 
-server.listen(environment.port, () => {
-    console.log('JSON Server (' + environment.env + ' environment) is running in the port ' + environment.port)
-});
+server.listen(environment.port, () => 
+    console.log('JSON Server (' + environment.env + ' environment) is running in the port ' + environment.port))
 
 module.exports = server;
 
-const securityCheck = (contextPath, req) => {
-    return contextPath.auth && utils.isNotAuthorized(req.get('Authorization'));
-}
-
-const mockStatus = (contextPath) => {
-    return contextPath.status;
-}

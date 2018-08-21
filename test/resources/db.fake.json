@@ -4,6 +4,7 @@
         "id": "1",
         "auth_": false,
         "description_": "right response without auth",
+        
         "name": "Federico"
       },
       {
@@ -11,6 +12,7 @@
         "auth_": false,
         "status_": 500,
         "description_": "Internal server error without auth",
+
         "name": "Beatriz"
       },
       {
@@ -18,12 +20,14 @@
         "auth_": false,
         "status_": 503,
         "description_": "Service unavailable",
+
         "name": "Beatriz"
       },
       {
         "id": "4",
         "auth_": true,
         "description_": "right response with auth",
+
         "name": "Maria"
       },
       {
@@ -31,6 +35,7 @@
         "auth_": true,
         "status_":500,
         "description_": "Internal server error with auth",
+
         "name": "Federico"
       },
       {

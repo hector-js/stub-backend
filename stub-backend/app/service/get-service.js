@@ -1,4 +1,4 @@
-const utils = require('./../config/utils');
+const utils = require('./../../config/utils');
 
 module.exports = {
     handleGetRequest(req, res, next, db) {
