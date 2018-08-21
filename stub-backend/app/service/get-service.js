@@ -1,11 +1,16 @@
 const utils = require('./../../config/utils');
+const repository = require('./../repository/respones.repository');
 
 module.exports = {
-    handleGetRequest(req, res, next, db) {
+    handleGetRequest(context) {
+        var req = context.request;
+        var res = context.response;
+        var next = context.fn;
+
         const segmentsUrl = req.url.split('/');
         const identifier = segmentsUrl.pop();
         var idFound = false;
-        contextPath = db[segmentsUrl.pop()];
+        contextPath = repository.findData(segmentsUrl.pop());
         if (!contextPath) {
             res.sendStatus(400);
         } else {

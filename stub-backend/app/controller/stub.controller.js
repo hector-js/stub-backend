@@ -1,18 +1,17 @@
 const getService = require("./../../app/service/get-service");
 const postService = require("./../../app/service/post-service");
-// const environment = require('./../../environment/index');
-// const pathToDb = environment.pathDb || './../../config/db.json';
-// const db = require(pathToDb);
 
 module.exports = {
-    handleRequest(req, res, next, db){
+    handleRequest(context){
+        var req = context.request;
+        var res = context.response;
         var idFound;
         switch (req.method) {
             case 'GET':
-                idFound = getService.handleGetRequest(req, res, next, db);
+                idFound = getService.handleGetRequest(context);
                 break;
             case 'POST':
-                idFound = postService.handleGetRequest(req, res, next, db);
+                idFound = postService.handleGetRequest(context);
                 break;
             case 'PUT':
             case 'DELETE':

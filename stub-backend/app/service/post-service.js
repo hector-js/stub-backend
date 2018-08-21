@@ -1,10 +1,16 @@
 const utils = require('./../../config/utils');
+const repository = require('./../repository/respones.repository');
 
 module.exports = {
-    handlePostRequest(req, res, next, db) {
-        const context = db[req.url.split('/').pop()];
+    handlePostRequest(context) {
+        var req = context.request;
+        var res = context.response;
+        var next = context.fn;
+        
+        const contextUrl = repository.findData(req.url.split('/').pop());
+
         var idFound = false;
-        if (!context) {
+        if (!contextUrl) {
             res.sendStatus(400);
         } else {
             idFound = true;
