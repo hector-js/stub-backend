@@ -8,14 +8,16 @@
   },
   "dependencies": {
     "chai": "^4.1.2",
-    "json-server": "^0.12.2",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
     "supertest": "^3.1.0"
   },
   "devDependencies": {
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "SET NODE_ENV=test& mocha --exit"
+    "start": "nodemon stub-backend/server.js",
+    "test": "SET NODE_ENV=test & mocha --exit"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "ISC"

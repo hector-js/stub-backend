@@ -2,14 +2,10 @@ STUB BACKEND (WIP)
 ============
 * **Description** The aim of this project is to _mock the backend_  building different responses with authentication and different status.
 
-* Based on json server module (https://www.npmjs.com/package/json-server) which behind is using express framework. 
-
 HOW TO USE IT
 =============
 
-* First of all, follow the json-server page in order to understand how it is working. You will need to set it running the following command.
-
-    ```npm install json-server --save-dev```
+UNDER CONSTRUCTION.....
 
 * My advise is to use this project in the root and include it in your repository as well because you will be able to manage versions in it.
 
