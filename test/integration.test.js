@@ -1,6 +1,6 @@
 'use strict';
 
-var server = require('../stub-backend/server');
+var server = require('../lib/server');
 var chai = require('chai');
 var request = require('supertest');
 

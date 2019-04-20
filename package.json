@@ -1,19 +1,19 @@
 {
-  "name": "stub-backend",
-  "version": "1.0.0",
+  "name": "@hectorjs/stub-backend",
+  "version": "0.0.0",
   "description": "Stub the backend for a front end application",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "chai": "^4.1.2",
     "express": "^4.16.4",
-    "morgan": "^1.9.1",
-    "supertest": "^3.1.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "chai": "^4.1.2",
+    "supertest": "^3.1.0"
   },
   "scripts": {
     "start": "nodemon stub-backend/server.js",

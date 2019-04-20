@@ -1,6 +1,6 @@
 'use strict';
 
-var GetRespository = require('./../stub-backend/app/components/get/get.repository');
+var GetRespository = require('./../lib/app/components/get/get.repository');
 var chai = require('chai');
 
 var expect = chai.expect;
