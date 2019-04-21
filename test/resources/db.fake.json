@@ -1,0 +1,24 @@
+{
+  "stories/(.*?)/person": [
+    {
+      "id_": "Nathan",
+      "auth_": false,
+      "description_": "right response without auth",
+      "name": "Nathan"
+    },
+    {
+      "id_": "mark",
+      "auth_": false,
+      "description_": "right response without auth",
+      "name": "Mark"
+    }
+  ],
+  "stories/(.*?)/budget": [
+    {
+      "id_": "Nathan",
+      "auth_": true,
+      "description_": "right response without auth",
+      "name": "Nathan"
+    }
+  ]
+}
