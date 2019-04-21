@@ -17,7 +17,7 @@ describe('stub backend project', () => {
                         expect(res.body).to.deep.equal({
                             "id_": "Nathan",
                             "auth_": false,
-                            "description_": "right response without auth",
+                            "description_": "Get person details related to Nathan without authentication",
                             "name": "Nathan"
                         });
                         done();
@@ -32,7 +32,7 @@ describe('stub backend project', () => {
                         expect(res.body).to.deep.equal({
                             "id_": "mark",
                             "auth_": false,
-                            "description_": "right response without auth",
+                            "description_": "Get person details related to Mark without authentication",
                             "name": "Mark"
                         });
                         done();
@@ -65,7 +65,7 @@ describe('stub backend project', () => {
                         expect(res.body).to.deep.equal({
                             "id_": "Nathan",
                             "auth_": true,
-                            "description_": "right response without auth",
+                            "description_": "Get budget details related to Nathan with authentication",
                             "name": "Nathan"
                         });
                         done();

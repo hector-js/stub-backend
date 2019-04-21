@@ -12,7 +12,7 @@ describe('get repository', () => {
         expect(body).to.deep.equal({
             "id_": "Nathan",
             "auth_": false,
-            "description_": "right response without auth",
+            "description_": "Get person details related to Nathan without authentication",
             "name": "Nathan"
           });
     });
