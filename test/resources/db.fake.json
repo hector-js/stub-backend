@@ -3,13 +3,13 @@
     {
       "id_": "Nathan",
       "auth_": false,
-      "description_": "right response without auth",
+      "description_": "Get person details related to Nathan without authentication",
       "name": "Nathan"
     },
     {
       "id_": "mark",
       "auth_": false,
-      "description_": "right response without auth",
+      "description_": "Get person details related to Mark without authentication",
       "name": "Mark"
     }
   ],
@@ -17,7 +17,7 @@
     {
       "id_": "Nathan",
       "auth_": true,
-      "description_": "right response without auth",
+      "description_": "Get budget details related to Nathan with authentication",
       "name": "Nathan"
     }
   ]
