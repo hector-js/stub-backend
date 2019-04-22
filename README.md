@@ -1,12 +1,12 @@
-#@hectorjs/stub-backend
+# @hectorjs/stub-backend
 
-#Install
+# Install
 
 ```sh
    npm i @hectorjs/stub-backend
 ```
 
-#Usage
+# Usage
 
 A shortcut:
 
