@@ -10,10 +10,12 @@ describe('get repository', () => {
         const contextPath = 'stories/Nathan/person';
         const body = GetRespository.findData(contextPath);
         expect(body).to.deep.equal({
-            "id_": "Nathan",
-            "auth_": false,
-            "description_": "Get person details related to Nathan without authentication",
-            "name": "Nathan"
+            id_: 'Nathan',
+            auth_: false,
+            description_: 'Get person details related to Nathan without authentication',
+            body_: {
+                name: 'Nathan'
+            }
           });
     });
 

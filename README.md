@@ -58,13 +58,17 @@ Below, we have a example:
                 "id_": "Nathan",
                 "auth_": false,
                 "description_": "Get person details related to Nathan without authentication",
-                "name": "Nathan"
+                "body_":{
+                    "name": "Nathan"
+                }
             },
             {
                 "id_": "mark",
                 "auth_": false,
                 "description_": "Get person details related to Mark without authentication",
-                "name": "Mark"
+                "body_":{
+                    "name": "Mark"
+                }
             }
         ],
         "stories/(.*?)/budget": [
@@ -72,7 +76,9 @@ Below, we have a example:
                 "id_": "Nathan",
                 "auth_": true,
                 "description_": "Get budget details related to Nathan with authentication",
-                "name": "Nathan"
+                "body_":{
+                    "name": "Nathan"
+                }
             }
         ]
     }
@@ -99,7 +105,9 @@ The response will be like this:
         "id_": "Nathan",
         "auth_": false,
         "description_": "Get person details related to Nathan without authentication",
-        "name": "Nathan"
+        "body_":{
+            "name": "Nathan"
+        }
     },
 ```
 
