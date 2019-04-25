@@ -2,7 +2,7 @@
   "stories/(.*?)/person": [
     {
       "id_": "Nathan",
-      "auth_": false,
+      "headers_":[],
       "description_": "Get person details related to Nathan without authentication",
       "body_": {
         "name": "Nathan"
@@ -10,7 +10,7 @@
     },
     {
       "id_": "mark",
-      "auth_": false,
+      "headers_":[],
       "description_": "Get person details related to Mark without authentication",
       "body_": {
         "name": "Mark"
@@ -20,7 +20,15 @@
   "stories/(.*?)/budget": [
     {
       "id_": "Nathan",
-      "auth_": true,
+      "headers_":[ "Authorization" ],
+      "description_": "Get budget details related to Nathan with authentication",
+      "body_": {
+        "name": "Nathan"
+      }
+    },
+    {
+      "id_": "Smith",
+      "headers_":[ "Authorization", "id" ],
       "description_": "Get budget details related to Nathan with authentication",
       "body_": {
         "name": "Nathan"

@@ -53,7 +53,7 @@ describe('stub backend project', () => {
             it('returns a valid reponse', (done) => {
                 request(server)
                     .get('/stories/Nathan/budget')
-                    .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE' })
+                    .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE', id: 'MY_ID' })
                     .end((err, res) => {
                         expect(res.status).to.equal(200);
                         expect(res.body).to.deep.equal({
@@ -77,17 +77,32 @@ describe('stub backend project', () => {
                     });
             });
 
-            it('returns 401 when it authorization header is not there and the request requires authentication', (done) => {
-                request(server)
-                    .get('/stories/Nathan/budget')
-                    .end((err, res) => {
-                        expect(res.status).to.equal(401);
-                        expect(res.body).to.deep.equal({
-                            errorCode: 401,
-                            message: 'Unautorized request! :('
+            describe('headers',()=>{
+                it('returns 401 when it authorization header is not there and the request requires authentication', (done) => {
+                    request(server)
+                        .get('/stories/nathan/budget')
+                        .end((err, res) => {
+                            expect(res.status).to.equal(401);
+                            expect(res.body).to.deep.equal({
+                                errorCode: 401,
+                                message: 'Header not found! :('
+                            });
+                            done();
                         });
-                        done();
-                    });
+                });
+
+                it('returns 401 when it id header is not there and the request requires the header', (done) => {
+                    request(server)
+                        .get('/stories/smith/budget')
+                        .end((err, res) => {
+                            expect(res.status).to.equal(401);
+                            expect(res.body).to.deep.equal({
+                                errorCode: 401,
+                                message: 'Header not found! :('
+                            });
+                            done();
+                        });
+                });
             });
         });
     });
