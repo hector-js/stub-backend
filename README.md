@@ -40,14 +40,14 @@ The json must follow the next format:
 
 2. An array of possible responses based on the identifier.
 
-3. Each response contains an id_, auth_ and description_ property:
+3. Each response contains an id_, headers_ and description_ property:
 
     *  *id_* identifier 
         (/stories/Nathan/person => id_: Nathan)
-    *  *auth_* authentication. 
-        It is looking if Authorization header exits
+    *  *headers_*  
+        It is looking if the headers exist in the request and responding an error when they are not found.
     *  *description_*
-        Brief explanation about the response
+        Brief explanation about the response.
 
 Below, we have a example:
 
@@ -56,23 +56,29 @@ Below, we have a example:
         "stories/(.*?)/person": [
             {
                 "id_": "Nathan",
-                "auth_": false,
+                "headers_":[],
                 "description_": "Get person details related to Nathan without authentication",
-                "name": "Nathan"
+                "body_":{
+                    "name": "Nathan"
+                }
             },
             {
                 "id_": "mark",
-                "auth_": false,
+                "headers_":["Authorization"],
                 "description_": "Get person details related to Mark without authentication",
-                "name": "Mark"
+                "body_":{
+                    "name": "Mark"
+                }
             }
         ],
         "stories/(.*?)/budget": [
             {
                 "id_": "Nathan",
-                "auth_": true,
+                "headers_":["Client_id"],
                 "description_": "Get budget details related to Nathan with authentication",
-                "name": "Nathan"
+                "body_":{
+                    "name": "Nathan"
+                }
             }
         ]
     }
@@ -97,9 +103,11 @@ The response will be like this:
 ```json
     {
         "id_": "Nathan",
-        "auth_": false,
+        "headers_":["Client_id"],
         "description_": "Get person details related to Nathan without authentication",
-        "name": "Nathan"
+        "body_":{
+            "name": "Nathan"
+        }
     },
 ```
 
