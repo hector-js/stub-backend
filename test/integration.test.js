@@ -11,7 +11,7 @@ describe('stub backend project', () => {
         describe('#get', () => {
             it('returns a valid reponse for Nathan id', (done) => {
                 request(server)
-                    .get('/stories/Nathan/person')
+                    .get('/stories/nathan/person')
                     .end((err, res) => {
                         expect(res.status).to.equal(200);
                         expect(res.body).to.deep.equal({
@@ -35,7 +35,7 @@ describe('stub backend project', () => {
 
             it('return 404 when is not finding the scenario', (done) => {
                 request(server)
-                    .get('/stories/Nathan/age')
+                    .get('/stories/nathan/age')
                     .end((err, res) => {
                         expect(res.status).to.equal(404);
                         expect(res.body).to.deep.equal({
@@ -102,6 +102,52 @@ describe('stub backend project', () => {
                             });
                             done();
                         });
+                });
+            });
+
+            describe('cookies',()=>{
+                it('should return a valid response when a cookie is in the request',(done)=>{
+                    request(server)
+                    .get('/stories/christopher/confidential')
+                    .set('Cookie', ['session-id=12345667','key-id=KEY_ENCRYPTED'])
+                    .end((err, res) => {
+                        expect(res.status).to.equal(200);
+                        expect(res.body).to.deep.equal({
+                            "gender": "male",
+                            "dob": "12/12/1990"
+                          });
+                        done();
+                    });
+                });
+    
+                it('should return 401 when a cookie is not presented in the request',(done)=>{
+                    request(server)
+                    .get('/stories/christopher/confidential')
+                    .set('Cookie', ['session-id=12345667'])
+                    .end((err, res) => {
+                        expect(res.status).to.equal(401);
+                        expect(res.body).to.deep.equal({
+                            errorCode: 401,
+                            message: 'Cookie not found in the request! :('
+                        });
+                        done();
+                    });
+                });
+            });
+
+            describe('cookies&headers',()=>{
+                it('should return 401 when a cookie and header are not presented in the request with specific message',(done)=>{
+                    request(server)
+                    .get('/stories/mark/confidential')
+                    .set('Cookie', ['session-id=12345667'])
+                    .end((err, res) => {
+                        expect(res.status).to.equal(401);
+                        expect(res.body).to.deep.equal({
+                            errorCode: 401,
+                            message: 'Cookie and header not found in the request! :('
+                        });
+                        done();
+                    });
                 });
             });
         });

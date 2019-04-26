@@ -45,9 +45,15 @@ The json must follow the next format:
     *  *id_* identifier 
         (/stories/Nathan/person => id_: Nathan)
     *  *headers_*  
+        _format:_ "headers_: string[]" 
         It is looking if the headers exist in the request and responding an error when they are not found.
+    *  *cookies_* 
+        _format:_ "cookies_: string[]"  
+        It is looking if the cookies exist in the request and responding an error when they are not found.
     *  *description_*
         Brief explanation about the response.
+
+_Note:_ If any field is missed, it means it is not required.
 
 Below, we have a example:
 
@@ -65,6 +71,7 @@ Below, we have a example:
             {
                 "id_": "mark",
                 "headers_":["Authorization"],
+                "cookies_": [],
                 "description_": "Get person details related to Mark without authentication",
                 "body_":{
                     "name": "Mark"
@@ -75,6 +82,10 @@ Below, we have a example:
             {
                 "id_": "Nathan",
                 "headers_":["Client_id"],
+                "cookies_": [
+                    "session-id",
+                    "key-id"
+                ],
                 "description_": "Get budget details related to Nathan with authentication",
                 "body_":{
                     "name": "Nathan"
@@ -104,6 +115,10 @@ The response will be like this:
     {
         "id_": "Nathan",
         "headers_":["Client_id"],
+         "cookies_": [
+            "session-id",
+            "key-id"
+        ],
         "description_": "Get person details related to Nathan without authentication",
         "body_":{
             "name": "Nathan"
