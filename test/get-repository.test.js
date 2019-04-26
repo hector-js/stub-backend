@@ -7,12 +7,12 @@ var expect = chai.expect;
 
 describe('get repository', () => {
     it('returns the context path and id when it is found', () => {
-        const contextPath = 'stories/Nathan/person';
+        const contextPath = 'stories/nathan/person';
         const body = GetRespository.findData(contextPath);
         expect(body).to.deep.equal({
             id_: 'Nathan',
             headers_ :[ ],
-            description_: 'Get person details related to Nathan without authentication',
+            description_: 'Get person details related to Nathan',
             body_: {
                 name: 'Nathan'
             }
@@ -20,7 +20,7 @@ describe('get repository', () => {
     });
 
     it('returns context path and id as null when it is not found', () => {
-        const contextPath = 'stories/Nathan/age';
+        const contextPath = 'stories/nathan/age';
 
         const body = GetRespository.findData(contextPath);
         expect(body).to.be.null;

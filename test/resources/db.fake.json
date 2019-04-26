@@ -2,16 +2,16 @@
   "stories/(.*?)/person": [
     {
       "id_": "Nathan",
-      "headers_":[],
-      "description_": "Get person details related to Nathan without authentication",
+      "headers_": [],
+      "description_": "Get person details related to Nathan",
       "body_": {
         "name": "Nathan"
       }
     },
     {
       "id_": "mark",
-      "headers_":[],
-      "description_": "Get person details related to Mark without authentication",
+      "headers_": [],
+      "description_": "Get person details related to Mark",
       "body_": {
         "name": "Mark"
       }
@@ -20,18 +20,51 @@
   "stories/(.*?)/budget": [
     {
       "id_": "Nathan",
-      "headers_":[ "Authorization" ],
-      "description_": "Get budget details related to Nathan with authentication",
+      "headers_": [
+        "Authorization"
+      ],
+      "description_": "Get budget details related to Nathan with authentication header",
       "body_": {
         "name": "Nathan"
       }
     },
     {
       "id_": "Smith",
-      "headers_":[ "Authorization", "id" ],
-      "description_": "Get budget details related to Nathan with authentication",
+      "headers_": [
+        "Authorization",
+        "id"
+      ],
+      "description_": "Get budget details related to Nathan with Authorization, id in the headers",
       "body_": {
         "name": "Nathan"
+      }
+    }
+  ],
+  "stories/(.*?)/confidential": [
+    {
+      "id_": "Christopher",
+      "headers_": [],
+      "cookies_": [
+        "session-id",
+        "key-id"
+      ],
+      "description_": "Get confidential details related to Christopher with a cookie provided",
+      "body_": {
+        "gender": "male",
+        "dob": "12/12/1990"
+      }
+    },
+    {
+      "id_": "Mark",
+      "headers_": ["Authorization"],
+      "cookies_": [
+        "session-id",
+        "key-id"
+      ],
+      "description_": "Get confidential details related to Christopher with a cookie and header provided",
+      "body_": {
+        "gender": "male",
+        "dob": "12/12/1990"
       }
     }
   ]
