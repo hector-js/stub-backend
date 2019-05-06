@@ -29,7 +29,7 @@ Note: add the previous line in app.js file
 
 ## Folder data
 
-Create a folder named _data_ and create under that folder a json file named data.json
+Create a folder named _resources_ and create under that folder a couple of jsons files (it does not matter the name of the files) with the properties.
 
 ```json
     {}
@@ -95,7 +95,7 @@ Below, we have a example:
     }
 ```
 
-If you want to test it, copy the previous example and paste it in data.js. Then execute the following command:
+If you want to test it, copy the previous example and paste it in one of the json files. Then execute the following command:
 
 ```sh
     node app.js
@@ -135,4 +135,8 @@ The aim of this project is to _mock the backend_  building different responses w
 # Respository
 
 https://github.com/HecJimSan/stub-backend
+
+# Notes
+
+* _extend_ library has been upgraded to version 3.2.0 because vulneravility detected (CVE-2018-16492)
 
