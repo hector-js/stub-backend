@@ -39,33 +39,5 @@
         "name": "Nathan"
       }
     }
-  ],
-  "stories/(.*?)/confidential": [
-    {
-      "id_": "Christopher",
-      "headers_": [],
-      "cookies_": [
-        "session-id",
-        "key-id"
-      ],
-      "description_": "Get confidential details related to Christopher with a cookie provided",
-      "body_": {
-        "gender": "male",
-        "dob": "12/12/1990"
-      }
-    },
-    {
-      "id_": "Mark",
-      "headers_": ["Authorization"],
-      "cookies_": [
-        "session-id",
-        "key-id"
-      ],
-      "description_": "Get confidential details related to Christopher with a cookie and header provided",
-      "body_": {
-        "gender": "male",
-        "dob": "12/12/1990"
-      }
-    }
   ]
 }
