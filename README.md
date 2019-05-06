@@ -138,5 +138,5 @@ https://github.com/HecJimSan/stub-backend
 
 # Notes
 
-* _extend_ library has been upgraded to version 3.2.0 because vulneravility detected (CVE-2018-16492)
+* _extend_ library has been upgraded to version 3.2.0 because a vulneravility has detected in that version (CVE-2018-16492)
 
