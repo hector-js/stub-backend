@@ -20,10 +20,18 @@
         "session-id",
         "key-id"
       ],
-      "description_": "Get confidential details related to Christopher with a cookie and header provided",
+      "description_": "Get confidential details related to Mark with a cookie and header provided",
       "body_": {
         "gender": "male",
         "dob": "12/12/1990"
+      }
+    },
+    {
+      "id_": "Smith",
+      "status_": 404,
+      "description_": "Get confidential details related to Christopher with a cookie and header provided",
+      "body_": {
+        "messageError": "request not found"
       }
     }
   ]

@@ -45,6 +45,18 @@ describe('stub backend project', () => {
                         done();
                     });
             });
+
+            it('return 404 when it exists an status in the json file which says 404', (done) => {
+                request(server)
+                    .get('/stories/smith/confidential')
+                    .end((err, res) => {
+                        expect(res.status).to.equal(404);
+                        expect(res.body).to.deep.equal({
+                            messageError: 'request not found'
+                        });
+                        done();
+                    });
+            });
         });
     });
 
