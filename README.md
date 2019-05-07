@@ -52,6 +52,8 @@ The json must follow the next format:
         It is looking if the cookies exist in the request and responding an error when they are not found.
     *  *description_*
         Brief explanation about the response.
+    *  *status_*
+        Just in case the request contain the cookie and headers, you can set your own status or leave it 200 as default.
 
 _Note:_ If any field is missed, it means it is not required.
 
@@ -63,6 +65,7 @@ Below, we have a example:
             {
                 "id_": "Nathan",
                 "headers_":[],
+                "status_" : 304,
                 "description_": "Get person details related to Nathan without authentication",
                 "body_":{
                     "name": "Nathan"
@@ -138,5 +141,5 @@ https://github.com/HecJimSan/stub-backend
 
 # Notes
 
-* _extend_ library has been upgraded to version 3.2.0 because vulneravility detected (CVE-2018-16492)
+* _extend_ library has been upgraded to version 3.2.0 because a vulneravility has detected in that version (CVE-2018-16492)
 
