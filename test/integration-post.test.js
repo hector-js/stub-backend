@@ -22,9 +22,6 @@ describe('POST - stub backend project', () => {
                 });
         });
     });
-
-    describe('with Authentication', () => {
-    });
 });
 
 
