@@ -32,7 +32,7 @@ describe('GET - stub backend project', () => {
                 });
         });
 
-        it('return 404 when is not finding the scenario', (done) => {
+        it('returns 404 when is not finding the scenario', (done) => {
             request(server)
                 .get('/stories/nathan/age')
                 .end((err, res) => {
@@ -45,7 +45,7 @@ describe('GET - stub backend project', () => {
                 });
         });
 
-        it('return 404 when it exists an status in the json file which says 404', (done) => {
+        it('returns 404 when it exists an status in the json file which says 404', (done) => {
             request(server)
                 .get('/stories/smith/confidential')
                 .end((err, res) => {
@@ -55,6 +55,28 @@ describe('GET - stub backend project', () => {
                     });
                     done();
                 });
+        });
+
+        describe('get all resources',()=>{
+            it('returns a response when there is no id',(done)=>{
+                request(server)
+                .get('/stories/people')
+                .end((err, res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.deep.equal({"people":[{"name": "Nathan"},{"name": "Mark"}]});
+                    done();
+                });
+            });
+            
+            it('returns a response when there is id empty',(done)=>{
+                request(server)
+                .get('/stories/budgets')
+                .end((err, res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.deep.equal({"people":[{"budget": "1000"},{"budget": "5000"}]});
+                    done();
+                });
+            });
         });
     });
 
