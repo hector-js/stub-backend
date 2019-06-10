@@ -17,6 +17,21 @@
       }
     }
   ],
+  "/stories/people": [
+    {
+      "headers_": [],
+      "description_": "Get stories for all the people",
+      "body_": {"people":[{"name": "Nathan"},{"name": "Mark"}]}
+    }
+  ],
+  "/stories/budgets": [
+    {
+      "id_": "",
+      "headers_": [],
+      "description_": "Get all budgets",
+      "body_": {"people":[{"budget": "1000"},{"budget": "5000"}]}
+    }
+  ],
   "stories/(.*?)/budget": [
     {
       "id_": "Nathan",

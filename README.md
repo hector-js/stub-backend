@@ -29,6 +29,8 @@ Note: add the previous line in app.js file
 
 ## Folder data
 
+### GET Method
+
 Create a folder named _resources_ and create under that folder a couple of jsons files (it does not matter the name of the files) with the properties.
 
 ```json
@@ -116,24 +118,89 @@ The response will be like this:
 
 ```json
     {
-        "id_": "Nathan",
-        "headers_":["Client_id"],
-         "cookies_": [
-            "session-id",
-            "key-id"
-        ],
-        "description_": "Get person details related to Nathan without authentication",
-        "body_":{
-            "name": "Nathan"
-        }
-    },
+        "name": "Nathan"
+    }
 ```
 
+### POST Method
+
+You need to procedure with the same folder structure for a GET method
+```
+ resources
+    ¦
+     - *.json
+     - *.json
+     - ...
+```
+```json
+    {}
+```
+The json must follow the next format:
+
+1. First property level must be *_post*. 
+
+2. Under *_post* you must add an array of the following element:
+    ```json
+     {
+      "data": {},
+      "response":{}
+    }
+    ```
+    Where _data_ is the body for the request and _response_ the body of the response
+
+Below, we have a example:
+
+```json
+  {
+  "post_": [
+    {
+      "data": {
+        "name": "Nathan"
+      },
+      "response":{
+        "custom": "response"
+      }
+    },
+    {
+      "data": {
+        "name": "Mark"
+      },
+      "response":{
+        "custom": "responseTwo"
+      }
+    }
+  ]
+}
+```
+
+If you want to test it, copy the previous example and paste it in one of the json files. Then execute the following command:
+
+```sh
+    node app.js
+```
+
+The service will be running in the port *3005* waiting for a request.
+
+Make a request:
+
+```sh
+    curl -d '{"name": "Mark"}' -X POST  -H "Content-Type: application/json"  http:localhost:3005/story/nathan
+```
+
+The response will be like this:
+
+```json
+    {
+        "custom": "response"
+    }
+```
 
 
 # Description
 
-The aim of this project is to _mock the backend_  building different responses with authentication and different status.
+The aim of this project is to _mock the backend_  building different responses with authentication, cookies and different status.
+
+Make the life easier for a nice development :smile:
 
 # Respository
 
