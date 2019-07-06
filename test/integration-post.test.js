@@ -1,6 +1,6 @@
 'use strict';
 
-var server = require('../lib/server');
+var app = require('../lib/app');
 var chai = require('chai');
 var request = require('supertest');
 
@@ -9,7 +9,7 @@ var expect = chai.expect;
 describe('POST - stub backend project', () => {
     describe('without Authentication', () => {
         it('returns a valid reponse for specific body', (done) => {
-            request(server)
+            request(app)
             .post('/story/nathan')
             .set('Accept', 'application/json')
             .send({ 'name': 'Nathan' })

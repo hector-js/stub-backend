@@ -1,6 +1,6 @@
 'use strict';
 
-var server = require('../lib/server');
+var app = require('../lib/app');
 var chai = require('chai');
 var request = require('supertest');
 
@@ -9,7 +9,7 @@ var expect = chai.expect;
 describe('GET - stub backend project', () => {
     describe('without Authentication', () => {
         it('returns a valid reponse for Nathan id', (done) => {
-            request(server)
+            request(app)
                 .get('/stories/nathan/person')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
@@ -21,7 +21,7 @@ describe('GET - stub backend project', () => {
         });
 
         it('returns a valid reponse for Mark id', (done) => {
-            request(server)
+            request(app)
                 .get('/stories/mark/person')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
@@ -33,7 +33,7 @@ describe('GET - stub backend project', () => {
         });
 
         it('returns 404 when is not finding the scenario', (done) => {
-            request(server)
+            request(app)
                 .get('/stories/nathan/age')
                 .end((err, res) => {
                     expect(res.status).to.equal(404);
@@ -46,7 +46,7 @@ describe('GET - stub backend project', () => {
         });
 
         it('returns 404 when it exists an status in the json file which says 404', (done) => {
-            request(server)
+            request(app)
                 .get('/stories/smith/confidential')
                 .end((err, res) => {
                     expect(res.status).to.equal(404);
@@ -59,7 +59,7 @@ describe('GET - stub backend project', () => {
 
         describe('get all resources',()=>{
             it('returns a response when there is no id',(done)=>{
-                request(server)
+                request(app)
                 .get('/stories/people')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
@@ -69,7 +69,7 @@ describe('GET - stub backend project', () => {
             });
             
             it('returns a response when there is id empty',(done)=>{
-                request(server)
+                request(app)
                 .get('/stories/budgets')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
@@ -82,7 +82,7 @@ describe('GET - stub backend project', () => {
 
     describe('with Authentication', () => {
         it('returns a valid reponse', (done) => {
-            request(server)
+            request(app)
                 .get('/stories/Nathan/budget')
                 .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE', id: 'MY_ID' })
                 .end((err, res) => {
@@ -95,7 +95,7 @@ describe('GET - stub backend project', () => {
         });
 
         it('returns 404 when it is not finding the scenario', (done) => {
-            request(server)
+            request(app)
                 .get('/stories/Nathan/age')
                 .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE' })
                 .end((err, res) => {
@@ -110,7 +110,7 @@ describe('GET - stub backend project', () => {
 
         describe('headers', () => {
             it('returns 401 when it authorization header is not there and the request requires authentication', (done) => {
-                request(server)
+                request(app)
                     .get('/stories/nathan/budget')
                     .end((err, res) => {
                         expect(res.status).to.equal(401);
@@ -123,7 +123,7 @@ describe('GET - stub backend project', () => {
             });
 
             it('returns 401 when it id header is not there and the request requires the header', (done) => {
-                request(server)
+                request(app)
                     .get('/stories/smith/budget')
                     .end((err, res) => {
                         expect(res.status).to.equal(401);
@@ -138,7 +138,7 @@ describe('GET - stub backend project', () => {
 
         describe('cookies', () => {
             it('should return a valid response when a cookie is in the request', (done) => {
-                request(server)
+                request(app)
                     .get('/stories/christopher/confidential')
                     .set('Cookie', ['session-id=12345667', 'key-id=KEY_ENCRYPTED'])
                     .end((err, res) => {
@@ -152,7 +152,7 @@ describe('GET - stub backend project', () => {
             });
 
             it('should return 401 when a cookie is not presented in the request', (done) => {
-                request(server)
+                request(app)
                     .get('/stories/christopher/confidential')
                     .set('Cookie', ['session-id=12345667'])
                     .end((err, res) => {
@@ -168,7 +168,7 @@ describe('GET - stub backend project', () => {
 
         describe('cookies&headers', () => {
             it('should return 401 when a cookie and header are not presented in the request with specific message', (done) => {
-                request(server)
+                request(app)
                     .get('/stories/mark/confidential')
                     .set('Cookie', ['session-id=12345667'])
                     .end((err, res) => {
