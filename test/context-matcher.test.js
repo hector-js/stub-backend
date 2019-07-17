@@ -1,6 +1,6 @@
 'use strict';
 
-var ContextMatcher = require('./../lib/app/utils/context-matcher');
+var ContextMatcher = require('./../lib/app/shared/context-matcher');
 var chai = require('chai');
 
 var expect = chai.expect;
