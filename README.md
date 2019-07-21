@@ -3,7 +3,7 @@
 # Install
 
 ```sh
-   npm i @hectorjs/stub-backend
+npm i @hectorjs/stub-backend
 ```
 
 # Usage
