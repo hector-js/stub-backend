@@ -11,10 +11,16 @@ npm i @hectorjs/stub-backend
 A shortcut:
 
 ```sh
-touch app.js
-mkdir data
-cd data
-touch data.js
+mkdir project-name & 
+cd project-name & 
+echo require('@hectorjs/stub-backend') > app.js &
+mkdir resources & 
+cd resources & 
+echo {} > temp.json &
+cd .. &
+npm init &
+npm i @hectorjs/stub-backend &
+node app.js
 ```
 
 ## Add library to your runner file
