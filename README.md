@@ -23,6 +23,17 @@ npm i @hectorjs/stub-backend &
 node app.js
 ```
 
+Also, you can execute the following shell script and initialize a project given a name and a root path.
+
+Below, it is shown an example of one project named 'fruit' place in under '/c/opt/' path
+
+
+```sh
+PROJECT_NAME=fruit ROOT_PATH=/c/opt sh initializer.sh
+```
+
+A folder with the name fruit will be created under opt folder.
+
 ## Add library to your runner file
 
 Create a javascript file and add the library @hectorjs/stub-backend
