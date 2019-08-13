@@ -25,12 +25,10 @@ node app.js
 
 Also, you can execute the following shell script and initialize a project given a name and a root path.
 
-Below, it is shown an example of one project named 'fruit' place in under '/c/opt/' path
+Below, the link show you the shell script to execute:
 
+https://github.com/HecJimSan/stub-backend/blob/development/initializer.sh
 
-```sh
-PROJECT_NAME=fruit ROOT_PATH=/c/opt sh initializer.sh
-```
 
 A folder with the name fruit will be created under opt folder.
 
