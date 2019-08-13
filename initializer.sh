@@ -1,10 +1,31 @@
 
+## Execute this shell script in order to create a default stub project
+
 clear
 echo ''
-echo '> Project name? '
-read PROJECT_NAME
-echo '> Root path? (example: /c/opt/...)'
-read ROOT PATH
+while [[ -z "$PROJECT_NAME" ]];do
+ echo -e '\e[31m>\e[0m Project name? '
+ read PROJECT_NAME
+ if [[ -z "$PROJECT_NAME" ]]
+ then
+      echo -e '\e[31m You must add a value  :(\e[0m\n'
+ else
+      echo -e '\e[32m Well done  :)\e[0m\n'
+ fi
+done
+
+while [[ -z "$ROOT_PATH" ]];do
+ echo -e '\e[31m>\e[0m Root path? (example: /c/opt/...) '
+ read ROOT_PATH
+
+ if [[ -z "$ROOT_PATH" ]]
+ then
+      echo -e '\e[31m You must add a value  :(\e[0m\n'
+ else
+      echo -e '\e[32m Well done  :)\e[0m\n'
+ fi
+done
+
 echo ''
 echo -e '\e[33m----------------------------------------------------\e[0m\n'
 echo -e ' \e[32mInit hectorjs ...\e[0m\n'
