@@ -126,7 +126,7 @@ The service will be running in the port *3005* waiting for a request.
 Make a request:
 
 ```sh
-curl http:localhost:3005/stories/nathan/person
+curl http://localhost:3005/stories/nathan/person
 ```
 
 The response will be like this:
