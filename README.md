@@ -82,6 +82,14 @@ Below, we have a example:
         {
             "id_": "Nathan",
             "headers_":[],
+            "description_": "Get person details related to Nathan without authentication",
+            "body_":{
+                "name": "Nathan"
+            }
+        },
+        {
+            "id_": "Lucas",
+            "headers_":[],
             "status_" : 304,
             "description_": "Get person details related to Nathan without authentication",
             "body_":{
@@ -199,7 +207,7 @@ The service will be running in the port *3005* waiting for a request.
 Make a request:
 
 ```sh
-curl -d '{"name": "Mark"}' -X POST  -H "Content-Type: application/json"  http:localhost:3005/story/nathan
+curl -d '{"name": "Mark"}' -X POST  -H "Content-Type: application/json"  http://localhost:3005/story/nathan
 ```
 
 The response will be like this:
