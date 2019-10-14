@@ -78,7 +78,7 @@ Below, we have a example:
 
 ```json
 {
-    "stories/(.*?)/person": [
+    "^/stories/(.*?)/person$": [
         {
             "id_": "Nathan",
             "headers_":[],
@@ -106,7 +106,7 @@ Below, we have a example:
             }
         }
     ],
-    "stories/(.*?)/budget": [
+    "^/stories/(.*?)/budget$": [
         {
             "id_": "Nathan",
             "headers_":["Client_id"],
