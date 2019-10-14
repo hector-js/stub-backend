@@ -91,7 +91,7 @@ Below, we have a example:
             "id_": "Lucas",
             "headers_":[],
             "status_" : 304,
-            "description_": "Get person details related to Nathan without authentication",
+            "description_": "There won't be any response because the status is 304",
             "body_":{
                 "name": "Nathan"
             }
@@ -100,7 +100,7 @@ Below, we have a example:
             "id_": "mark",
             "headers_":["Authorization"],
             "cookies_": [],
-            "description_": "Get person details related to Mark without authentication",
+            "description_": "Get person details related to Mark with authentication",
             "body_":{
                 "name": "Mark"
             }
