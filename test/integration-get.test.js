@@ -77,6 +77,16 @@ describe('GET - stub backend project', () => {
                     done();
                 });
             });
+            
+            it('returns a response when the path contains just one word',(done)=>{
+                request(app)
+                .get('/stories')
+                .end((err, res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.deep.equal({"people":[{"budget": "15000"},{"budget": "5000"}]});
+                    done();
+                });
+            });
         });
     });
 

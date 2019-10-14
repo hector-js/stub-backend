@@ -1,5 +1,5 @@
 {
-  "stories/(.*?)/confidential": [
+  "^/stories/(.*?)/confidential$": [
     {
       "id_": "Christopher",
       "headers_": [],

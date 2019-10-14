@@ -1,5 +1,5 @@
 {
-  "stories/(.*?)/person": [
+  "^/stories/(.*?)/person$": [
     {
       "id_": "Nathan",
       "headers_": [],
@@ -17,14 +17,14 @@
       }
     }
   ],
-  "/stories/people": [
+  "^/stories/people$": [
     {
       "headers_": [],
       "description_": "Get stories for all the people",
       "body_": {"people":[{"name": "Nathan"},{"name": "Mark"}]}
     }
   ],
-  "/stories/budgets": [
+  "^/stories/budgets$": [
     {
       "id_": "",
       "headers_": [],
@@ -32,7 +32,15 @@
       "body_": {"people":[{"budget": "1000"},{"budget": "5000"}]}
     }
   ],
-  "stories/(.*?)/budget": [
+  "^/stories$": [
+    {
+      "id_": "",
+      "headers_": [],
+      "description_": "Get all budgets",
+      "body_": {"people":[{"budget": "15000"},{"budget": "5000"}]}
+    }
+  ],
+  "^/stories/(.*?)/budget$": [
     {
       "id_": "Nathan",
       "headers_": [
