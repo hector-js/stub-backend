@@ -7,31 +7,15 @@ npm i @hectorjs/stub-backend
 ```
 
 # Usage
+## Shortcut
 
-A shortcut:
-
-```sh
-mkdir project-name & 
-cd project-name & 
-echo require('@hectorjs/stub-backend') > app.js &
-mkdir resources & 
-cd resources & 
-echo {} > temp.json &
-cd .. &
-npm init &
-npm i @hectorjs/stub-backend &
-node app.js
-```
-
-Also, you can execute the following shell script and initialize a project given a name and a root path.
+You can execute the following shell script and initialize a project given a name and a root path.
 
 Below, the link show you the shell script to execute:
 
 https://github.com/HecJimSan/stub-backend/blob/development/initializer.sh
 
-
-A folder with the name fruit will be created under opt folder.
-
+## Manual use
 ## Add library to your runner file
 
 Create a javascript file and add the library @hectorjs/stub-backend
@@ -43,7 +27,6 @@ const hectorjs = require('@hectorjs/stub-backend')
 Note: add the previous line in app.js file
 
 ## Folder data
-
 ### GET Method
 
 Create a folder named _resources_ and create under that folder a couple of jsons files (it does not matter the name of the files) with the properties.

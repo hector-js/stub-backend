@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "nodemon lib/app.js",
-    "test": "SET NODE_ENV=test & NODE_ENV=test mocha --exit",
+    "test": " set NODE_ENV=test & sh ./scripts/test.sh"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
