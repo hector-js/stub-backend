@@ -1,10 +1,10 @@
 unameOut="$(uname -s)"
 case "${unameOut}" in
-    Linux*)     machine=Linux;;
+    Linux*)     NODE_ENV=test mocha --exit;;
     Darwin*)    NODE_ENV=test mocha --exit;;
-    CYGWIN*)    machine=Cygwin;;
+    CYGWIN*)    NODE_ENV=test mocha --exit;;
     MINGW*)     mocha --exit;;
-    *)          machine="UNKNOWN:${unameOut}"
+    *)          NODE_ENV=test mocha --exit;;
 esac
 
 
