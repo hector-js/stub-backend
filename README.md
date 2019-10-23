@@ -3,7 +3,7 @@
 # Install
 
 ```sh
-npm i @hectorjs/stub-backend
+npm intall @hectorjs/stub-backend
 ```
 
 # Usage
@@ -11,7 +11,7 @@ npm i @hectorjs/stub-backend
 
 You can execute the following shell script and initialize a project given a name and a root path.
 
-Below, the link show you the shell script to execute:
+Below, the link shows you the shell script to execute:
 
 https://github.com/HecJimSan/stub-backend/blob/development/initializer.sh
 
