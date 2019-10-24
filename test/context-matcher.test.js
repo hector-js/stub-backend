@@ -30,7 +30,7 @@ describe('context matcher', () => {
 
     it('validates the pattern of the context path when both regex are valid for that context path', () => {
         const contextPath = '/stories/budgets';
-        const arrayRegex = ['/stories/budgets','/stories']
+        const arrayRegex = ['/stories/budgets', '/stories']
 
         const result = ContextMatcher.getIdByContextPath(contextPath, arrayRegex);
 

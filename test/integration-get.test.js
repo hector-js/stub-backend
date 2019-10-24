@@ -57,35 +57,35 @@ describe('GET - stub backend project', () => {
                 });
         });
 
-        describe('get all resources',()=>{
-            it('returns a response when there is no id',(done)=>{
+        describe('get all resources', () => {
+            it('returns a response when there is no id', (done) => {
                 request(app)
-                .get('/stories/people')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.deep.equal({"people":[{"name": "Nathan"},{"name": "Mark"}]});
-                    done();
-                });
+                    .get('/stories/people')
+                    .end((err, res) => {
+                        expect(res.status).to.equal(200);
+                        expect(res.body).to.deep.equal({ "people": [{ "name": "Nathan" }, { "name": "Mark" }] });
+                        done();
+                    });
             });
-            
-            it('returns a response when there is id empty',(done)=>{
+
+            it('returns a response when there is id empty', (done) => {
                 request(app)
-                .get('/stories/budgets')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.deep.equal({"people":[{"budget": "1000"},{"budget": "5000"}]});
-                    done();
-                });
+                    .get('/stories/budgets')
+                    .end((err, res) => {
+                        expect(res.status).to.equal(200);
+                        expect(res.body).to.deep.equal({ "people": [{ "budget": "1000" }, { "budget": "5000" }] });
+                        done();
+                    });
             });
-            
-            it('returns a response when the path contains just one word',(done)=>{
+
+            it('returns a response when the path contains just one word', (done) => {
                 request(app)
-                .get('/stories')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.deep.equal({"people":[{"budget": "15000"},{"budget": "5000"}]});
-                    done();
-                });
+                    .get('/stories')
+                    .end((err, res) => {
+                        expect(res.status).to.equal(200);
+                        expect(res.body).to.deep.equal({ "people": [{ "budget": "15000" }, { "budget": "5000" }] });
+                        done();
+                    });
             });
         });
     });

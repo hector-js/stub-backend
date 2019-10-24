@@ -58,7 +58,7 @@ cd $PROJECT_NAME
 printf "require('@hectorjs/stub-backend')" > app.js
 mkdir resources 
 cd resources
-printf {} > temp.json
+printf "{\n    \"health\" : [\n        {\n            \"body_\" : {\"STATUS\":\"UP\"}\n        }\n    ]\n}" > health.json
 cd ..
 code .
 npm init
@@ -73,4 +73,25 @@ printf  '\x1b[34m| | | || |___| \\__/\\ | | \\ \\_/ / |\\ \\ \\__/ /\\__/ /\x1b[
 printf  '\x1b[34m\\_| |_/\\____/ \\____/ \\_/  \\___/\\_| \\_\\____/\____/\x1b[0m \n\n'
 printf  '     '${disp}'[32mSuccessfully created :)'${disp}'[0m\n\n\n'
 printf  ${disp}'[33m----------------------------------------------------'${disp}'[0m\n\n\n'
+
+
+while [[ -z "$RUN_APP" ]];do
+ printf ${disp}'[31m>'${disp}'[0m Do you want to run health check? (yes/no) \n'
+ read RUN_APP
+ if [[ -z "$RUN_APP" ]]
+ then
+      printf  ${disp}'[31m You must add a value  :('${disp}'[0m\n\n'
+ fi
+done
+
+
+
+ if [ $RUN_APP = "yes" ];
+ then
+      clear
+      printf  ${disp}'[32m  Done! Health check will be running below.'${disp}'[0m\n\n'
+      node app.js --logs tiny
+ else
+      printf  '\n'${disp}'[32m  Done!:) Ready to mock.'${disp}'[0m\n\n'
+ fi
 
