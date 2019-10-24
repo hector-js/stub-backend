@@ -58,7 +58,7 @@ cd $PROJECT_NAME
 printf "require('@hectorjs/stub-backend')" > app.js
 mkdir resources 
 cd resources
-printf {} > temp.json
+printf "{\n    \"health\" : [\n        {\n            \"STATUS\":\"UP\"\n        }\n    ]\n}" > health.json
 cd ..
 code .
 npm init
