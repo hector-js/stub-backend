@@ -61,7 +61,7 @@ cd resources
 printf "{\n    \"health\" : [\n        {\n            \"body_\" : {\"STATUS\":\"UP\"}\n        }\n    ]\n}" > health.json
 cd ..
 code .
-npm init
+npm init --yes
 npm install @hectorjs/stub-backend
 
 printf ''
