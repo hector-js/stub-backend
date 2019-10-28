@@ -6,9 +6,13 @@
   "directories": {
     "test": "test"
   },
+  "bin": {
+    "hj": "bin/hj"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "extend": ">=3.0.2",
     "minimist": "^1.2.0",
