@@ -1,8 +1,6 @@
+import { exists } from 'fs';
 
 export function cli(args){
-    console.log(args);
-
-
     console.log('process.platform:',process.platform);
 
     var machine;
@@ -27,6 +25,22 @@ export function cli(args){
     console.log('machine: ', machine);
    
 
+    const readline = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+      })
+      
+      var projectName;
+      readline.question(`\x1b[34m> \x1b[0mProject name?\n`, (name) => {
+            if(!name){
+                console.log(`\x1b[31m You must add a value  :(!\x1b[0m`)
+            }else{
+                console.log(`\x1b[32m Well done  :)\x1b[0m`)
+                console.log(`Hi ${name}!`)
+                projectName = name;
+            }
+            readline.close();
+      });
 };
 
 // unameOut="$(uname -s)"
