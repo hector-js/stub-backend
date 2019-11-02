@@ -1,7 +1,15 @@
-import { exists } from 'fs';
+import { exists, existsSync, mkdirSync, readdirSync } from 'fs';
+import { createInterface } from 'readline';
+import { resolve } from 'dns';
+import { rejects } from 'assert';
 
-export function cli(args){
-    console.log('process.platform:',process.platform);
+
+export async function cli(args){
+
+    if(args.length<=2){
+        console.log('Sorry, you missed a parameter like new, version..');
+        process.exit();
+    }
 
     var machine;
     switch(process.platform){
@@ -22,115 +30,46 @@ export function cli(args){
         machine=`UNKNOWN:${machine}`
     }
 
-    console.log('machine: ', machine);
-   
-
-    const readline = require('readline').createInterface({
-        input: process.stdin,
-        output: process.stdout
-      })
-      
-      var projectName;
-      readline.question(`\x1b[34m> \x1b[0mProject name?\n`, (name) => {
-            if(!name){
-                console.log(`\x1b[31m You must add a value  :(!\x1b[0m`)
-            }else{
-                console.log(`\x1b[32m Well done  :)\x1b[0m`)
-                console.log(`Hi ${name}!`)
-                projectName = name;
-            }
-            readline.close();
-      });
+    var i =0
+    for(i=0; i< args.length; i++){
+        if(args[i]=== 'new'){
+            let nameProject = await handleQuestion('Project name?').catch(()=> process.exit());
+            let pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(()=> process.exit());
+            console.log(`\n\x1b[33m----------------------------------------------------\x1b[0m\n`);
+            console.log(`\x1b[32m Init hectorjs ...\x1b[0m\n`);
+            console.log(`\x1b[32m -> Project name: ${nameProject}\x1b[0m`);
+            console.log(`\x1b[32m -> Root path: ${pathProject}\x1b[0m\n`);
+            console.log(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
+            console.log(`\x1b[33mTO BE IMPLEMENTED ... \x1b[0m\n`);
+            console.log(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
+        }
+        if(args[i] === 'version'){
+            console.log('\n\x1b[33mversion: 0.23.0\x1b[0m\n')
+            process.exit();
+        }
+    }
 };
 
-// unameOut="$(uname -s)"
-// case "${unameOut}" in
-//     Linux*)     machine=Linux;;
-//     Darwin*)    machine=Mac;;
-//     CYGWIN*)    machine=Cygwin;;
-//     MINGW*)     machine=MinGw;;
-//     *)          machine="UNKNOWN:${unameOut}"
-// esac
+function handleQuestion(message){
+    const readline = createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
 
-// case "${machine}" in
-//     Linux)                 disp='\x1B';;
-//     Mac)                   disp='\x1B';;
-//     Cygwin)                disp='\xdf1B';;
-//     MinGw)                 disp='\e';;
-//     "UNKNOWN:${unameOut}") disp='\x1B'
-// esac
+    return  new Promise((resolve, reject) => {  
+        readline.question(`\n\x1b[34m> \x1b[0m ${message} \n`, 
+        (name) => handleAnswer(resolve, reject, readline,name));
+    });
+}
 
-// printf  '\n'${disp}'[33mMachine: '$machine' '${disp}'[0m\n\n'
-
-// while [[ -z "$PROJECT_NAME" ]];do
-//  printf ${disp}'[31m>'${disp}'[0m Project name? \n'
-//  read PROJECT_NAME
-//  if [[ -z "$PROJECT_NAME" ]]
-//  then
-//       printf  ${disp}'[31m You must add a value  :('${disp}'[0m\n\n'
-//  else
-//       printf  '\n'${disp}'[32m Well done  :)'${disp}'[0m\n\n'
-//  fi
-// done
-
-// while [[ -z "$ROOT_PATH" ]];do
-//  printf  ${disp}'[31m>'${disp}'[0m Root path? (example: /c/opt/...) \n\n'
-//  read ROOT_PATH
-
-//  if [[ -z "$ROOT_PATH" ]]
-//  then
-//       printf  ${disp}'[31m You must add a value  :('${disp}'[0m\n\n'
-//  else
-//       printf  '\n'${disp}'[32m Well done  :)'${disp}'[0m\n\n'
-//  fi
-// done
-
-// printf  '\n'${disp}'[33m----------------------------------------------------'${disp}'[0m\n\n'
-// printf  ' '${disp}'[32mInit hectorjs ...'${disp}'[0m\n\n'
-// printf  '   '${disp}'[36m-> Project name:'${disp}'[0m '$PROJECT_NAME'\n'
-// printf  '   '${disp}'[36m-> Root path:'${disp}'[0m    '$ROOT_PATH'\n\n'
-// printf  '\n'${disp}'[33m- - - - - - - - - - - - - - - - - - - - - - - - - - '${disp}'[0m\n\n'
-
-// cd $ROOT_PATH
-// mkdir $PROJECT_NAME 
-// cd $PROJECT_NAME 
-// printf "require('@hectorjs/stub-backend')" > app.js
-// mkdir resources 
-// cd resources
-// printf "{\n    \"health\" : [\n        {\n            \"body_\" : {\"STATUS\":\"UP\"}\n        }\n    ]\n}" > health.json
-// cd ..
-// code .
-// npm init --yes
-// npm install @hectorjs/stub-backend
-
-// printf ''
-// printf  '\x1b[34m _   _  _____ _____ _____ ___________   ___ _____\x1b[0m\n'
-// printf  '\x1b[34m| | | ||  ___/  __ \\_   _|  _  | ___ \\ |_  /  ___|\x1b[0m\n'
-// printf  '\x1b[34m| |_| || |__ | /  \\/ | | | | | | |_/ /   | \\ `--. \x1b[0m\n'
-// printf  '\x1b[34m|  _  ||  __|| |     | | | | | |    /    | |`--. \\\x1b[0m\n'
-// printf  '\x1b[34m| | | || |___| \\__/\\ | | \\ \\_/ / |\\ \\ \\__/ /\\__/ /\x1b[0m\n'
-// printf  '\x1b[34m\\_| |_/\\____/ \\____/ \\_/  \\___/\\_| \\_\\____/\____/\x1b[0m \n\n'
-// printf  '     '${disp}'[32mSuccessfully created :)'${disp}'[0m\n\n\n'
-// printf  ${disp}'[33m----------------------------------------------------'${disp}'[0m\n\n\n'
-
-
-// while [[ -z "$RUN_APP" ]];do
-//  printf ${disp}'[31m>'${disp}'[0m Do you want to run health check? (yes/no) \n'
-//  read RUN_APP
-//  if [[ -z "$RUN_APP" ]]
-//  then
-//       printf  ${disp}'[31m You must add a value  :('${disp}'[0m\n\n'
-//  fi
-// done
-
-
-
-//  if [ $RUN_APP = "yes" ];
-//  then
-//       clear
-//       printf  ${disp}'[32m  Done! Health check will be running below.'${disp}'[0m\n\n'
-//       node app.js --logs tiny
-//  else
-//       printf  '\n'${disp}'[32m  Done!:) Ready to mock.'${disp}'[0m\n\n'
-//  fi
-
+function handleAnswer(resolve, reject, readline, value){
+    if(!value){
+        console.log(`\x1b[31m You must add a value  :(\x1b[0m`);
+        readline.close();
+        reject();
+    }else{
+        console.log(`\x1b[32m Well done  :)\x1b[0m`)
+        readline.close();
+        resolve(value);
+    }
+}
