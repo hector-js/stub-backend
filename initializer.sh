@@ -1,7 +1,7 @@
 
 ## Execute this shell script in order to create a default stub project
 
-clear
+# clear
 printf ''
 
 unameOut="$(uname -s)"
@@ -16,7 +16,7 @@ esac
 case "${machine}" in
     Linux)                 disp='\x1B';;
     Mac)                   disp='\x1B';;
-    Cygwin)                disp='\x1B';;
+    Cygwin)                disp='\xdf1B';;
     MinGw)                 disp='\e';;
     "UNKNOWN:${unameOut}") disp='\x1B'
 esac
