@@ -23,7 +23,7 @@ npm init -y
 ```
 2) Install the library 
 ```
-npm intall @hectorjs/stub-backend
+npm install @hectorjs/stub-backend
 ```
 3) Copy the bin field bellow in the package.json file at the same level of the version:
 
