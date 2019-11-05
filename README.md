@@ -15,6 +15,36 @@ Below, the link shows you the shell script to execute:
 
 https://github.com/HecJimSan/stub-backend/blob/development/initializer.sh
 
+Also, I am building a cli command which is going to be in a different library. This cli command will help you create a project. At this moment is under construction, but you can give it a try following the next steps:
+
+1) Execute npm init with your data:
+```
+npm init -y
+```
+2) Install the library 
+```
+npm intall @hectorjs/stub-backend
+```
+3) Copy the bin field bellow in the package.json file at the same level of the version:
+
+```json
+  "version" :"example",
+  "bin":{
+    "hjs":"node_modules/@hectorjs/stub-backend/bin/hjs"
+  }
+```
+4) Link the command
+```sh
+npm link
+```
+Now you can try it running the following commands:
+
+a) ```hjs version``` (it will tell you the version)
+
+b) ```hjs new```     (it will create a new mock project)
+
+(Be aware that this section is under construction..)
+
 ## Manual use
 ## Add library to your runner file
 
