@@ -7,7 +7,7 @@
     "test": "test"
   },
   "bin": {
-    "hjs": "bin/hj"
+    "hjs": "bin/hjs"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
