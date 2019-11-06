@@ -3,28 +3,29 @@ import { cd, exec, mkdir, touch } from 'shelljs';
 import { writeFile } from 'fs';
 import { info, warn } from 'console';
 
-const VERSION = '0.31.0';
+const chalk = require('chalk');
+const VERSION = '0.32.0';
 
 export async function cli(args) {
 
     if (!args) {
-        warn('\n\x1b[31m Sorry, you missed a parameter (hjs --help) \x1b[0m')
+        warn(chalk.red('\nSorry, you missed a parameter (hjs --help)'));
         process.exit();
     }
 
     if (args.version) {
-        info(`\n\x1b[33mversion: ${VERSION}\x1b[0m\n`)
+        info(chalk.yellow(`\nVersion: ${VERSION}\n`));
         process.exit();
     }
 
     if (args.help) {
-        info('\n\x1b[32mBelow, you can see different options for your mock:\n\x1b[0m\n')
-        info(`\x1b[32m --new     : create new mock project\x1b[0m`);
-        info(`\x1b[32m --version : know version hjs\x1b[0m`);
-        info(`\x1b[32m --vs      : open visual code studio if exists\x1b[0m`);
-        info(`\x1b[32m --licence : MIT\n\n\x1b[0m`);
-        info(`\x1b[32mExample: hjs --new --vs\n\x1b[0m`);
-        info(`\x1b[33mversion: ${VERSION}\x1b[0m\n`)
+        info(chalk.green('\nBelow, you can see different options for your mock:\n\n'));
+        info(chalk.green(` --new     : create new mock project`));
+        info(chalk.green(` --version : know version hjs`));
+        info(chalk.green(` --vs      : open visual code studio if exists`));
+        info(chalk.green(` --licence : MIT\n\n`));
+        info(chalk.green(`Example: hjs --new --vs\n`));
+        info(chalk.yellow(`version: ${VERSION}\n`));
         process.exit();
     }
 
@@ -35,11 +36,11 @@ export async function cli(args) {
 
         var nameProject = await handleQuestion('Project name?').catch(() => process.exit());
         var pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(() => process.exit());
-        info(`\n\x1b[33m----------------------------------------------------\x1b[0m\n`);
-        info(`\x1b[32m Init hectorjs ...\x1b[0m\n`);
-        info(`\x1b[32m -> Project name: ${nameProject}\x1b[0m`);
-        info(`\x1b[32m -> Root path: ${pathProject}\x1b[0m\n`);
-        info(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
+        info(chalk.green(`\n----------------------------------------------------\n`));
+        info(chalk.green(` Init hectorjs ...\n`));
+        info(chalk.green(` -> Project name: ${nameProject}`));
+        info(chalk.green(` -> Root path: ${pathProject}\n`));
+        info(chalk.green(`- - - - - - - - - - - - - - - - - - - - - - - - - - \n`));
 
         cd(pathProject);
         mkdir(nameProject);
@@ -62,7 +63,7 @@ export async function cli(args) {
             if (err) throw err;
         });
 
-        info('\x1b[32m Be aware if you dont have hjs set globally, you will need to run the server via node command\x1b[0m\n')
+        info(chalk.green(' Be aware if you dont have hjs set globally, you will need to run the server via node command\n'));
         var runHealth = await handleQuestion('Run service with health check? (y/N)').catch(() => process.exit());
         if (args['vs'] && args['vs'] == true) {
             exec('code .');
@@ -74,11 +75,11 @@ export async function cli(args) {
         }
 
         var end = new Date() - start
-        info('\n\x1b[32mExecution time: %dms \x1b[0m', end)
+        info(chalk.green('\nExecution time: %dms '), end)
         process.exit();
     }
 
-    warn('\n\x1b[31m Sorry, you missed a parameter (hjs --help) \x1b[0m')
+    warn(chalk.red('\nSorry, you missed a parameter (hjs --help)'));
     process.exit();
 };
 
@@ -89,18 +90,18 @@ function handleQuestion(message) {
     });
 
     return new Promise((resolve, reject) => {
-        readline.question(`\n\x1b[34m> \x1b[0m ${message} \n`,
+        readline.question(chalk.blue('\n>')+chalk.grey(` ${message} \n`),
             (name) => handleAnswer(resolve, reject, readline, name));
     });
 }
 
 function handleAnswer(resolve, reject, readline, value) {
     if (!value) {
-        info(`\x1b[31m You must add a value  :(\x1b[0m`);
+        warn(chalk.red(` You must add a value  :(`));
         readline.close();
         reject();
     } else {
-        info(`\x1b[32m Well done  :)\x1b[0m`)
+        info(chalk.green(` Well done  :)`));
         readline.close();
         resolve(value);
     }
