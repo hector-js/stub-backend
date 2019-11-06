@@ -3,7 +3,7 @@
 # Install
 
 ```sh
-npm intall @hectorjs/stub-backend
+npm install @hectorjs/stub-backend
 ```
 
 # Usage
@@ -15,17 +15,27 @@ Below, the link shows you the shell script to execute:
 
 https://github.com/HecJimSan/stub-backend/blob/development/initializer.sh
 
-Also, I am building a cli command which is going to be in a different library. This cli command will help you create a project. At this moment is under construction, but you can give it a try following the next steps:
+Also, I am building a cli command which is going to be in a different library. This cli command will help you to create a project. At this moment is under construction, but you can give it a try following the next steps:
 
-1) Execute npm init with your data:
+### Install the library globally
+
+When you install the library globally, the *hjs* command will be set and you can start using it. 
+
+```sh
+npm -g install @hectorjs/stub-backend
+```
+
+### Install the library locally
+
+#### Execute npm init with your data:
 ```
 npm init -y
 ```
-2) Install the library 
+#### Install the library 
 ```
 npm install @hectorjs/stub-backend
 ```
-3) Copy the bin field bellow in the package.json file at the same level of the version:
+#### Copy the bin field bellow in the package.json file at the same level of the version:
 
 ```json
   "version" :"example",
@@ -33,7 +43,7 @@ npm install @hectorjs/stub-backend
     "hjs":"node_modules/@hectorjs/stub-backend/bin/hjs"
   }
 ```
-4) Link the command
+#### Link the command
 ```sh
 npm link
 ```
