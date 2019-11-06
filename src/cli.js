@@ -1,88 +1,78 @@
-import { exists, existsSync, mkdirSync, readdirSync } from 'fs';
 import { createInterface } from 'readline';
-import { resolve } from 'dns';
-import { rejects } from 'assert';
 import { cd, exec, mkdir, touch } from 'shelljs';
 import { writeFile } from 'fs';
 
 
 export async function cli(args) {
-    exec('clear');
 
-    if (args.length <= 2) {
-        console.log('Sorry, you missed a parameter like new, version..');
+    if (!args) {
+        console.log('Sorry, you missed a parameter like --new, --version..');
         process.exit();
     }
 
-    var machine;
-    switch (process.platform) {
-        case 'Linux':
-            machine = 'Linux';
-            break;
-        case 'Darwin':
-            machine = 'Mac';
-            break;
-        case 'CYGWIN':
-            machine = 'Cygwin';
-            break;
-        case 'win32':
-        case 'win64':
-            machine = 'MinGw';
-            break;
-        default:
-            machine = `UNKNOWN:${machine}`
+    if (args.version) {
+        console.log('\n\x1b[33mversion: 0.30.0\x1b[0m\n')
+        process.exit();
     }
 
-    let nameProject;
-    let pathProject;
-    var i = 0
-    for (i = 0; i < args.length; i++) {
-        if (args[i] === 'new') {
-            nameProject = await handleQuestion('Project name?').catch(() => process.exit());
-            pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(() => process.exit());
-            console.log(`\n\x1b[33m----------------------------------------------------\x1b[0m\n`);
-            console.log(`\x1b[32m Init hectorjs ...\x1b[0m\n`);
-            console.log(`\x1b[32m -> Project name: ${nameProject}\x1b[0m`);
-            console.log(`\x1b[32m -> Root path: ${pathProject}\x1b[0m\n`);
-            console.log(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
-            console.log(`\x1b[33mTO BE IMPLEMENTED ... \x1b[0m\n`);
-            console.log(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
+    if (args.help) {
+        console.log('\n\x1b[32mBelow, you can see different options for your mock:\n\x1b[0m\n')
+        console.log(`\x1b[32m --new     : create new mock project\x1b[0m`);
+        console.log(`\x1b[32m --version : know version hjs\x1b[0m`);
+        console.log(`\x1b[32m --vs      : open visual code studio if exists\x1b[0m`);
+        console.log(`\x1b[32m --licence : MIT\n\n\x1b[0m`);
+        console.log(`\x1b[32mExample: hjs --new --vs\n\x1b[0m`);
+        console.log('\x1b[33mversion: 0.30.0\x1b[0m\n')
+        process.exit();
+    }
+
+    if (args.new) {
+        exec('clear');
+        
+        var nameProject = await handleQuestion('Project name?').catch(() => process.exit());
+        var pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(() => process.exit());
+        console.log(`\n\x1b[33m----------------------------------------------------\x1b[0m\n`);
+        console.log(`\x1b[32m Init hectorjs ...\x1b[0m\n`);
+        console.log(`\x1b[32m -> Project name: ${nameProject}\x1b[0m`);
+        console.log(`\x1b[32m -> Root path: ${pathProject}\x1b[0m\n`);
+        console.log(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
+
+        cd(pathProject);
+        mkdir(nameProject);
+        cd(nameProject);
+        exec('npm init -y');
+        exec('npm install @hectorjs/stub-backend');
+        mkdir('resources');
+        cd('resources');
+        touch('health.json');
+
+        const healthData = "{\n    \"health\" : [\n        {\n            \"body_\" : {\"STATUS\":\"UP\"}\n        }\n    ]\n}";
+        writeFile('health.json', healthData, (err) => {
+            if (err) throw err;
+        });
+        cd('..');
+        touch('app.js');
+
+        const appData = "require('@hectorjs/stub-backend')";
+        writeFile('app.js', appData, (err) => {
+            if (err) throw err;
+        });
+
+        console.log('\x1b[32m Be aware if you dont have hjs set globally, you will need to run the server via node command\x1b[0m\n')
+        var runHealth = await handleQuestion('Run service with health check? (y/N)').catch(() => process.exit());
+        if (args['vs'] && args['vs'] == true) {
+            exec('code .');
         }
-        if (args[i] === 'version') {
-            console.log('\n\x1b[33mversion: 0.30.0\x1b[0m\n')
-            process.exit();
+        if (runHealth == 'y') {
+            require('@hectorjs/stub-backend');
+        } else {
+            console.log('Ready to test (run node app.js)');
         }
+        process.exit();
     }
 
-
-    cd(pathProject);
-    mkdir(nameProject);
-    cd(nameProject);
-    exec('npm init -y');
-    exec('npm install @hectorjs/stub-backend');
-    mkdir('resources');
-    cd('resources');
-    touch('health.json');
-
-    const healthData = "{\n    \"health\" : [\n        {\n            \"body_\" : {\"STATUS\":\"UP\"}\n        }\n    ]\n}";
-    writeFile('health.json', healthData, (err) => {
-        if (err) throw err;
-    });
-    cd('..');
-    touch('app.js');
-
-    const appData = "require('@hectorjs/stub-backend')";
-    writeFile('app.js', appData, (err) => {
-        if (err) throw err;
-    });
-
-    console.log('Be aware if you dont have hjs set globally, you will need to run the server via node command')
-    var runHealth = await handleQuestion('Run service with health check? (y/N)').catch(() => process.exit());
-    if (runHealth == 'y') {
-        require('@hectorjs/stub-backend');
-    } else {
-        console.log('Ready to test (run node app.js)');
-    }
+    console.log('Sorry, you missed a parameter like --new, --version..');
+    process.exit();
 };
 
 function handleQuestion(message) {
