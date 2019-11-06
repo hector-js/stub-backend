@@ -49,7 +49,7 @@ export async function cli(args) {
             console.log(`\x1b[33m- - - - - - - - - - - - - - - - - - - - - - - - - - \x1b[0m\n`);
         }
         if (args[i] === 'version') {
-            console.log('\n\x1b[33mversion: 0.29.0\x1b[0m\n')
+            console.log('\n\x1b[33mversion: 0.30.0\x1b[0m\n')
             process.exit();
         }
     }
