@@ -4,7 +4,7 @@ import { writeFile } from 'fs';
 import { info, warn } from 'console';
 
 const chalk = require('chalk');
-const VERSION = '0.32.0';
+const VERSION = '0.33.0';
 
 export async function cli(args) {
 

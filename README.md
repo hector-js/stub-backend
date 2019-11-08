@@ -10,11 +10,12 @@ npm install @hectorjs/stub-backend
 
 - [x] GET
 - [x] POST
+- [ ] OPTIONS
 - [ ] PUT
 - [ ] DELETE
 - [ ] PATCH
 
-Note: PUT, DELETE and PATCH methods are in progress
+_Note:_ OPTIONS, PUT, DELETE and PATCH methods are **in progress**.
 
 # Usage
 ## Shortcut
