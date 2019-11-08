@@ -1,6 +1,6 @@
 {
   "name": "@hectorjs/stub-backend",
-  "version": "0.32.0",
+  "version": "0.33.0",
   "description": "Stub a service",
   "main": "index.js",
   "directories": {
@@ -33,9 +33,16 @@
   "license": "MIT",
   "keywords": [
     "stub",
+    "mock",
     "backend",
     "frontend",
     "test",
-    "tool"
-  ]
+    "tool",
+    "configuration service"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/HecJimSan/stub-backend.git"
+  },
+  "homepage": "https://hectorjs.herokuapp.com"
 }
