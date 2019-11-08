@@ -4,7 +4,7 @@ import { writeFile } from 'fs';
 import { info, warn } from 'console';
 
 const chalk = require('chalk');
-const VERSION = '0.33.0';
+const VERSION = '0.34.0';
 
 export async function cli(args) {
 
@@ -72,15 +72,15 @@ export async function cli(args) {
             require('@hectorjs/stub-backend');
         } else {
             info('Ready to test (run node app.js)');
+            var end = new Date() - start
+            info(chalk.green('\nExecution time: %dms '), end)
+            process.exit();
         }
-
-        var end = new Date() - start
-        info(chalk.green('\nExecution time: %dms '), end)
+    }else{
+        warn(chalk.red('\nSorry, you missed a parameter (hjs --help)'));
         process.exit();
     }
 
-    warn(chalk.red('\nSorry, you missed a parameter (hjs --help)'));
-    process.exit();
 };
 
 function handleQuestion(message) {
