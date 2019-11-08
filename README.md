@@ -6,6 +6,16 @@
 npm install @hectorjs/stub-backend
 ```
 
+# Method availabe to mock
+
+- [:heavy_check_mark:] GET
+- [:heavy_check_mark:] POST
+- [ ] PUT
+- [ ] DELETE
+- [ ] PATCH
+
+Note: PUT, DELETE and PATCH methods are in progress
+
 # Usage
 ## Shortcut
 
