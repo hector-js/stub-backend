@@ -4,7 +4,7 @@ import { writeFile } from 'fs';
 import { info, warn } from 'console';
 
 const chalk = require('chalk');
-const VERSION = '0.34.0';
+const VERSION = '0.35.0';
 
 export async function cli(args) {
 
@@ -23,6 +23,7 @@ export async function cli(args) {
         info(chalk.green(` --new     : create new mock project`));
         info(chalk.green(` --version : know version hjs`));
         info(chalk.green(` --vs      : open visual code studio if exists`));
+        info(chalk.green(` --idea    : open intelliJ studio if exists`));
         info(chalk.green(` --licence : MIT\n\n`));
         info(chalk.green(`Example: hjs --new --vs\n`));
         info(chalk.yellow(`version: ${VERSION}\n`));
@@ -67,6 +68,9 @@ export async function cli(args) {
         var runHealth = await handleQuestion('Run service with health check? (y/N)').catch(() => process.exit());
         if (args['vs'] && args['vs'] == true) {
             exec('code .');
+        }
+        if (args['idea'] && args['idea'] == true) {
+            exec('idea .');
         }
         if (runHealth == 'y') {
             require('@hectorjs/stub-backend');
