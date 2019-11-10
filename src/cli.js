@@ -4,7 +4,7 @@ import { writeFile } from 'fs';
 import { info, warn } from 'console';
 
 const chalk = require('chalk');
-const VERSION = '0.36.0';
+const VERSION = '0.37.0';
 
 export async function cli(args) {
 
@@ -56,7 +56,6 @@ export async function cli(args) {
         writeFile('health.json', healthData, (err) => {
             if (err) throw err;
         });
-        exec('source health.json');
         cd('..');
         touch('app.js');
 
@@ -65,7 +64,6 @@ export async function cli(args) {
             if (err) throw err;
         });
 
-        exec('source app.js');
         
         info(chalk.green(' Be aware if you dont have hjs set globally, you will need to run the server via node command\n'));
         var runHealth = await handleQuestion('Run service with health check? (y/N)').catch(() => process.exit());
