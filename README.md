@@ -60,9 +60,11 @@ npm link
 ```
 Now you can try it running the following commands:
 
-a) ```hjs version``` (it will tell you the version)
+a) ```hjs --version``` (it will tell you the version)
 
-b) ```hjs new```     (it will create a new mock project)
+b) ```hjs new [name-mock]```     (it will create a new mock project)
+
+c) ```hjs generate get [name-path-regez]```     (it will generate a template for the regex)
 
 (Be aware that this section is under construction..)
 
