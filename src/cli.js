@@ -3,7 +3,7 @@ import { generateCli } from './generate/generate.cli';
 import { sizeObject } from './utils/utils.cli';
 
 const chalk = require('chalk');
-const VERSION = '0.37.0';
+const VERSION = '0.38.0';
 
 export function cli(args) {
     switch (args._[0]) {
