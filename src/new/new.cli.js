@@ -20,8 +20,11 @@ export async function newCli(args) {
     var pathProject;
     if (args.path) {
         pathProject = args.path;
+        cd(pathProject);
     } else {
-        pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(() => process.exit());
+        pathProject = `./${nameProject}`;
+        // TODO: add this question for manual guidance
+        // pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(() => process.exit());
     }
     info(chalk.green(`\n----------------------------------------------------\n`));
     info(chalk.green(` Init hectorjs ...\n`));
@@ -29,9 +32,9 @@ export async function newCli(args) {
     info(chalk.green(` -> Root path: ${pathProject}\n`));
     info(chalk.green(`- - - - - - - - - - - - - - - - - - - - - - - - - - \n`));
 
-    cd(pathProject);
     mkdir(nameProject);
     cd(nameProject);
+
     exec('npm init -y');
     exec('npm install @hectorjs/stub-backend');
     mkdir('resources');
@@ -60,5 +63,4 @@ export async function newCli(args) {
     info(chalk.green('The mock has been set successfully (run node app.js)'));
     var end = new Date() - start
     info(chalk.grey('\nExecution time: %dms '), end)
-    process.exit();
 }
