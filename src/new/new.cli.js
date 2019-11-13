@@ -1,6 +1,6 @@
 import { cd, exec, mkdir, touch } from 'shelljs';
-import { writeFile } from 'fs';
-import { info } from 'console';
+import { writeFile, readFile } from 'fs';
+import { info, error } from 'console';
 import { handleQuestion } from '../utils/utils.cli';
 
 const chalk = require('chalk');
@@ -23,8 +23,6 @@ export async function newCli(args) {
         cd(pathProject);
     } else {
         pathProject = `./${nameProject}`;
-        // TODO: add this question for manual guidance
-        // pathProject = await handleQuestion('Root path? (example: /c/opt/...)').catch(() => process.exit());
     }
     info(chalk.green(`\n----------------------------------------------------\n`));
     info(chalk.green(` Init hectorjs ...\n`));
@@ -37,21 +35,43 @@ export async function newCli(args) {
 
     exec('npm init -y');
     exec('npm install @hectorjs/stub-backend');
+    exec('npm install chai mocha supertest  --save-dev');
+
+    readFile('./package.json', 'utf8', (err, data) => {
+        if (err) return error(err);
+
+        const replacement = `"test": "mocha --exit"`;
+        var result = data.replace('\"test\"\: \"echo \\\"Error\: no test specified\\\" \&\& exit 1\"', replacement);
+
+        writeFile('./package.json', result, 'utf8', (err) => {
+            if (err) return error(err);
+        });
+    });
+
     mkdir('resources');
     cd('resources');
     touch('health.json');
-
-    const healthData = "{\n    \"health\" : [\n        {\n            \"body_\" : {\"STATUS\":\"UP\"}\n        }\n    ]\n}";
+    
     writeFile('health.json', healthData, (err) => {
         if (err) throw err;
     });
     cd('..');
     touch('app.js');
-
-    const appData = "require('@hectorjs/stub-backend')";
+    
+    const appData = "module.exports = require('@hectorjs/stub-backend')";
     writeFile('app.js', appData, (err) => {
         if (err) throw err;
     });
+    
+    mkdir('test');
+    cd('test');
+    touch('health.test.js');
+
+    writeFile('health.test.js', healthTest, (err) => {
+        if (err) throw err;
+    });
+    
+    cd('..');
 
     if (args['vs'] && args['vs'] == true) {
         exec('code .');
@@ -64,3 +84,38 @@ export async function newCli(args) {
     var end = new Date() - start
     info(chalk.grey('\nExecution time: %dms '), end)
 }
+
+
+const healthData = `{
+  "health": [
+    {
+      "body_": {
+        "STATUS": "UP"
+      }
+    }
+  ]
+}`;
+
+const healthTest = `
+'use strict';
+
+var app = require('../app');
+var chai = require('chai');
+var request = require('supertest');
+
+var expect = chai.expect;
+
+describe('GET - health ', () => {
+    it('should exist', (done) => {
+        request(app)
+            .get('/health')
+            .end((err, res) => {
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                    "STATUS": "UP"
+                });
+                done();
+            });
+    });
+});
+`;
