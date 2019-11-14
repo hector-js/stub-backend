@@ -1,6 +1,8 @@
-import { cd, touch } from 'shelljs';
+import { cd } from 'shelljs';
 import { warn } from 'console';
 import { writeFileByData, checkPath } from '../../utils/utils.cli';
+import { getTestTemplate } from '../../utils/templates/tests/get.template';
+import { getTemplate } from '../../utils/templates/resources/get.template';
 
 const chalk = require('chalk');
 
@@ -28,61 +30,4 @@ export function getCli(args) {
   } else {
     warn(chalk.yellow('\nInfo: Please, navigate to package.json file level and run the command from there.'));
   }
-}
-
-const getTemplate = (endpoint, headers) => {
-  var headersCustom = '';
-  if (headers) {
-    headers.forEach(header => {
-      headersCustom = headersCustom + `"${header}",`;
-    });
-  }
-  return `{
-  "${endpoint}" : [
-    {
-      "body_" : {"body":"To be defined!"},
-      "headers_" : [${headersCustom.slice(0, -1)}],
-      "status_" : 0,
-      "cookies_" : [],
-      "description_" : "Description to be defined"
-    }
-  ]
-}`;
-};
-
-const getTestTemplate = (endpoint, headers) => {
-  return `
-'use strict';
-
-var app = require('../app');
-var chai = require('chai');
-var request = require('supertest');
-
-var expect = chai.expect;
-
-describe('GET - ${endpoint} ', () => {
-    it('should exist', (done) => {
-        request(app)
-            .get('${endpoint.startsWith('/') ? endpoint : '/' + endpoint}')
-            ${headers ? `.set({${arrayToJson(headers)}})` : ''}
-            .end((err, res) => {
-                expect(res.status).to.equal(200);
-                expect(res.body).to.deep.equal({
-                    "STATUS": "UP"
-                });
-                done();
-            });
-    });
-});
-`;
-}
-
-
-const arrayToJson = (headers) => {
-  var headersJson = ''
-  headers.forEach(header => {
-    headersJson = headersJson + `${header}: "any value" ,`
-  });
-
-  return headersJson.slice(0, -1);
 }

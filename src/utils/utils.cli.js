@@ -1,6 +1,7 @@
 import { createInterface } from 'readline';
 import { info, warn } from 'console';
 import { existsSync, writeFile } from 'fs';
+import { mkdir, cd, touch } from 'shelljs';
 
 const chalk = require('chalk');
 
@@ -41,10 +42,15 @@ export const writeFileByData = (file, data) => {
         }
         info(chalk.green(`${file}`) + ` has been created`);
     });
-}
+};
 
+export const createFileInPath = (fileName, path) => {
+    mkdir(path);
+    cd(path);
+    touch(fileName);
+};
 
-function handleAnswer(resolve, reject, readline, value) {
+const handleAnswer = (resolve, reject, readline, value) => {
     if (!value) {
         warn(chalk.red(` You must add a value  :(`));
         readline.close();
