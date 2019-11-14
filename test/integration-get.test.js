@@ -1,198 +1,218 @@
 'use strict';
 
-var app = require('../lib/app');
-var chai = require('chai');
-var request = require('supertest');
+const app = require('../lib/app');
+const chai = require('chai');
+const request = require('supertest');
 
-var expect = chai.expect;
+const expect = chai.expect;
 
 describe('GET - stub backend project', () => {
-    describe('without Authentication', () => {
-        it('returns a valid reponse for Nathan id', (done) => {
-            request(app)
-                .get('/stories/nathan/person')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.deep.equal({
-                        "name": "Nathan"
-                    });
-                    done();
-                });
-        });
-
-        it('returns a valid reponse for Mark id', (done) => {
-            request(app)
-                .get('/stories/mark/person')
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.deep.equal({
-                        "name": "Mark"
-                    });
-                    done();
-                });
-        });
-
-        it('returns 404 when is not finding the scenario', (done) => {
-            request(app)
-                .get('/stories/nathan/age')
-                .end((err, res) => {
-                    expect(res.status).to.equal(404);
-                    expect(res.body).to.deep.equal({
-                        errorCode: 404,
-                        message: 'Scenario not found in db.json! :('
-                    });
-                    done();
-                });
-        });
-
-        it('returns 404 when it exists an status in the json file which says 404', (done) => {
-            request(app)
-                .get('/stories/smith/confidential')
-                .end((err, res) => {
-                    expect(res.status).to.equal(404);
-                    expect(res.body).to.deep.equal({
-                        messageError: 'request not found'
-                    });
-                    done();
-                });
-        });
-
-        describe('get all resources', () => {
-            it('returns a response when there is no id', (done) => {
-                request(app)
-                    .get('/stories/people')
-                    .end((err, res) => {
-                        expect(res.status).to.equal(200);
-                        expect(res.body).to.deep.equal({ "people": [{ "name": "Nathan" }, { "name": "Mark" }] });
-                        done();
-                    });
+  describe('without Authentication', () => {
+    it('returns a valid reponse for Nathan id', (done) => {
+      request(app)
+          .get('/stories/nathan/person')
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.deep.equal({
+              'name': 'Nathan',
             });
-
-            it('returns a response when there is id empty', (done) => {
-                request(app)
-                    .get('/stories/budgets')
-                    .end((err, res) => {
-                        expect(res.status).to.equal(200);
-                        expect(res.body).to.deep.equal({ "people": [{ "budget": "1000" }, { "budget": "5000" }] });
-                        done();
-                    });
-            });
-
-            it('returns a response when the path contains just one word', (done) => {
-                request(app)
-                    .get('/stories')
-                    .end((err, res) => {
-                        expect(res.status).to.equal(200);
-                        expect(res.body).to.deep.equal({ "people": [{ "budget": "15000" }, { "budget": "5000" }] });
-                        done();
-                    });
-            });
-        });
+            done();
+          });
     });
 
-    describe('with Authentication', () => {
-        it('returns a valid reponse', (done) => {
-            request(app)
-                .get('/stories/Nathan/budget')
-                .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE', id: 'MY_ID' })
-                .end((err, res) => {
-                    expect(res.status).to.equal(200);
-                    expect(res.body).to.deep.equal({
-                        "name": "Nathan"
-                    });
-                    done();
-                });
-        });
-
-        it('returns 404 when it is not finding the scenario', (done) => {
-            request(app)
-                .get('/stories/Nathan/age')
-                .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE' })
-                .end((err, res) => {
-                    expect(res.status).to.equal(404);
-                    expect(res.body).to.deep.equal({
-                        errorCode: 404,
-                        message: 'Scenario not found in db.json! :('
-                    });
-                    done();
-                });
-        });
-
-        describe('headers', () => {
-            it('returns 401 when it authorization header is not there and the request requires authentication', (done) => {
-                request(app)
-                    .get('/stories/nathan/budget')
-                    .end((err, res) => {
-                        expect(res.status).to.equal(401);
-                        expect(res.body).to.deep.equal({
-                            errorCode: 401,
-                            message: 'Header not found! :('
-                        });
-                        done();
-                    });
+    it('returns a valid reponse for Mark id', (done) => {
+      request(app)
+          .get('/stories/mark/person')
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+            expect(res.body).to.deep.equal({
+              'name': 'Mark',
             });
-
-            it('returns 401 when it id header is not there and the request requires the header', (done) => {
-                request(app)
-                    .get('/stories/smith/budget')
-                    .end((err, res) => {
-                        expect(res.status).to.equal(401);
-                        expect(res.body).to.deep.equal({
-                            errorCode: 401,
-                            message: 'Header not found! :('
-                        });
-                        done();
-                    });
-            });
-        });
-
-        describe('cookies', () => {
-            it('should return a valid response when a cookie is in the request', (done) => {
-                request(app)
-                    .get('/stories/christopher/confidential')
-                    .set('Cookie', ['session-id=12345667', 'key-id=KEY_ENCRYPTED'])
-                    .end((err, res) => {
-                        expect(res.status).to.equal(200);
-                        expect(res.body).to.deep.equal({
-                            "gender": "male",
-                            "dob": "12/12/1990"
-                        });
-                        done();
-                    });
-            });
-
-            it('should return 401 when a cookie is not presented in the request', (done) => {
-                request(app)
-                    .get('/stories/christopher/confidential')
-                    .set('Cookie', ['session-id=12345667'])
-                    .end((err, res) => {
-                        expect(res.status).to.equal(401);
-                        expect(res.body).to.deep.equal({
-                            errorCode: 401,
-                            message: 'Cookie not found in the request! :('
-                        });
-                        done();
-                    });
-            });
-        });
-
-        describe('cookies&headers', () => {
-            it('should return 401 when a cookie and header are not presented in the request with specific message', (done) => {
-                request(app)
-                    .get('/stories/mark/confidential')
-                    .set('Cookie', ['session-id=12345667'])
-                    .end((err, res) => {
-                        expect(res.status).to.equal(401);
-                        expect(res.body).to.deep.equal({
-                            errorCode: 401,
-                            message: 'Cookie and header not found in the request! :('
-                        });
-                        done();
-                    });
-            });
-        });
+            done();
+          });
     });
+
+    it('returns 404 when is not finding the scenario', (done) => {
+      request(app)
+          .get('/stories/nathan/age')
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body).to.deep.equal({
+              errorCode: 404,
+              message: 'Scenario not found in db.json! :(',
+            });
+            done();
+          });
+    });
+
+    it('returns 404 when it exists an status in the json file', (done) => {
+      request(app)
+          .get('/stories/smith/confidential')
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body).to.deep.equal({
+              messageError: 'request not found',
+            });
+            done();
+          });
+    });
+
+    describe('get all resources', () => {
+      it('returns a response when there is no id', (done) => {
+        const response = {'people': [{'name': 'Nathan'}, {'name': 'Mark'}]};
+        request(app)
+            .get('/stories/people')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal(response);
+              done();
+            });
+      });
+
+      it('returns a response when there is id empty', (done) => {
+        const bodyResp = {'people': [{'budget': '1000'}, {'budget': '5000'}]};
+        request(app)
+            .get('/stories/budgets')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal(bodyResp);
+              done();
+            });
+      });
+
+      it('returns a response when the path contains just one word', (done) => {
+        const bodyResp = {'people': [{'budget': '15000'}, {'budget': '5000'}]};
+        request(app)
+            .get('/stories')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal(bodyResp);
+              done();
+            });
+      });
+    });
+  });
+
+  describe('with Authentication', () => {
+    it('returns a valid reponse', (done) => {
+      request(app)
+          .get('/stories/Nathan/budget')
+          .set({Authorization: 'PLACE_YOUR_TOKEN_HERE', id: 'MY_ID'})
+          .end((err, res) => {
+            expect(err).to.not.exist;
+            expect(res.status).to.equal(200);
+            expect(res.body).to.deep.equal({
+              'name': 'Nathan',
+            });
+            done();
+          });
+    });
+
+    it('returns 404 when it is not finding the scenario', (done) => {
+      request(app)
+          .get('/stories/Nathan/age')
+          .set({Authorization: 'PLACE_YOUR_TOKEN_HERE'})
+          .end((err, res) => {
+            expect(err).to.not.exist;
+            expect(res.status).to.equal(404);
+            expect(res.body).to.deep.equal({
+              errorCode: 404,
+              message: 'Scenario not found in db.json! :(',
+            });
+            done();
+          });
+    });
+
+    describe('headers', () => {
+      context('when authorization header is not in the request', () => {
+        it('returns 401', (done) => {
+          request(app)
+              .get('/stories/nathan/budget')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(401);
+                expect(res.body).to.deep.equal({
+                  errorCode: 401,
+                  message: 'Header not found! :(',
+                });
+                done();
+              });
+        });
+      });
+
+      context('when id header is not in the request', () => {
+        it('returns 401', (done) => {
+          request(app)
+              .get('/stories/smith/budget')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(401);
+                expect(res.body).to.deep.equal({
+                  errorCode: 401,
+                  message: 'Header not found! :(',
+                });
+                done();
+              });
+        });
+      });
+    });
+
+    describe('cookies', () => {
+      context('when a cookie is in the request', () => {
+        it('should return a valid response', (done) => {
+          request(app)
+              .get('/stories/christopher/confidential')
+              .set('Cookie', ['session-id=12345667', 'key-id=KEY_ENCRYPTED'])
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  'gender': 'male',
+                  'dob': '12/12/1990',
+                });
+                done();
+              });
+        });
+      });
+
+      context('when a cookie is not presented in the request', () => {
+        it('should return 401', (done) => {
+          request(app)
+              .get('/stories/christopher/confidential')
+              .set('Cookie', ['session-id=12345667'])
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(401);
+                expect(res.body).to.deep.equal({
+                  errorCode: 401,
+                  message: 'Cookie not found in the request! :(',
+                });
+                done();
+              });
+        });
+      });
+    });
+
+    describe('cookies&headers', () => {
+      context('when a cookie and header are not presented', () => {
+        it('should return 401', (done) => {
+          request(app)
+              .get('/stories/mark/confidential')
+              .set('Cookie', ['session-id=12345667'])
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(401);
+                expect(res.body).to.deep.equal({
+                  errorCode: 401,
+                  message: 'Cookie and header not found in the request! :(',
+                });
+                done();
+              });
+        });
+      });
+    });
+  });
 });
-
-
-

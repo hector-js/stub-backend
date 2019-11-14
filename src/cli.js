@@ -1,3 +1,4 @@
+
 import { info, warn } from 'console';
 import { generateCli } from './generate/generate.cli';
 import { sizeObject } from './utils/utils.cli';
