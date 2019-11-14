@@ -1,7 +1,7 @@
 import { cd, exec, mkdir, touch } from 'shelljs';
 import { writeFile, readFile } from 'fs';
 import { info, error } from 'console';
-import { handleQuestion } from '../utils/utils.cli';
+import { handleQuestion, writeFileByData } from '../utils/utils.cli';
 
 const chalk = require('chalk');
 
@@ -48,43 +48,55 @@ export async function newCli(args) {
         });
     });
 
-    mkdir('resources');
-    cd('resources');
-    touch('health.json');
-    
-    writeFile('health.json', healthData, (err) => {
-        if (err) throw err;
-    });
-    cd('..');
     touch('app.js');
     
     const appData = "module.exports = require('@hectorjs/stub-backend')";
-    writeFile('app.js', appData, (err) => {
-        if (err) throw err;
-    });
+    writeFileByData('app.js', appData);
     
-    mkdir('test');
-    cd('test');
-    touch('health.test.js');
 
-    writeFile('health.test.js', healthTest, (err) => {
-        if (err) throw err;
-    });
+    createFileInPath('health.json','resources');
+
+
+    // mkdir('resources');
+    // cd('resources');
+    // touch('health.json');
+    
+    writeFileByData('health.json', healthData);
+
+    cd('..');
+    // touch('app.js');
+    
+    // const appData = "module.exports = require('@hectorjs/stub-backend')";
+    // writeFileByData('app.js', appData);
+    
+    createFileInPath('health.test.js','test');
+    // mkdir('test');
+    // cd('test');
+    // touch('health.test.js');
+
+    writeFileByData('health.test.js', healthTest);
     
     cd('..');
 
-    if (args['vs'] && args['vs'] == true) {
-        exec('code .');
-    }
-    if (args['idea'] && args['idea'] == true) {
-        exec('idea .');
-    }
+    checkIDE(args['vs'],'code');
+    checkIDE(args['idea'],'idea');
 
     info(chalk.green('The mock has been set successfully (run node app.js)'));
     var end = new Date() - start
-    info(chalk.grey('\nExecution time: %dms '), end)
+    info(chalk.grey('\nExecution time: %dms \n'), end)
 }
 
+const checkIDE = (argsCLI, shortCliIDE) => {
+    if (argsCLI && argsCLI == true) {
+        exec(`${shortCliIDE} .`);
+    }
+};
+
+const createFileInPath = (fileName, path) => {
+    mkdir(path);
+    cd(path);
+    touch(fileName);
+};
 
 const healthData = `{
   "health": [
