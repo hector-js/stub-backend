@@ -17,9 +17,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: npm ci, test and eslint
       run: |
         npm ci
         npm test
+        npm eslint
       env:
         CI: true
