@@ -1,25 +1,27 @@
 'use strict';
 
-var app = require('../lib/app');
-var chai = require('chai');
-var request = require('supertest');
+const app = require('../lib/app');
+const chai = require('chai');
+const request = require('supertest');
 
-var expect = chai.expect;
+const expect = chai.expect;
 
 describe('GET - stub backend project', () => {
-    describe('resource not well format', () => {
-        it('returns an invalid response when the json is not well formatted', (done) => {
-            request(app)
-                .get('/errors')
-                .end((err, res) => {
-                    expect(res.status).to.equal(400);
-                    expect(res.body).to.deep.equal({
-                        errorCode: 400,
-                        message: 'Incorrect db json format under resources :('
-                    });
-                    done();
-                });
-        });
+  describe('resource not well format', () => {
+    context('when the json is not well formatted', ()=>{
+      it('returns an invalid response ', (done) => {
+        request(app)
+            .get('/errors')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(400);
+              expect(res.body).to.deep.equal({
+                errorCode: 400,
+                message: 'Incorrect db json format under resources :(',
+              });
+              done();
+            });
+      });
     });
+  });
 });
-
