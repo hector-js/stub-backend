@@ -4,7 +4,7 @@ import { sizeObject } from './utils/utils.cli';
 import { newCli } from './new/new.cli';
 
 const chalk = require('chalk');
-const VERSION = '0.43.0';
+const VERSION = '0.44.0';
 
 export function cli(args) {
     switch (args._[0]) {
