@@ -1,7 +1,9 @@
 import { cd, exec, mkdir, touch } from 'shelljs';
 import { writeFile, readFile } from 'fs';
 import { info, error } from 'console';
-import { handleQuestion, writeFileByData } from '../utils/utils.cli';
+import { handleQuestion, writeFileByData, createFileInPath } from '../utils/utils.cli';
+import { healthData } from '../utils/templates/resources/health.template';
+import { healthTest } from '../utils/templates/tests/health.template';
 
 const chalk = require('chalk');
 
@@ -33,12 +35,12 @@ export async function newCli(args) {
     mkdir(nameProject);
     cd(nameProject);
 
-    exec('npm init -y');
-    exec('npm install @hectorjs/stub-backend');
-    exec('npm install chai mocha supertest  --save-dev');
+    exec('npm init -y --silent');
+    exec('npm install @hectorjs/stub-backend --silent');
+    exec('npm install chai mocha supertest  --save-dev --silent');
 
     readFile('./package.json', 'utf8', (err, data) => {
-        if (err) return error(err);
+        if (err) return error('Error while package.json was opening!');
 
         const replacement = `"test": "mocha --exit"`;
         var result = data.replace('\"test\"\: \"echo \\\"Error\: no test specified\\\" \&\& exit 1\"', replacement);
@@ -52,30 +54,11 @@ export async function newCli(args) {
     
     const appData = "module.exports = require('@hectorjs/stub-backend')";
     writeFileByData('app.js', appData);
-    
-
     createFileInPath('health.json','resources');
-
-
-    // mkdir('resources');
-    // cd('resources');
-    // touch('health.json');
-    
     writeFileByData('health.json', healthData);
-
     cd('..');
-    // touch('app.js');
-    
-    // const appData = "module.exports = require('@hectorjs/stub-backend')";
-    // writeFileByData('app.js', appData);
-    
     createFileInPath('health.test.js','test');
-    // mkdir('test');
-    // cd('test');
-    // touch('health.test.js');
-
     writeFileByData('health.test.js', healthTest);
-    
     cd('..');
 
     checkIDE(args['vs'],'code');
@@ -92,42 +75,3 @@ const checkIDE = (argsCLI, shortCliIDE) => {
     }
 };
 
-const createFileInPath = (fileName, path) => {
-    mkdir(path);
-    cd(path);
-    touch(fileName);
-};
-
-const healthData = `{
-  "health": [
-    {
-      "body_": {
-        "STATUS": "UP"
-      }
-    }
-  ]
-}`;
-
-const healthTest = `
-'use strict';
-
-var app = require('../app');
-var chai = require('chai');
-var request = require('supertest');
-
-var expect = chai.expect;
-
-describe('GET - health ', () => {
-    it('should exist', (done) => {
-        request(app)
-            .get('/health')
-            .end((err, res) => {
-                expect(res.status).to.equal(200);
-                expect(res.body).to.deep.equal({
-                    "STATUS": "UP"
-                });
-                done();
-            });
-    });
-});
-`;
