@@ -1,5 +1,6 @@
 import { createInterface } from 'readline';
 import { info, warn } from 'console';
+import { existsSync, writeFile } from 'fs';
 
 const chalk = require('chalk');
 
@@ -22,6 +23,26 @@ export function sizeObject(obj) {
     }
     return size;
 };
+
+export const checkPath = (path) => {
+    try {
+        return existsSync(path);
+    } catch (err) {
+        error('Error in the location');
+        return false;
+    }
+}
+
+export const writeFileByData = (file, data) => {
+    writeFile(file, data, (err) => {
+        if (err) {
+            error(`Error creating ${file} file`);
+            throw err;
+        }
+        info(chalk.green(`${file}`) + ` has been created`);
+    });
+}
+
 
 function handleAnswer(resolve, reject, readline, value) {
     if (!value) {
