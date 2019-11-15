@@ -1,6 +1,11 @@
-name: Node CI
+name: %40hectorjs%2Fstub-backend
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - development
+      - featuer
 
 jobs:
   build:
