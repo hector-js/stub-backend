@@ -1,11 +1,6 @@
-name: %40hectorjs%2Fstub-backend
+name: JUAN
 
-on:
-  push:
-    branches:
-      - master
-      - development
-      - featuer
+on: [push]
 
 jobs:
   build:
