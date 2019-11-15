@@ -1,15 +1,18 @@
-name: %40hectorjs%2Fstub-backend
+name: 'eslint-config-google'
 
 on:
   push:
     branches:
       - master
       - development
-      - featuer
+      - 'feature/cli'
 
 jobs:
   build:
+    name: Stub-backend
+
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [ 8.x , 10.x , 12.x ]
@@ -20,12 +23,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Unit test
-      run: |
-        npm ci
-        npm test
-      env:
-        CI: true
     - name: Code quality
       run: |
         npm run eslint
