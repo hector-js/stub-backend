@@ -21,6 +21,7 @@ jobs:
       run: |
         npm ci
         npm test
+        npm i
         npm run eslint
       env:
         CI: true
