@@ -1,4 +1,4 @@
-name: JUAN
+name: '@hectorjs/stub-backend'
 
 on: [push]
 
