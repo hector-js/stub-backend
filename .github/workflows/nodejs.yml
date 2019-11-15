@@ -1,11 +1,11 @@
 name: %40hectorjs%2Fstub-backend
 
-on:
-  push:
-    branches:
-      - master
-      - development
-      - 'feature/cli'
+on: [push]
+  # push:
+  #   branches:
+  #     - master
+  #     - development
+  #     - featuer
 
 jobs:
   build:
