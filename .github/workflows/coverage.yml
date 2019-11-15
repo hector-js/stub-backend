@@ -1,4 +1,4 @@
-name: 'eslint-config-google'
+name: 'Coverage'
 
 on:
   push:
@@ -24,10 +24,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Code quality
+    - name: Coverage
       run: |
         npm ci
-        npm run eslint
+        npm run coverage
       env:
         CI: true
         

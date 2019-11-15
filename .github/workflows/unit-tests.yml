@@ -5,7 +5,9 @@ on:
     branches:
       - master
       - development
-
+    schedule:
+    - cron:  '0 8 * * *'
+    
 jobs:
   build:
     name: Stub-backend
