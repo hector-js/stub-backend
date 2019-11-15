@@ -6,7 +6,3 @@ case "${unameOut}" in
     MINGW*)     mocha --exit;;
     *)          NODE_ENV=test mocha --exit;;
 esac
-
-
-
-
