@@ -30,9 +30,10 @@
   },
   "scripts": {
     "start": "nodemon lib/app.js",
-    "test": " set NODE_ENV=test & sh ./scripts/test.sh",
-    "coverage": " set NODE_ENV=test & sh ./scripts/test-coverage.sh",
-    "eslint": "eslint ./lib/**/*.js ./test/**/*.js"
+    "test": "set NODE_ENV=test & sh ./scripts/test.sh",
+    "coverage": "set NODE_ENV=test & sh ./scripts/test-coverage.sh",
+    "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
+    "test-all": "eslint ./lib/**/*.js ./test/**/*.js && (set NODE_ENV=test & sh ./scripts/test-coverage.sh) "
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
