@@ -1,9 +1,14 @@
-name: Node CI
+name: @hectorjs/stub-backend
 
 on: [push]
+  push:
+    branches:
+      - master
+      - development
 
 jobs:
   build:
+    name: Stub-backend
 
     runs-on: ubuntu-latest
 
