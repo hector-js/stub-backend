@@ -1,5 +1,7 @@
 # @hectorjs/stub-backend
 
+![](https://github.com/HecJimSan/stub-backend/workflows/ %40hectorjs%2Fstub-backend/badge.svg)
+
 # Install
 
 ```sh
