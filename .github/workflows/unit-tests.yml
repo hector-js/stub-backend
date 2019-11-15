@@ -1,4 +1,4 @@
-name: '@hectorjs/stub-backend'
+name: 'Unit tests'
 
 on:
   push:
@@ -26,11 +26,6 @@ jobs:
       run: |
         npm ci
         npm test
-      env:
-        CI: true
-    - name: Code quality
-      run: |
-        npm run eslint
       env:
         CI: true
         

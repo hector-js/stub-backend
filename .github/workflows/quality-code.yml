@@ -1,4 +1,4 @@
-name: '@hectorjs/stub-backend'
+name: 'eslint-config-google'
 
 on:
   push:
@@ -22,14 +22,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Unit test
-      run: |
-        npm ci
-        npm test
-      env:
-        CI: true
     - name: Code quality
       run: |
+        npm ci
         npm run eslint
       env:
         CI: true

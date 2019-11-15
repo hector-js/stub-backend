@@ -1,5 +1,12 @@
 # @hectorjs/stub-backend
 
+## Pipelines
+### Main
+![](https://github.com/HecJimSan/stub-backend/workflows/%40hectorjs%2Fstub%2Dbackend/badge.svg)
+### Separate checks
+ - ![](https://github.com/HecJimSan/stub-backend/workflows/eslint%2Dconfig%2Dgoogle/badge.svg)
+ - ![](https://github.com/HecJimSan/stub-backend/workflows/Unit%20tests/badge.svg)
+
 # Install
 
 ```sh
