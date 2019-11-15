@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - development
-      - featuer
+      - 'feature/cli'
 
 jobs:
   build:
