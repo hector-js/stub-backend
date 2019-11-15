@@ -25,6 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Code quality
       run: |
+        npm ci
         npm run eslint
       env:
         CI: true
