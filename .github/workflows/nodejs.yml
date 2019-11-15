@@ -1,11 +1,11 @@
-name: %40hectorjs%2Fstub-backend
+name: '@hectorjs/stub-backend'
 
-on: [push]
-  # push:
-  #   branches:
-  #     - master
-  #     - development
-  #     - featuer
+on:
+  push:
+    branches:
+      - master
+      - development
+      - featuer
 
 jobs:
   build:

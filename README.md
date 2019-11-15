@@ -1,6 +1,6 @@
 # @hectorjs/stub-backend
 
-![](https://github.com/HecJimSan/stub-backend/workflows/ %40hectorjs%2Fstub-backend/badge.svg)
+![](https://github.com/HecJimSan/stub-backend/workflows/%40hectorjs%2Fstub%2Dbackend/badge.svg)
 
 # Install
 
