@@ -1,40 +1,40 @@
 {
   "_get": {
   
-    "/stories/{id}/confidential$": [
+    "/stories/{id}/confidential": [
       {
-        "id_": "Christopher",
-        "headers_": [],
-        "cookies_": [
+        "_id": "Christopher",
+        "_headers": [],
+        "_cookies": [
           "session-id",
           "key-id"
         ],
         "description_": "Get confidential details related to Christopher with a cookie provided",
-        "body_": {
+        "_body": {
           "gender": "male",
           "dob": "12/12/1990"
         }
       },
       {
-        "id_": "Mark",
-        "headers_": [
+        "_id": "Mark",
+        "_headers": [
           "Authorization"
         ],
-        "cookies_": [
+        "_cookies": [
           "session-id",
           "key-id"
         ],
         "description_": "Get confidential details related to Mark with a cookie and header provided",
-        "body_": {
+        "_body": {
           "gender": "male",
           "dob": "12/12/1990"
         }
       },
       {
-        "id_": "Smith",
+        "_id": "Smith",
         "status_": 404,
         "description_": "Get confidential details related to Christopher with a cookie and header provided",
-        "body_": {
+        "_body": {
           "messageError": "request not found"
         }
       }

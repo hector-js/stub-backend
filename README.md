@@ -101,15 +101,15 @@ The json must follow the next format:
 
 2. An array of possible responses based on the identifier.
 
-3. Each response contains an id_, headers_ and description_ property:
+3. Each response contains an id_, _headers and description_ property:
 
     *  *id_* identifier 
         (/stories/Nathan/person => id_: Nathan)
-    *  *headers_*  
-        _format:_ "headers_: string[]" 
+    *  *_headers*  
+        _format:_ "_headers: string[]" 
         It is looking if the headers exist in the request and responding an error when they are not found.
-    *  *cookies_* 
-        _format:_ "cookies_: string[]"  
+    *  *_cookies* 
+        _format:_ "_cookies: string[]"  
         It is looking if the cookies exist in the request and responding an error when they are not found.
     *  *description_*
         Brief explanation about the response.
@@ -124,42 +124,42 @@ Below, we have a example:
 {
     "^/stories/(.*?)/person$": [
         {
-            "id_": "Nathan",
-            "headers_":[],
+            "_id": "Nathan",
+            "_headers":[],
             "description_": "Get person details related to Nathan without authentication",
-            "body_":{
+            "_body":{
                 "name": "Nathan"
             }
         },
         {
-            "id_": "Lucas",
-            "headers_":[],
+            "_id": "Lucas",
+            "_headers":[],
             "status_" : 304,
             "description_": "There won't be any response because the status is 304",
-            "body_":{
+            "_body":{
                 "name": "Nathan"
             }
         },
         {
-            "id_": "mark",
-            "headers_":["Authorization"],
-            "cookies_": [],
+            "_id": "mark",
+            "_headers":["Authorization"],
+            "_cookies": [],
             "description_": "Get person details related to Mark with authentication",
-            "body_":{
+            "_body":{
                 "name": "Mark"
             }
         }
     ],
     "^/stories/(.*?)/budget$": [
         {
-            "id_": "Nathan",
-            "headers_":["Client_id"],
-            "cookies_": [
+            "_id": "Nathan",
+            "_headers":["Client_id"],
+            "_cookies": [
                 "session-id",
                 "key-id"
             ],
             "description_": "Get budget details related to Nathan with authentication",
-            "body_":{
+            "_body":{
                 "name": "Nathan"
             }
         }
@@ -219,7 +219,7 @@ Below, we have a example:
 
 ```json
 {
-  "post_": [
+  "_post": [
     {
       "data": {
         "name": "Nathan"

@@ -1,5 +1,5 @@
 export const postData = `{
-  "post_": [
+  "_post": [
     {
       "data": {
         "dummy": "dummy"

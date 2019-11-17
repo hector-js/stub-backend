@@ -12,10 +12,10 @@ describe('get repository', () => {
     const body = GetRespository.findData(contextPath);
 
     expect(body).to.deep.equal({
-      id_: 'Nathan',
-      headers_: [],
+      _id: 'Nathan',
+      _headers: [],
       description_: 'Get person details related to Nathan',
-      body_: {
+      _body: {
         name: 'Nathan',
       },
     });
@@ -29,7 +29,7 @@ describe('get repository', () => {
 
       expect(body).to.deep.equal({
         errorCode: 404,
-        message: 'Scenario not found in db.json! :(',
+        message: 'Scenario not found in the resources! :(',
       });
     });
   });

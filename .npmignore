@@ -1,3 +1,8 @@
 /test/
 /lib/app/environment/test.js
 /scripts/
+.eslintrc.js
+.nycrc.json
+/coverage/
+/.nyc_output/
+/.github/

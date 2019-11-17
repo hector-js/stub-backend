@@ -2,27 +2,27 @@
   "_get": {
     "/stories/{id}/person": [
       {
-        "id_": "Nathan",
-        "headers_": [],
+        "_id": "Nathan",
+        "_headers": [],
         "description_": "Get person details related to Nathan",
-        "body_": {
+        "_body": {
           "name": "Nathan"
         }
       },
       {
-        "id_": "mark",
-        "headers_": [],
+        "_id": "mark",
+        "_headers": [],
         "description_": "Get person details related to Mark",
-        "body_": {
+        "_body": {
           "name": "Mark"
         }
       }
     ],
     "/stories/people": [
       {
-        "headers_": [],
+        "_headers": [],
         "description_": "Get stories for all the people",
-        "body_": {
+        "_body": {
           "people": [
             {
               "name": "Nathan"
@@ -36,10 +36,10 @@
     ],
     "/stories/budgets": [
       {
-        "id_": "",
-        "headers_": [],
+        "_id": "",
+        "_headers": [],
         "description_": "Get all budgets",
-        "body_": {
+        "_body": {
           "people": [
             {
               "budget": "1000"
@@ -53,10 +53,10 @@
     ],
     "/stories": [
       {
-        "id_": "",
-        "headers_": [],
+        "_id": "",
+        "_headers": [],
         "description_": "Get all budgets",
-        "body_": {
+        "_body": {
           "people": [
             {
               "budget": "15000"
@@ -70,23 +70,23 @@
     ],
     "/stories/{id}/budget": [
       {
-        "id_": "Nathan",
-        "headers_": [
+        "_id": "Nathan",
+        "_headers": [
           "Authorization"
         ],
         "description_": "Get budget details related to Nathan with authentication header",
-        "body_": {
+        "_body": {
           "name": "Nathan"
         }
       },
       {
-        "id_": "Smith",
-        "headers_": [
+        "_id": "Smith",
+        "_headers": [
           "Authorization",
           "id"
         ],
         "description_": "Get budget details related to Nathan with Authorization, id in the headers",
-        "body_": {
+        "_body": {
           "name": "Nathan"
         }
       }
