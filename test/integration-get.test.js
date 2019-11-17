@@ -39,7 +39,7 @@ describe('GET - stub backend project', () => {
             expect(res.status).to.equal(404);
             expect(res.body).to.deep.equal({
               errorCode: 404,
-              message: 'Scenario not found in db.json! :(',
+              message: 'Scenario not found in the resources! :(',
             });
             done();
           });
@@ -120,7 +120,7 @@ describe('GET - stub backend project', () => {
             expect(res.status).to.equal(404);
             expect(res.body).to.deep.equal({
               errorCode: 404,
-              message: 'Scenario not found in db.json! :(',
+              message: 'Scenario not found in the resources! :(',
             });
             done();
           });

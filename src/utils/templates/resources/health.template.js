@@ -1,9 +1,11 @@
 export const healthData = `{
-  "health": [
-    {
-      "body_": {
-        "STATUS": "UP"
+  "_get" : {
+    "/health": [
+      {
+        "_body": {
+          "STATUS": "UP"
+        }
       }
-    }
-  ]
+    ]
+  }
 }`;

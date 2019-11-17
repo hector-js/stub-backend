@@ -5,15 +5,21 @@ export const getTemplate = (endpoint, headers) => {
       headersCustom = headersCustom + `"${header}",`;
     });
   }
+
+  if(endpoint.charAt(0)!== '/'){
+    endpoint = `/${endpoint}`;
+  }
   return `{
-  "${endpoint}" : [
-    {
-      "body_" : { "body" : "To be defined" },
-      "headers_" : [ ${headersCustom.slice(0, -1)} ],
-      "status_" : 0,
-      "cookies_" : [],
-      "description_" : "Description to be defined"
-    }
-  ]
+  "_get" : {
+    "${endpoint}" : [
+      {
+        "_body" : { "body" : "To be defined" },
+        "_headers" : [ ${headersCustom.slice(0, -1)} ],
+        "_status" : 0,
+        "_cookies" : [],
+        "_description" : "Description to be defined"
+      }
+    ]
+  }
 }`;
 };
