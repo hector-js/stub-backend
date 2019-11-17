@@ -1,19 +1,24 @@
-export const getTemplate = (endpoint, headers) => {
-  var headersCustom = '';
-  if (headers) {
-    headers.forEach(header => {
-      headersCustom = headersCustom + `"${header}",`;
-    });
+import { convertIdsToJsonProperties, convertHeadersToJsonProperties, getHeaders } from "../../utils.cli";
+
+export const getTemplate = (endpoint, args, idsFormatted) => {
+  
+  let headers = getHeaders(args);
+  
+  if (endpoint.charAt(0) !== '/') {
+    endpoint = `/${endpoint}`;
   }
   return `{
-  "${endpoint}" : [
-    {
-      "body_" : { "body" : "To be defined" },
-      "headers_" : [ ${headersCustom.slice(0, -1)} ],
-      "status_" : 0,
-      "cookies_" : [],
-      "description_" : "Description to be defined"
-    }
-  ]
+  "_get" : {
+    "${endpoint}" : [
+      {
+        ${convertIdsToJsonProperties(idsFormatted)}
+        "_body" : { "body" : "To be defined" },
+        "_headers" : [ ${convertHeadersToJsonProperties(headers)} ],
+        "_status" : 0,
+        "_cookies" : [],
+        "_description" : "Description to be defined"
+      }
+    ]
+  }
 }`;
 };

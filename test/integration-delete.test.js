@@ -6,12 +6,12 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('POST - stub backend project', () => {
+describe('DELETE - stub backend project', () => {
   describe('without Authentication', () => {
     context('when the url doesnt contain any id', ()=>{
       it('returns a valid reponse', (done) => {
         request(app)
-            .post('/story/nathan')
+            .delete('/story/nathan')
             .set('Accept', 'application/json')
             .send({'name': 'Nathan'})
             .end((err, res) => {
@@ -27,7 +27,7 @@ describe('POST - stub backend project', () => {
     context('when the url contain an id and param', ()=>{
       it('returns a valid reponse', (done) => {
         request(app)
-            .post('/customers/1234/session?scenario=aaa')
+            .delete('/customers/1234/session?scenario=aaa')
             .set('Accept', 'application/json')
             .send({'custom': 'any data'})
             .end((err, res) => {
@@ -41,7 +41,7 @@ describe('POST - stub backend project', () => {
       });
       it('returns a not found response when param does not exist', (done) => {
         request(app)
-            .post('/customers/1234/session?scenario=aa')
+            .delete('/customers/1234/session?scenario=aa')
             .set('Accept', 'application/json')
             .send({'custom': 'any data'})
             .end((err, res) => {

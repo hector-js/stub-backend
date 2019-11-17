@@ -1,6 +1,6 @@
 import { convertIdsToJsonProperties, convertHeadersToJsonProperties, getHeaders } from "../../utils.cli";
 
-export const postTemplate = (args, idsFormatted) => {
+export const deleteTemplate = (args, idsFormatted) => {
   let path = args._[2];
   let headers = getHeaders(args);
 
@@ -8,7 +8,7 @@ export const postTemplate = (args, idsFormatted) => {
     path = `/${path}`;
   }
   return `{
-  "_post" : {
+  "_delete" : {
     "${path}" : [
       {
         ${convertIdsToJsonProperties(idsFormatted)}
