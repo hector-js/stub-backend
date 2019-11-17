@@ -6,7 +6,7 @@ import { newCli } from './new/new.cli';
 import { start } from './start/start.cli';
 
 const chalk = require('chalk');
-const VERSION = '0.47.0';
+const VERSION = '0.48.0';
 
 export function cli(args) {
     switch (args._[0]) {
