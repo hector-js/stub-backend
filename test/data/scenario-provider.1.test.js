@@ -3,7 +3,7 @@ module.exports = db = {
     {
       _id: 'Nathan',
       _headers: [],
-      description_: 'Nathan identifier',
+      _description: 'Nathan identifier',
       _body: {
         name: 'Nathan',
       },
@@ -11,7 +11,7 @@ module.exports = db = {
     {
       _id: 'mark',
       _headers: [],
-      description_: 'Mark identifier',
+      _description: 'Mark identifier',
       _body: {
         name: 'Mark',
       },
@@ -21,7 +21,7 @@ module.exports = db = {
     {
       id_: 'Nathan',
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _body: {
         name: 'Nathan',
       },
@@ -29,7 +29,7 @@ module.exports = db = {
     {
       id_: 'mark',
       _headers: [],
-      description_: 'Mark customers data',
+      _description: 'Mark customers data',
       _body: {
         name: 'Mark',
       },
@@ -38,7 +38,7 @@ module.exports = db = {
   '/customers/{id}/data?name={d1}&dateOfBirth={d2}': [
     {
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _id: '123',
       _d1: 'hector',
       _d2: '10-10-200',
@@ -48,7 +48,7 @@ module.exports = db = {
     },
     {
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _id: 'valueOne',
       _d1: 'valueTwo',
       _d2: 'valueThree',
@@ -60,7 +60,7 @@ module.exports = db = {
   '/customers/age': [
     {
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _body: {
         name: 'Nathan',
       },
@@ -69,14 +69,14 @@ module.exports = db = {
   '/customers/multiple/scenarios': [
     {
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _body: {
         name: 'Nathan',
       },
     },
     {
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _body: {
         name: 'Nathan',
       },
@@ -86,7 +86,7 @@ module.exports = db = {
     {
       _id: 'juan',
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _body: {
         name: 'Nathan',
       },
@@ -94,7 +94,7 @@ module.exports = db = {
     {
       _id: 'juan',
       _headers: [],
-      description_: 'Nathan customers data',
+      _description: 'Nathan customers data',
       _body: {
         name: 'Nathan',
       },

@@ -14,7 +14,7 @@ describe('get repository', () => {
     expect(body).to.deep.equal({
       _id: 'Nathan',
       _headers: [],
-      description_: 'Get person details related to Nathan',
+      _description: 'Get person details related to Nathan',
       _body: {
         name: 'Nathan',
       },

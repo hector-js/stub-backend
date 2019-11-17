@@ -85,7 +85,7 @@ describe('scenario provider', () => {
           expect(scenario).to.deep.equal({
             _id: 'mark',
             _headers: [],
-            description_: 'Mark identifier',
+            _description: 'Mark identifier',
             _body: {
               name: 'Mark',
             },
@@ -133,7 +133,7 @@ describe('scenario provider', () => {
 
           expect(scenario).to.deep.equal({
             _headers: [],
-            description_: 'Nathan customers data',
+            _description: 'Nathan customers data',
             _id: 'valueOne',
             _d1: 'valueTwo',
             _d2: 'valueThree',
@@ -154,7 +154,7 @@ describe('scenario provider', () => {
 
           expect(scenario).to.deep.equal({
             _headers: [],
-            description_: 'Nathan customers data',
+            _description: 'Nathan customers data',
             _body: {
               name: 'Nathan',
             },
@@ -197,7 +197,7 @@ describe('scenario provider', () => {
           _requestBody: {
             data: 'data1',
           },
-          description_: 'Nathan customers data',
+          _description: 'Nathan customers data',
           _body: {
             name: 'Nathan',
           },
@@ -231,7 +231,7 @@ describe('scenario provider', () => {
           _requestBody: {
             data: 'data6',
           },
-          description_: 'Nathan customers data',
+          _description: 'Nathan customers data',
           _body: {
             name: 'first',
           },

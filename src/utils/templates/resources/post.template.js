@@ -18,9 +18,9 @@ export const postTemplate = (endpoint, headers) => {
         },
         "_body" : { "dummyResponse": "dummyResponse" },
         "_headers" : [ ${headersCustom.slice(0, -1)} ],
-        "status_" : 0,
+        "_status" : 0,
         "_cookies" : [],
-        "description_" : "Description to be defined"
+        "_description" : "Description to be defined"
       }
     ]
   }
