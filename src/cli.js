@@ -26,14 +26,19 @@ export function cli(args) {
         process.exit();
     }
 
+    if (args.licence) {
+        info(chalk.yellow(`\nLicense: MIT\n`));
+        process.exit();
+    }
+
     if (args.help) {
         info(chalk.green('\nBelow, you can see different options for your mock:\n\n'));
         info(chalk.green(` -  new/n [name-project]  : create new mock project `));
-        info(chalk.green(` -  generate/g  get  [url]: create url section `));
+        info(chalk.green(` -  generate/g  get/g/post/p  [url]: create url section `));
         info(chalk.green(` -  --version : know version hjs`));
         info(chalk.green(` -  --vs      : open visual code studio if exists`));
         info(chalk.green(` -  --idea    : open intelliJ studio if exists`));
-        info(chalk.green(` -  --licence : MIT\n\n`));
+        info(chalk.green(` -  --license : MIT\n\n`));
         info(chalk.green(`Example: hjs --new --vs\n`));
         info(chalk.yellow(`version: ${VERSION}\n`));
         process.exit();

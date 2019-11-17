@@ -24,7 +24,7 @@ export function getCli(args) {
     cd('..');
     cd('test');
 
-    writeFileByData(`${rootFile}.test.js`, getTestTemplate(args._[2], headers));
+    writeFileByData(`${rootFile}-get.test.js`, getTestTemplate(args._[2], headers));
 
     cd('..');
   } else {

@@ -5,6 +5,10 @@ export const getTemplate = (endpoint, headers) => {
       headersCustom = headersCustom + `"${header}",`;
     });
   }
+
+  if(endpoint.charAt(0)!== '/'){
+    endpoint = `/${endpoint}`;
+  }
   return `{
   "_get" : {
     "${endpoint}" : [
