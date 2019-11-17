@@ -1,6 +1,6 @@
 import { cd } from 'shelljs';
 import { warn } from 'console';
-import { writeFileByData, checkPath } from '../../utils/utils.cli';
+import { writeFileByData, checkPath, sanitizeRootFile, getIdFormatted, getHeaders } from '../../utils/utils.cli';
 import { getTestTemplate } from '../../utils/templates/tests/get.template';
 import { getTemplate } from '../../utils/templates/resources/get.template';
 
@@ -11,20 +11,17 @@ const RESOURCES_PATH = 'resources';
 export function getCli(args) {
   if (checkPath('./package.json') && checkPath(`./${RESOURCES_PATH}/`)) {
     cd(RESOURCES_PATH);
+    let path = args._[2];
 
-    var headers;
-    if (args.headers) {
-      headers = args.headers.replace(' ', '').split(',');
-    }
+    const rootFile = sanitizeRootFile(path);
+    const idsFormatted = getIdFormatted(path);
 
-    const rootFile = args._[2].replace(/\W/g, '');
-
-    writeFileByData(`${rootFile}.get.json`, getTemplate(args._[2], headers));
+    writeFileByData(`${rootFile}.get.json`, getTemplate(path, args, idsFormatted));
 
     cd('..');
     cd('test');
 
-    writeFileByData(`${rootFile}.test.js`, getTestTemplate(args._[2], headers));
+    writeFileByData(`${rootFile}-get.test.js`, getTestTemplate(path, args, idsFormatted));
 
     cd('..');
   } else {
