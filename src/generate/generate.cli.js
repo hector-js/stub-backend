@@ -11,7 +11,7 @@ export function generateCli(args) {
       break;
     case 'post':
     case 'p':
-      postCli();
+      postCli(args);
       break;
     default:
         console.warn(chalk.yellow('\nMethod not found :(\n'));

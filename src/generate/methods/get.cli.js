@@ -1,6 +1,6 @@
 import { cd } from 'shelljs';
 import { warn } from 'console';
-import { writeFileByData, checkPath } from '../../utils/utils.cli';
+import { writeFileByData, checkPath, sanitizeRootFile, getIdFormatted } from '../../utils/utils.cli';
 import { getTestTemplate } from '../../utils/templates/tests/get.template';
 import { getTemplate } from '../../utils/templates/resources/get.template';
 
@@ -17,14 +17,15 @@ export function getCli(args) {
       headers = args.headers.replace(' ', '').split(',');
     }
 
-    const rootFile = args._[2].replace(/\W/g, '');
+    const rootFile = sanitizeRootFile(args._[2]);
+    const idsFormatted = getIdFormatted(args._[2]);
 
-    writeFileByData(`${rootFile}.get.json`, getTemplate(args._[2], headers));
+    writeFileByData(`${rootFile}.get.json`, getTemplate(args._[2], headers, idsFormatted));
 
     cd('..');
     cd('test');
 
-    writeFileByData(`${rootFile}.test.js`, getTestTemplate(args._[2], headers));
+    writeFileByData(`${rootFile}-get.test.js`, getTestTemplate(args._[2], headers, idsFormatted));
 
     cd('..');
   } else {

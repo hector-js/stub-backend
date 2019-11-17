@@ -50,6 +50,23 @@ export const createFileInPath = (fileName, path) => {
     touch(fileName);
 };
 
+export const sanitizeRootFile = (path) => {
+    let rootFile = path.replace(/\/\{|\}\/|\=|\?|\&|\{/g, '-').replace(/\}/g, '');
+    if (rootFile && rootFile.startsWith('-')) {
+        rootFile.substr(1);
+    }
+    return rootFile;
+};
+
+export const getIdFormatted = (path) => {
+    const arrayIds = path.match(/\{(.*?)\}/g)
+    let idsFormatted;
+    if (arrayIds) {
+        idsFormatted = arrayIds.map(val => val.replace(/{|}/g, ''))
+    }
+    return idsFormatted;
+}
+
 const handleAnswer = (resolve, reject, readline, value) => {
     if (!value) {
         warn(chalk.red(` You must add a value  :(`));

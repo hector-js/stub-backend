@@ -1,5 +1,6 @@
-export const getTestTemplate = (path, headers, idsFormatted) => {
+export const postTestTemplate = (path, headers, idsFormatted) => {
   const pathWithDummyData = buildUrl(path, idsFormatted);
+
   return `
 'use strict';
 
@@ -9,15 +10,16 @@ var request = require('supertest');
 
 var expect = chai.expect;
 
-describe('GET - ${path} ', () => {
+describe('POST - ${path} ', () => {
   it('should exist', (done) => {
     request(app)
-      .get('${path.startsWith('/') ? pathWithDummyData : `/${pathWithDummyData}`}')
+      .post('${path.startsWith('/') ? pathWithDummyData : '/' + pathWithDummyData}')
       ${headers ? `.set({${arrayToJson(headers)}})` : ''}
+      .send({'dummy': 'dummy'})
       .end((err, res) => {
           expect(res.status).to.equal(200);
           expect(res.body).to.deep.equal({
-            "body" : "To be defined"
+            'dummyResponse': 'dummyResponse'
           });
           done();
       });
@@ -28,7 +30,10 @@ describe('GET - ${path} ', () => {
 
 const arrayToJson = (headers) => {
   var headersJson = ''
-  headers.forEach(header => headersJson = headersJson + `${header}: "any value" ,`);
+  headers.forEach(header => {
+    headersJson = headersJson + `${header}: "any value" ,`
+  });
+
   return headersJson.slice(0, -1);
 }
 

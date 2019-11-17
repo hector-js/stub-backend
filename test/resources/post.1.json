@@ -1,0 +1,75 @@
+{
+  "_post": {
+    "/story/nathan": [
+      {
+        "_id": "juan",
+        "_headers": [],
+        "_requestBody": {
+          "data": "data1"
+        },
+        "description": "Nathan customers data",
+        "_body": {
+          "name": "Nathan"
+        }
+      },
+      {
+        "_id": "juan",
+        "_headers": [],
+        "_requestBody": {
+          "data": "data2"
+        },
+        "description": "Nathan customers data",
+        "_body": {
+          "name": "Nathan"
+        }
+      },
+      {
+        "_id": "juan",
+        "_headers": [],
+        "_requestBody": {
+          "name": "Nathan"
+        },
+        "description": "Nathan customers data",
+        "_body": {
+          "custom": "response"
+        }
+      },
+      {
+        "_id": "juan",
+        "_headers": [],
+        "_requestBody": {
+          "name": "Mark"
+        },
+        "description": "Nathan customers data",
+        "_body": {
+          "custom": "responseTwo"
+        }
+      }
+    ],
+    "/customers/{id}/session?scenario={param}": [
+      {
+        "_id": "1234",
+        "_param": "aaa",
+        "_headers": [],
+        "_requestBody": {
+          "custom": "any data"
+        },
+        "_body": {
+          "response": "any"
+        }
+      },
+      {
+        "_id": "123",
+        "_param": "BBB",
+        "_headers": [],
+        "_requestBody": {
+          "custom2": "any data"
+        },
+        "_body": {
+          "response": "bbb"
+        }
+      },
+      {}
+    ]
+  }
+}
