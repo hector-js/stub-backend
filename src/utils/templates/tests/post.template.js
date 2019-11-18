@@ -1,4 +1,6 @@
-export const postTestTemplate = (endpoint, headers) => {
+export const postTestTemplate = (path, headers, idsFormatted) => {
+  const pathWithDummyData = buildUrl(path, idsFormatted);
+
   return `
 'use strict';
 
@@ -8,10 +10,10 @@ var request = require('supertest');
 
 var expect = chai.expect;
 
-describe('POST - ${endpoint} ', () => {
+describe('POST - ${path} ', () => {
   it('should exist', (done) => {
     request(app)
-      .post('${endpoint.startsWith('/') ? endpoint : '/' + endpoint}')
+      .post('${path.startsWith('/') ? pathWithDummyData : '/' + pathWithDummyData}')
       ${headers ? `.set({${arrayToJson(headers)}})` : ''}
       .send({'dummy': 'dummy'})
       .end((err, res) => {
@@ -33,4 +35,11 @@ const arrayToJson = (headers) => {
   });
 
   return headersJson.slice(0, -1);
+}
+
+const buildUrl = (path, ids) => {
+  if(ids){
+    ids.forEach(id => path = path.replace(`{${id}}`, `${id}TBD`));
+  }
+  return path;
 }

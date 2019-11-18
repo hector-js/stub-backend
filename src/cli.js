@@ -6,7 +6,7 @@ import { newCli } from './new/new.cli';
 import { start } from './start/start.cli';
 
 const chalk = require('chalk');
-const VERSION = '0.48.0';
+const VERSION = '0.49.0';
 
 export function cli(args) {
     switch (args._[0]) {
@@ -20,7 +20,7 @@ export function cli(args) {
             break;
         case 'start':
         case 's':
-                start();
+                start(args);
             break;
             
         default:
@@ -31,7 +31,7 @@ export function cli(args) {
         process.exit();
     }
 
-    if (args.licence) {
+    if (args.license) {
         info(chalk.yellow(`\nLicense: MIT\n`));
         process.exit();
     }
@@ -45,7 +45,7 @@ export function cli(args) {
         info(chalk.green(` -  --vs      : open visual code studio if exists`));
         info(chalk.green(` -  --idea    : open intelliJ studio if exists`));
         info(chalk.green(` -  --license : MIT\n\n`));
-        info(chalk.green(`Example: hjs --new --vs\n`));
+        info(chalk.green(`Example: hjs new mock-service --vs\n`));
         info(chalk.yellow(`version: ${VERSION}\n`));
         process.exit();
     }
