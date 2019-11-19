@@ -33,22 +33,19 @@ It will generate a test with random data ready to use it for your test.
 
 Give it a try. ```npm test```
 
-If you want to run the mock:
-
-```sh
-hjs start
-```
+If you want to run the mock ```hjs start```
 
 # Methods availabe to mock at this moment
 
 - [x] GET
 - [x] POST
-- [ ] OPTIONS
+- [x] OPTIONS
 - [ ] PUT
 - [ ] DELETE
 - [ ] PATCH
+- [ ] HEAD
 
-_Note:_ OPTIONS, PUT, DELETE and PATCH methods are **in progress**.
+_Note:_  PUT, DELETE, PATCH and HEAD methods are **in progress**.
 
 # Usage
 ## Shortcut
