@@ -1,5 +1,9 @@
-export const postTestTemplate = (path, headers, idsFormatted) => {
+import { arrayToJson, getHeaders, buildUrl } from "../../utils.cli";
+
+export const postTestTemplate = (path, args, idsFormatted) => {
   const pathWithDummyData = buildUrl(path, idsFormatted);
+
+  let headers = getHeaders(args);
 
   return `
 'use strict';
@@ -26,20 +30,4 @@ describe('POST - ${path} ', () => {
   });
 });
 `;
-}
-
-const arrayToJson = (headers) => {
-  var headersJson = ''
-  headers.forEach(header => {
-    headersJson = headersJson + `${header}: "any value" ,`
-  });
-
-  return headersJson.slice(0, -1);
-}
-
-const buildUrl = (path, ids) => {
-  if(ids){
-    ids.forEach(id => path = path.replace(`{${id}}`, `${id}TBD`));
-  }
-  return path;
 }

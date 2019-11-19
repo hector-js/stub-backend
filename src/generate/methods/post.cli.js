@@ -11,21 +11,17 @@ const RESOURCES_PATH = 'resources';
 export function postCli(args) {
   if (checkPath('./package.json') && checkPath(`./${RESOURCES_PATH}/`)) {
     cd(RESOURCES_PATH);
-    let headers;
     let path = args._[2];
-    if (args.headers) {
-      headers = args.headers.replace(' ', '').split(',');
-    }
 
     const rootFile = sanitizeRootFile(path);
     const idsFormatted = getIdFormatted(path);
  
-    writeFileByData(`${rootFile}.post.json`, postTemplate(path, headers, idsFormatted));
+    writeFileByData(`${rootFile}.post.json`, postTemplate(path, args, idsFormatted));
 
     cd('..');
     cd('test');
 
-    writeFileByData(`${rootFile}-post.test.js`, postTestTemplate(path, headers, idsFormatted));
+    writeFileByData(`${rootFile}-post.test.js`, postTestTemplate(path, args, idsFormatted));
 
   } else {
     warn(chalk.yellow('\nInfo: Please, navigate to package.json file level and run the command from there.'));

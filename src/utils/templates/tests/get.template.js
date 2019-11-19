@@ -1,5 +1,8 @@
-export const getTestTemplate = (path, headers, idsFormatted) => {
+import { getHeaders, arrayToJson, buildUrl } from "../../utils.cli";
+
+export const getTestTemplate = (path, args, idsFormatted) => {
   const pathWithDummyData = buildUrl(path, idsFormatted);
+  let headers = getHeaders(args);
   return `
 'use strict';
 
@@ -24,17 +27,4 @@ describe('GET - ${path} ', () => {
   });
 });
 `;
-}
-
-const arrayToJson = (headers) => {
-  var headersJson = ''
-  headers.forEach(header => headersJson = headersJson + `${header}: "any value" ,`);
-  return headersJson.slice(0, -1);
-}
-
-const buildUrl = (path, ids) => {
-  if(ids){
-    ids.forEach(id => path = path.replace(`{${id}}`, `${id}TBD`));
-  }
-  return path;
 }

@@ -1,4 +1,8 @@
-export const postTemplate = (endpoint, headers, idsFormatted) => {
+import { convertIdsToJsonProperties, convertHeadersToJsonProperties, getHeaders } from "../../utils.cli";
+
+export const postTemplate = (endpoint, args, idsFormatted) => {
+
+  let headers = getHeaders(args);
 
   if(endpoint.charAt(0)!== '/'){
     endpoint = `/${endpoint}`;
@@ -21,27 +25,3 @@ export const postTemplate = (endpoint, headers, idsFormatted) => {
   }
 }`;
 };
-
-
-const convertIdsToJsonProperties = (idsFormatted) => {
-  var ids = '';
-  if (idsFormatted) {
-    idsFormatted.forEach(id => {
-      ids = ids + `"_${id}": "${id}TBD", `;
-    });
-  }
-  return ids;
-}
-
-const convertHeadersToJsonProperties = (headers) => {
-  var headersCustom = '';
-  if (headers) {
-    headers.forEach(header => {
-      headersCustom = headersCustom + `"${header}",`;
-    });
-
-    headersCustom.slice(0, -1);
-  }
-  return headersCustom;
-}
-

@@ -67,6 +67,48 @@ export const getIdFormatted = (path) => {
     return idsFormatted;
 }
 
+export const getHeaders = (args) => {
+    var headers;
+    if (args.headers) {
+        headers = args.headers.replace(' ', '').split(',');
+    }
+    return headers;
+}
+
+export const convertIdsToJsonProperties = (idsFormatted) => {
+    var ids = '';
+    if (idsFormatted) {
+        idsFormatted.forEach(id => {
+            ids = ids + `"_${id}": "${id}TBD", `;
+        });
+    }
+    return ids;
+}
+
+export const convertHeadersToJsonProperties = (headers) => {
+    var headersCustom = '';
+    if (headers) {
+        headers.forEach(header => {
+            headersCustom = headersCustom + `"${header}",`;
+        });
+        headersCustom = headersCustom.slice(0, -1);
+    }
+    return headersCustom;
+}
+
+export const arrayToJson = (headers) => {
+    var headersJson = ''
+    headers.forEach(header => headersJson = headersJson + `${header}: "any value" ,`);
+    return headersJson.slice(0, -1);
+}
+
+export const buildUrl = (path, ids) => {
+    if (ids) {
+        ids.forEach(id => path = path.replace(`{${id}}`, `${id}TBD`));
+    }
+    return path;
+}
+
 const handleAnswer = (resolve, reject, readline, value) => {
     if (!value) {
         warn(chalk.red(` You must add a value  :(`));
