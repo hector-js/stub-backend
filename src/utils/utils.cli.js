@@ -51,7 +51,7 @@ export const createFileInPath = (fileName, path) => {
 };
 
 export const sanitizeRootFile = (path) => {
-    let rootFile = path.replace(/\/\{|\}\/|\=|\?|\&|\{/g, '-').replace(/\}/g, '');
+    let rootFile = path.replace(/\/\{|\}\/|\=|\?|\&|\{/g, '-').replace(/\}|\//g, '');
     if (rootFile && rootFile.startsWith('-')) {
         rootFile.substr(1);
     }
