@@ -43,7 +43,7 @@ export function cli(args) {
     if (args.help) {
         info(chalk.green('\nBelow, you can see different options for your mock:\n\n'));
         info(chalk.green(` -  new/n [name-project]  : create new mock project `));
-        info(chalk.green(` -  generate/g  get/g/post/p  [url]: create url section `));
+        info(chalk.green(` -  generate/g  get/g/post/p/delete/d  [url]: create url section `));
         info(chalk.green(` -  start     : run mock service `));
         info(chalk.green(` -  test      : execute the tests `));
         info(chalk.green(` -  --version : know version hjs`));

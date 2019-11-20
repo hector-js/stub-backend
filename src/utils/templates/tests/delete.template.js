@@ -1,6 +1,6 @@
 import { arrayToJson, getHeaders, buildUrl } from "../../utils.cli";
 
-export const postTestTemplate = (args, idsFormatted) => {
+export const deleteTestTemplate = (args, idsFormatted) => {
   let path = args._[2];
   const pathWithDummyData = buildUrl(path, idsFormatted);
 
@@ -15,10 +15,10 @@ var request = require('supertest');
 
 var expect = chai.expect;
 
-describe('POST - ${path} ', () => {
+describe('DELETE - ${path} ', () => {
   it('should exist', (done) => {
     request(app)
-      .post('${path.startsWith('/') ? pathWithDummyData : '/' + pathWithDummyData}')
+      .delete('${path.startsWith('/') ? pathWithDummyData : '/' + pathWithDummyData}')
       ${headers ? `.set({${arrayToJson(headers)}})` : ''}
       .send({'dummy': 'dummy'})
       .end((err, res) => {
