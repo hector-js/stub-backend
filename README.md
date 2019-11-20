@@ -28,6 +28,8 @@ c) ```hjs generate/g get/g [name-path]```  (it will generate a get template for 
 
 d) ```hjs generate/g post/p [name-path]```     (it will generate a post template for the regex)
 
+e) ```hjs generate/g delete/d [name-path]```     (it will generate a delete template for the regex)
+
 
 It will generate a test with random data ready to use it for your test.
 
