@@ -1,5 +1,5 @@
 import { createInterface } from 'readline';
-import { info, warn } from 'console';
+import { info, warn, error } from 'console';
 import { existsSync, writeFile } from 'fs';
 import { mkdir, cd, touch } from 'shelljs';
 
