@@ -24,11 +24,11 @@ a) ```hjs --help``` (it will tell some options)
 
 b) ```hjs new/n [name-mock]```     (it will create a new mock project)
 
-c) ```hjs generate/g get/g [name-path]```  (it will generate a get template for a specifix path)
+c) ```hjs generate/g get/g [name-path]```  (it will generate a get template)
 
-d) ```hjs generate/g post/p [name-path]```     (it will generate a post template for the regex)
+d) ```hjs generate/g post/p [name-path]```     (it will generate a post template)
 
-e) ```hjs generate/g delete/d [name-path]```     (it will generate a delete template for the regex)
+e) ```hjs generate/g delete/d [name-path]```     (it will generate a delete template)
 
 
 It will generate a test with random data ready to use it for your test.
