@@ -41,7 +41,7 @@ If you want to run the mock ```hjs start```
 - [x] POST
 - [x] OPTIONS
 - [ ] PUT
-- [ ] DELETE
+- [x] DELETE
 - [ ] PATCH
 - [ ] HEAD
 
