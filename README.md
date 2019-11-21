@@ -40,14 +40,16 @@ If you want to run the mock ```hjs start```
 # Methods availabe to mock at this moment
 
 - [x] GET
+- [ ] HEAD
 - [x] POST
-- [x] OPTIONS
 - [ ] PUT
 - [x] DELETE
+- [ ] CONNECT
+- [x] OPTIONS
+- [x] TRACE
 - [ ] PATCH
-- [ ] HEAD
 
-_Note:_  PUT, DELETE, PATCH and HEAD methods are **in progress**.
+_Note:_  HEAD, PUT, CONNECT and PATCH methods are **in progress**.
 
 # Usage
 ## Shortcut
