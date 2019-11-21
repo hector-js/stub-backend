@@ -7,6 +7,7 @@ import { headTemplate } from '../../utils/templates/resources/head.template';
 const chalk = require('chalk');
 
 const RESOURCES_PATH = 'resources';
+const METHOD = 'head';
 
 export function headCli(args) {
   if (checkPath('./package.json') && checkPath(`./${RESOURCES_PATH}/`)) {
@@ -16,12 +17,12 @@ export function headCli(args) {
     const rootFile = sanitizeRootFile(path);
     const idsFormatted = getIdFormatted(path);
 
-    writeFileByData(`${rootFile}.get.json`, headTemplate(path, args, idsFormatted));
+    writeFileByData(`${rootFile}.${METHOD}.json`, headTemplate(path, args, idsFormatted));
 
     cd('..');
     cd('test');
 
-    writeFileByData(`${rootFile}-get.test.js`, headTestTemplate(path, args, idsFormatted));
+    writeFileByData(`${rootFile}-${METHOD}.test.js`, headTestTemplate(path, args, idsFormatted));
 
     cd('..');
   } else {
