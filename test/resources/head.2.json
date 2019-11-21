@@ -1,0 +1,53 @@
+{
+  "_head": {
+    "/stories/{id}/person": [
+      {
+        "_id": "Nathan",
+        "_headers": [],
+        "_description": "Get person details related to Nathan"
+      },
+      {
+        "_id": "mark",
+        "_headers": [],
+        "_description": "Get person details related to Mark"
+      }
+    ],
+    "/stories/people": [
+      {
+        "_headers": [],
+        "_description": "Get stories for all the people"
+      }
+    ],
+    "/stories/budgets": [
+      {
+        "_id": "",
+        "_headers": [],
+        "_description": "Get all budgets"
+      }
+    ],
+    "/stories": [
+      {
+        "_id": "",
+        "_headers": [],
+        "_description": "Get all budgets"
+      }
+    ],
+    "/stories/{id}/budget": [
+      {
+        "_id": "Nathan",
+        "_headers": [
+          "Authorization"
+        ],
+        "_description": "Get budget details related to Nathan with authentication header"
+      },
+      {
+        "_id": "Smith",
+        "_headers": [
+          "Authorization",
+          "id"
+        ],
+        "_description": "Get budget details related to Nathan with Authorization, id in the headers"
+      }
+    ]
+  }
+}

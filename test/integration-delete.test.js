@@ -49,7 +49,7 @@ describe('DELETE - stub backend project', () => {
               expect(res.status).to.equal(404);
               expect(res.body).to.deep.equal({
                 errorCode: 404,
-                message: 'Scenario not found in the resources! :(',
+                message: 'Scenario not found in the resources! :('
               });
               done();
             });
