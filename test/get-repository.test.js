@@ -10,7 +10,7 @@ describe('get repository', () => {
     const contextPath = '/stories/nathan/person';
     const req = {
       url: contextPath,
-      method: 'GET'
+      method: 'GET',
     };
 
     const body = GetRespository.findData(req);
@@ -30,7 +30,7 @@ describe('get repository', () => {
       const contextPath = '/stories/nathan/age';
       const req = {
         url: contextPath,
-        method: 'GET'
+        method: 'GET',
       };
 
       const body = GetRespository.findData(req);
