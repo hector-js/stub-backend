@@ -45,10 +45,10 @@ If you want to run the mock ```hjs start```
 - [x] PUT
 - [x] DELETE
 - [x] OPTIONS
-- [x] TRACE
-- [ ] PATCH
+- [ ] TRACE
+- [x] PATCH
 
-_Note:_ PATCH methods are **in progress**.
+_Note:_ TRACE method is **in progress**.
 
 # Usage
 ## Shortcut
