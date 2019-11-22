@@ -44,12 +44,11 @@ If you want to run the mock ```hjs start```
 - [x] POST
 - [x] PUT
 - [x] DELETE
-- [ ] CONNECT
 - [x] OPTIONS
 - [x] TRACE
 - [ ] PATCH
 
-_Note:_ CONNECT and PATCH methods are **in progress**.
+_Note:_ PATCH methods are **in progress**.
 
 # Usage
 ## Shortcut
