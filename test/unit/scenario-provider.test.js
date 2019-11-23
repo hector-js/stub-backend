@@ -1,9 +1,9 @@
 'use strict';
 
-const ScenarioProvider = require('../lib/app/shared/scenario-provider');
+const ScenarioProvider = require('../../lib/app/shared/scenario-provider');
 const chai = require('chai');
-const db = require('./data/scenario-provider.1.test');
-const dbPost = require('./data/scenario-provider.2.test');
+const db = require('../data/scenario-provider.1.test');
+const dbPost = require('../data/scenario-provider.2.test');
 
 const expect = chai.expect;
 

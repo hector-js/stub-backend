@@ -1,17 +1,17 @@
 'use strict';
 
-const app = require('../lib/app');
+const app = require('../../../lib/app');
 const chai = require('chai');
 const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('POST - stub backend project', () => {
+describe('PUT - stub backend project', () => {
   describe('without Authentication', () => {
     context('when the url doesnt contain any id', ()=>{
       it('returns a valid reponse', (done) => {
         request(app)
-            .post('/story/nathan')
+            .put('/story/nathan')
             .set('Accept', 'application/json')
             .send({'name': 'Nathan'})
             .end((err, res) => {
@@ -27,7 +27,7 @@ describe('POST - stub backend project', () => {
     context('when the url contain an id and param', ()=>{
       it('returns a valid reponse', (done) => {
         request(app)
-            .post('/customers/1234/session?scenario=aaa')
+            .put('/customers/1234/session?scenario=aaa')
             .set('Accept', 'application/json')
             .send({'custom': 'any data'})
             .end((err, res) => {
@@ -41,7 +41,7 @@ describe('POST - stub backend project', () => {
       });
       it('returns a not found response when param does not exist', (done) => {
         request(app)
-            .post('/customers/1234/session?scenario=aa')
+            .put('/customers/1234/session?scenario=aa')
             .set('Accept', 'application/json')
             .send({'custom': 'any data'})
             .end((err, res) => {
