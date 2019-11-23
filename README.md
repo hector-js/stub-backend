@@ -50,6 +50,12 @@ If you want to run the mock ```hjs start```
 
 _Note:_ TRACE method is **in progress**.
 
+# UI
+
+This section is in progress at this moment.
+
+You can run the application and navigate to ```http://localhost:3005/``` and have a look.
+
 # Usage
 ## Shortcut
 ### Install the library globally
