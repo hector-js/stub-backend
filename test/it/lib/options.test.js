@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('../lib/app');
+const app = require('../../../lib/app');
 const chai = require('chai');
 const request = require('supertest');
 
