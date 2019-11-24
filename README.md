@@ -51,11 +51,9 @@ Execute the tests which have been created by each method generate command (```hj
 _NOTE_: you can run ```npm test``` as well.
 
 ### ```hjs start```
-It starts the service.
+If you want to run the mock ```hjs start```.
 
 _NOTE:_ you can run ```npm start``` as well.
-
-If you want to run the mock ```hjs start```
 
 ## Methods availabe to mock at this moment
 
