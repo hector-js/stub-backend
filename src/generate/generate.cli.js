@@ -4,6 +4,7 @@ import { postCli } from "./methods/post.cli";
 import { putCli } from "./methods/put.cli";
 import { deleteCli } from "./methods/delete.cli";
 import { patchCli } from "./methods/patch.cli";
+import { traceCli } from "./methods/trace.cli";
 import { info, warn } from 'console';
 
 const chalk = require('chalk');
@@ -24,8 +25,9 @@ export function generateCli(args) {
     info(chalk.grey(` -  post = p      (hjs g p ...)`));
     info(chalk.grey(` -  delete = d    (hjs g d ...)`));
     info(chalk.grey(` -  head = h      (hjs g h ...)`));
-    info(chalk.grey(` -  put = pu      (hjs g h ...)`));
-    info(chalk.grey(` -  patch = pa    (hjs g h ...)\n`));
+    info(chalk.grey(` -  put = pu      (hjs g pu ...)`));
+    info(chalk.grey(` -  patch = pa    (hjs g pa ...)\n`));
+    info(chalk.grey(` -  trace = t     (hjs g t ...)\n`));
     process.exit();
   }
 
@@ -53,6 +55,10 @@ export function generateCli(args) {
     case 'patch':
     case 'pa':
       patchCli(args);
+      break;
+    case 'trace':
+    case 't':
+      traceCli(args);
       break;
     default:
       warn(chalk.yellow('\nMethod not found :(\n'));
