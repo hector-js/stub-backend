@@ -18,6 +18,7 @@ describe('GET - ${path} ', () => {
       .get('${path.startsWith('/') ? pathWithDummyData : `/${pathWithDummyData}`}')
       ${headers ? `.set({${arrayToJson(headers)}})` : ''}
       .end((err, res) => {
+          expect(err).to.not.exist;
           expect(res.status).to.equal(200);
           expect(res.body).to.deep.equal({
             "body" : "To be defined"
