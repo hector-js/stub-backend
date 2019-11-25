@@ -27,7 +27,7 @@ describe('UI', () => {
             done();
           });
     });
-    
+
     it('returns an file ico when "/favicon.ico" is called', (done) => {
       request(app)
           .get('/favicon.ico')
