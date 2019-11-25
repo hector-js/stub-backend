@@ -57,5 +57,15 @@ describe('UI', () => {
             done();
           });
     });
+
+    it('returns an file ico when "/assets/Icon.png" is called', (done) => {
+      request(app)
+          .get('/assets/Icon.png')
+          .end((err, res) => {
+            expect(err).to.not.exist;
+            expect(res.status).to.equal(200);
+            done();
+          });
+    });
   });
 });
