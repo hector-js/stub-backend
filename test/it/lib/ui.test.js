@@ -67,5 +67,15 @@ describe('UI', () => {
             done();
           });
     });
+
+    it('returns a json var when "/_json" is called', (done) => {
+      request(app)
+          .get('/_json')
+          .end((err, res) => {
+            expect(err).to.not.exist;
+            expect(res.status).to.equal(200);
+            done();
+          });
+    });
   });
 });
