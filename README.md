@@ -126,12 +126,12 @@ The first key means the method and it must have a "_" as a prefix. For example:
     ```json
     {
       "_get":{
-          ....
+          
       },
       "_post":{
-          ....
+          
       }
-      ...
+      
     }
     ```
 
@@ -147,16 +147,15 @@ The next level means the endpoint. The path is written like theses examples:
      ```json
     {
       "_get":{
-         "/customers/names:[
-           ...
+         "/customers/names":[
+           {}
          ]
       },
       "_post":{
           "/countries/{id}/product":[
-            ...
+            {}
           ]
       }
-      ...
     }
     ```
 _NOTE_: id, param1 or param2 can be named as you want.
@@ -172,40 +171,66 @@ Identifiers of a path. For example, given a path ```/customers/{id}/data```, the
 ```json
   "/customers/{id}/data" : [
     {
-      ...
+
       "_id": "chris"
-      ...
+
     },
     {
-      ...
+
       "_id": "fran"
-      ...
+
     }
   ]
 ```
 #### _headers
+
+There are two different ways to validate the headers:
+
+##### Validate by key
 It is an array of header keys. Basically, it will validate if the request contains the header in the array. If the request does not contain the header, the service will return a 401 response.
 
 ```json
   "/customers/{id}/data" : [
     {
-      ...
       "_headers": ["Authorization", "client_Id"]
-      ...
+    }
+  ]
+```
+
+##### Validate by key and value (This section is in progress at this moment)
+It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
+
+
+```json
+  "/customers/{id}/data" : [
+    {
+      "_headers": [{"Authorization":"1234"},{ "client_Id":"121"}]
     }
   ]
 ```
 
 _NOTE:_ If the scenario does not contain any headers section, the service won't check anything.
+
 #### _cookies
+There are two different ways to validate the cookies:
+##### Validate by key
 It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array. If the request does not contain the cookie,the service will return a 401 response.
 
 ```json
   "/customers/{id}/data" : [
     {
-      ...
       "_cookies": ["Universal", "sec"]
-      ...
+    }
+  ]
+```
+
+##### Validate by key and value 
+It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
+
+```json
+  "/customers/{id}/data" : [
+    {
+      "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
     }
   ]
 ```
@@ -229,7 +254,7 @@ This section contains the response for a given request.
 ```json
   "_body": {
     "dummyResponse": "anyValue"
-    ... 
+     
   }
 ```
 
@@ -240,7 +265,7 @@ Some methods like post, put or delete needs to verify the body response as well.
 ```json
   "_requestBody": {
     "dummyRequestBody": "anyValue"
-    ... 
+     
   }
 ```
 _Note:_ If any field is missed, it means it is not required.
