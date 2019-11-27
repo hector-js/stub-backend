@@ -15,3 +15,30 @@ body {
     margin-right: auto;
     width: 50px;
 }
+
+pre {
+  background: whitesmoke;
+  border-radius: 2px; 
+  padding: 5px;
+  margin: 5px;
+}
+
+.string { 
+  color: green;
+}
+
+.number { 
+  color: darkorange;
+}
+
+.boolean { 
+  color: blue;
+}
+
+.null { 
+  color: magenta;
+}
+
+.key {
+  color: red; 
+}
