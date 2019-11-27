@@ -24,6 +24,31 @@
           "name": "Aquiles"
         }
       }
+    ],
+    "/customers/{id}/pet": [
+      {
+        "_id": "1234",
+        "_headers": [{"authorization":"Beurer 1234"}, {"client_id": "1234"}],
+        "_description": "Get scenario by key value for cookie",
+        "_body": {
+          "pet": "dog"
+        }
+      },
+      {
+        "_id": "123",
+        "_headers": ["authorization"],
+        "_description": "Request with check cookie",
+        "_body": {
+          "pet": "cat"
+        }
+      },
+      {
+        "_id": "123",
+        "_description": "Request without cookie",
+        "_body": {
+          "pet": "elephant"
+        }
+      }
     ]
   }
 }

@@ -217,7 +217,7 @@ describe('GET - stub backend project', () => {
         });
       });
 
-      describe('check cookie key and value', () => {
+      describe('check cookie by key and value', () => {
         it('should return a valid response', (done) => {
           request(app)
               .get('/customers/1234/person')
@@ -227,6 +227,22 @@ describe('GET - stub backend project', () => {
                 expect(res.status).to.equal(200);
                 expect(res.body).to.deep.equal({
                   name: 'Thor',
+                });
+                done();
+              });
+        });
+      });
+
+      describe('check header by key and value', () => {
+        it('should return a valid response', (done) => {
+          request(app)
+              .get('/customers/1234/pet')
+              .set({'authorization': 'Beurer 1234', 'client_id': '1234'})
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  pet: 'dog',
                 });
                 done();
               });

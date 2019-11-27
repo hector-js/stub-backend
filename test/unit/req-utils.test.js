@@ -6,64 +6,64 @@ const chai = require('chai');
 const expect = chai.expect;
 
 describe('request utils', () => {
-  describe('#hasCookies', () => {
-    let cookiesArr;
-    let cookiesReq;
+  describe('#hasInvalidElements', () => {
+    let elementsArr;
+    let elementsReq;
     let result;
-    describe('cookie with key and Value', () => {
-      context('when the request does not contain any cookie', () => {
+    describe('key and Value', () => {
+      context('when the request does not contain any element', () => {
         [undefined, null].forEach((value)=>{
           it(`should return false for ${value}`, () => {
-            cookiesArr = [{session: '1234'}];
-            cookiesReq = value;
+            elementsArr = [{session: '1234'}];
+            elementsReq = value;
 
-            result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+            result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
             expect(result).to.be.false;
           });
         });
       });
 
-      context('when all the cookies have the same key and value', () => {
+      context('when all the elements have the same key and value', () => {
         it(`should return false`, () => {
-          cookiesArr = [{session: '1234'}];
-          cookiesReq = {session: '1234'};
+          elementsArr = [{session: '1234'}];
+          elementsReq = {session: '1234'};
 
-          result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.false;
         });
       });
 
-      context('when one cookie is not matching with different size', () => {
+      context('when one element is not matching with different size', () => {
         it(`should return true`, () => {
-          cookiesArr = [{session: '1234'}, {product: '54321'}];
-          cookiesReq = {session: '1234'};
+          elementsArr = [{session: '1234'}, {product: '54321'}];
+          elementsReq = {session: '1234'};
 
-          result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.true;
         });
       });
 
-      context('when one cookie is not matching with same size', () => {
+      context('when one element is not matching with same size', () => {
         it(`should return true`, () => {
-          cookiesArr = [{session: '1234'}, {product: '54321'}];
-          cookiesReq = {session: '1234', product: '123'};
+          elementsArr = [{session: '1234'}, {product: '54321'}];
+          elementsReq = {session: '1234', product: '123'};
 
-          result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.true;
         });
       });
 
-      context('when the scenario does not contain any cookie and the request contain one', () => {
+      context('when the scenario does not contain any element and the request contain one', () => {
         [undefined, null, []].forEach((value)=>{
-          it(`should not validate cookes and returns false for ${value}`, () => {
-            cookiesArr = value;
-            cookiesReq = {session: '1234'};
+          it(`should not validate elements and returns false for ${value}`, () => {
+            elementsArr = value;
+            elementsReq = {session: '1234'};
 
-            result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+            result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
             expect(result).to.be.false;
           });
@@ -71,60 +71,60 @@ describe('request utils', () => {
       });
     });
 
-    describe('cookie with just key', ()=>{
-      context('when the request does not contain any cookie', () => {
+    describe('key', ()=>{
+      context('when the request does not contain any element', () => {
         [undefined, null].forEach((value)=>{
           it(`should return false for ${value}`, () => {
-            cookiesArr = ['session'];
-            cookiesReq = value;
+            elementsArr = ['session'];
+            elementsReq = value;
 
-            result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+            result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
             expect(result).to.be.false;
           });
         });
       });
 
-      context('when all the cookies have the same key and value', () => {
+      context('when all the elements have the same key and value', () => {
         it(`should return false`, () => {
-          cookiesArr = ['session'];
-          cookiesReq = {session: '1234'};
+          elementsArr = ['session'];
+          elementsReq = {session: '1234'};
 
-          result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.false;
         });
       });
 
-      context('when one cookie is not matching with different size', () => {
+      context('when one elements is not matching with different size', () => {
         it(`should return true`, () => {
-          cookiesArr = ['session', 'product'];
-          cookiesReq = {session: '1234'};
+          elementsArr = ['session', 'product'];
+          elementsReq = {session: '1234'};
 
-          result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.true;
         });
       });
 
-      context('when one cookie is not matching with same size', () => {
+      context('when one element is not matching with same size', () => {
         it(`should return true`, () => {
-          cookiesArr = ['session', 'productu'];
-          cookiesReq = {session: '1234', product: '123'};
+          elementsArr = ['session', 'productu'];
+          elementsReq = {session: '1234', product: '123'};
 
-          result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.true;
         });
       });
 
-      context('when the scenario does not contain any cookie and the request contain one', () => {
+      context('when the scenario does not contain any element and the request contain one', () => {
         [undefined, null, []].forEach((value)=>{
-          it(`should not validate cookie and returns false for ${value}`, () => {
-            cookiesArr = value;
-            cookiesReq = {'session': '1234'};
+          it(`should not validate element and returns false for ${value}`, () => {
+            elementsArr = value;
+            elementsReq = {session: '1234'};
 
-            result = ReqUtils.hasInvalidCookies(cookiesArr, cookiesReq);
+            result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
             expect(result).to.be.false;
           });
@@ -133,4 +133,3 @@ describe('request utils', () => {
     });
   });
 });
-

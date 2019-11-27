@@ -192,24 +192,26 @@ It is an array of header keys. Basically, it will validate if the request contai
 ```json
   "/customers/{id}/data" : [
     {
-      "_headers": ["Authorization", "client_Id"]
+      "_headers": ["authorization", "client_Id"]
     }
   ]
 ```
 
-##### Validate by key and value (This section is in progress at this moment)
+##### Validate by key and value
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
 
 ```json
   "/customers/{id}/data" : [
     {
-      "_headers": [{"Authorization":"1234"},{ "client_Id":"121"}]
+      "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
     }
   ]
 ```
 
 _NOTE:_ If the scenario does not contain any headers section, the service won't check anything.
+
+Capital letters are not allow in headers section.
 
 #### _cookies
 There are two different ways to validate the cookies:
@@ -295,7 +297,7 @@ Below, we have a example:
       },
       {
         "_id": "mark",
-        "_headers": ["Authorization"],
+        "_headers": ["authorization"],
         "_cookies": [],
         "_description": "Get person details related to Mark     with authentication",
         "_body": {
