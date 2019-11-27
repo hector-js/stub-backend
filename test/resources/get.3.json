@@ -1,0 +1,29 @@
+{
+  "_get": {
+    "/customers/{id}/person": [
+      {
+        "_id": "1234",
+        "_cookies": [{"session":"4321"}],
+        "_description": "Get scenario by key value for cookie",
+        "_body": {
+          "name": "Thor"
+        }
+      },
+      {
+        "_id": "123",
+        "_cookies": ["session"],
+        "_description": "Request with check cookie",
+        "_body": {
+          "name": "Hector"
+        }
+      },
+      {
+        "_id": "123",
+        "_description": "Request without cookie",
+        "_body": {
+          "name": "Aquiles"
+        }
+      }
+    ]
+  }
+}

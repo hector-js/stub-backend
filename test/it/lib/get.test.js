@@ -216,6 +216,22 @@ describe('GET - stub backend project', () => {
               });
         });
       });
+
+      describe('check cookie key and value', () => {
+        it('should return a valid response', (done) => {
+          request(app)
+              .get('/customers/1234/person')
+              .set('Cookie', ['session=4321', 'product=12'])
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  name: 'Thor',
+                });
+                done();
+              });
+        });
+      });
     });
   });
 });
