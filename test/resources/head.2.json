@@ -36,14 +36,14 @@
       {
         "_id": "Nathan",
         "_headers": [
-          "Authorization"
+          "authorization"
         ],
         "_description": "Get budget details related to Nathan with authentication header"
       },
       {
         "_id": "Smith",
         "_headers": [
-          "Authorization",
+          "authorization",
           "id"
         ],
         "_description": "Get budget details related to Nathan with Authorization, id in the headers"
