@@ -17,7 +17,8 @@
     "express": "^4.17.1",
     "minimist": "^1.2.0",
     "morgan": "^1.9.1",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -28,7 +29,7 @@
     "supertest": "^3.4.2"
   },
   "scripts": {
-    "start": "nodemon lib/app.js",
+    "start": "set NODE_ENV=test & nodemon lib/app.js --profile test --logs tiny --port 3005",
     "test": "set NODE_ENV=test & sh ./scripts/test.sh",
     "coverage": "set NODE_ENV=test & sh ./scripts/test-coverage.sh",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
