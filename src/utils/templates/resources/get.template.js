@@ -1,15 +1,15 @@
 import { convertIdsToJsonProperties, convertHeadersToJsonProperties, getHeaders } from "../../utils.cli";
 
-export const getTemplate = (endpoint, args, idsFormatted) => {
-  
+export const getTemplate = (args, idsFormatted) => {
+  let path = args._[2];
   let headers = getHeaders(args);
   
-  if (endpoint.charAt(0) !== '/') {
-    endpoint = `/${endpoint}`;
+  if (path.charAt(0) !== '/') {
+    path = `/${path}`;
   }
   return `{
   "_get" : {
-    "${endpoint}" : [
+    "${path}" : [
       {
         ${convertIdsToJsonProperties(idsFormatted)}
         "_body" : { "body" : "To be defined" },

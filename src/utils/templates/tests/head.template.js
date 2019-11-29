@@ -1,6 +1,7 @@
 import { getHeaders, arrayToJson, buildUrl } from "../../utils.cli";
 
-export const headTestTemplate = (path, args, idsFormatted) => {
+export const headTestTemplate = (args, idsFormatted) => {
+  let path = args._[2];
   const pathWithDummyData = buildUrl(path, idsFormatted);
   let headers = getHeaders(args);
   return `
