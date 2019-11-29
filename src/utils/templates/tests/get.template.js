@@ -1,9 +1,10 @@
-import { getHeaders, arrayToJson, buildUrl } from "../../utils.cli";
+import { getHeaders, arrayToJson, buildUrl, getStatus } from "../../utils.cli";
 
 export const getTestTemplate = (args, idsFormatted) => {
   const path = args._[2];
   const pathWithDummyData = buildUrl(path, idsFormatted);
-  let headers = getHeaders(args);
+  const headers = getHeaders(args);
+  const status = getStatus(args);
   return `
 'use strict';
 
@@ -20,7 +21,7 @@ describe('GET - ${path} ', () => {
       ${headers ? `.set({${arrayToJson(headers)}})` : ''}
       .end((err, res) => {
           expect(err).to.not.exist;
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(${status ? status : '200'});
           expect(res.body).to.deep.equal({
             "body" : "To be defined"
           });

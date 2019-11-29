@@ -1,8 +1,14 @@
-import { convertIdsToJsonProperties, convertHeadersToJsonProperties, getHeaders } from "../../utils.cli";
+import { 
+  convertIdsToJsonProperties,
+  convertHeadersToJsonProperties,
+  getHeaders,
+  getStatus
+} from "../../utils.cli";
 
 export const traceTemplate = (args, idsFormatted) => {
   let path = args._[2];
-  let headers = getHeaders(args);
+  const headers = getHeaders(args);
+  const status = getStatus(args);
   
   if (path.charAt(0) !== '/') {
     path = `/${path}`;
@@ -13,7 +19,7 @@ export const traceTemplate = (args, idsFormatted) => {
       {
         ${convertIdsToJsonProperties(idsFormatted)}
         "_headers" : [ ${convertHeadersToJsonProperties(headers)} ],
-        "_status" : 0,
+        ${status ? `"_status": ${status},` : ''}
         "_cookies" : [],
         "_description" : "Description to be defined"
       }

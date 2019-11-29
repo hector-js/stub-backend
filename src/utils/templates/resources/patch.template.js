@@ -1,8 +1,14 @@
-import { convertIdsToJsonProperties, convertHeadersToJsonProperties, getHeaders } from "../../utils.cli";
+import {
+  convertIdsToJsonProperties,
+  convertHeadersToJsonProperties,
+  getHeaders,
+  getStatus
+} from "../../utils.cli";
 
 export const patchTemplate = (args, idsFormatted) => {
   let path = args._[2];
   let headers = getHeaders(args);
+  let status = getStatus(args);
 
   if(path.charAt(0)!== '/'){
     path = `/${path}`;
@@ -17,7 +23,7 @@ export const patchTemplate = (args, idsFormatted) => {
         },
         "_body" : { "dummyResponse": "dummyResponse" },
         "_headers" : [ ${convertHeadersToJsonProperties(headers)} ],
-        "_status" : 0,
+        ${status ? `"_status": ${status},` : ''}
         "_cookies" : [],
         "_description" : "Description to be defined"
       }
