@@ -1,10 +1,11 @@
-import { arrayToJson, getHeaders, buildUrl } from "../../utils.cli";
+import { arrayToJson, getHeaders, buildUrl, getStatus } from "../../utils.cli";
 
 export const postTestTemplate = (args, idsFormatted) => {
   let path = args._[2];
   const pathWithDummyData = buildUrl(path, idsFormatted);
 
-  let headers = getHeaders(args);
+  const headers = getHeaders(args);
+  const status = getStatus(args);
 
   return `
 'use strict';
@@ -23,7 +24,7 @@ describe('POST - ${path} ', () => {
       .send({'dummy': 'dummy'})
       .end((err, res) => {
           expect(err).to.not.exist;
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(${status ? status : '200'});
           expect(res.body).to.deep.equal({
             'dummyResponse': 'dummyResponse'
           });

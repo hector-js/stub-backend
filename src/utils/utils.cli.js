@@ -68,11 +68,11 @@ export const getIdFormatted = (path) => {
 }
 
 export const getHeaders = (args) => {
-    var headers;
-    if (args.headers) {
-        headers = args.headers.replace(' ', '').split(',');
-    }
-    return headers;
+    return args.headers? args.headers.replace(' ', '').split(','): null;
+}
+
+export const getStatus = (args) => {
+    return args.status? args.status: null;
 }
 
 export const convertIdsToJsonProperties = (idsFormatted) => {

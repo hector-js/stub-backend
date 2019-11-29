@@ -12,22 +12,22 @@ const chalk = require('chalk');
 export function generateCli(args) {
 
   if (args.help) {
-    info(chalk.green('\nGenerate options:\n'));
-    info(chalk.grey(` -  hjs generate get [url]: scenario for a GET request`));
-    info(chalk.grey(` -  hjs generate post [url]: scenario for a POST request`));
-    info(chalk.grey(` -  hjs generate delete [url]: scenario for a DELETE request`));
-    info(chalk.grey(` -  hjs generate head [url]: scenario for a HEAD request`));
-    info(chalk.grey(` -  hjs generate put [url]: scenario for a PUT request`));
-    info(chalk.grey(` -  hjs generate patch [url]: scenario for a PATCH request`));
-    info(chalk.green(`\nYou can use the following abreviatures:\n`));
-    info(chalk.grey(` -  generate = g  (hjs g get ...)`));
-    info(chalk.grey(` -  get = g       (hjs g g ...)`));
-    info(chalk.grey(` -  post = p      (hjs g p ...)`));
-    info(chalk.grey(` -  delete = d    (hjs g d ...)`));
-    info(chalk.grey(` -  head = h      (hjs g h ...)`));
-    info(chalk.grey(` -  put = pu      (hjs g pu ...)`));
-    info(chalk.grey(` -  patch = pa    (hjs g pa ...)\n`));
-    info(chalk.grey(` -  trace = t     (hjs g t ...)\n`));
+    if (args.headers) {
+      info(chalk.green('\nHeader options:\n'));
+      info(chalk.grey(`  -- headers [header1],[header2]`));
+      info(chalk.grey(`     Example: hjs g g customrers --headers authorization,client_id`));
+    }
+
+    if (args.status) {
+      info(chalk.green('\nStatus options:\n'));
+      info(chalk.grey(`  -- status [status]`));
+      info(chalk.grey(`     Example: hjs g g customrers --status 404`));
+    }
+
+    if (!args.headers && !args.status) {
+      displayGeneratorOpts();
+    }
+
     process.exit();
   }
 
@@ -63,4 +63,24 @@ export function generateCli(args) {
     default:
       warn(chalk.yellow('\nMethod not found :(\n'));
   }
+}
+
+
+function displayGeneratorOpts() {
+  info(chalk.green('\nGenerate options:\n'));
+  info(chalk.grey(` -  hjs generate get [url]: scenario for a GET request`));
+  info(chalk.grey(` -  hjs generate post [url]: scenario for a POST request`));
+  info(chalk.grey(` -  hjs generate delete [url]: scenario for a DELETE request`));
+  info(chalk.grey(` -  hjs generate head [url]: scenario for a HEAD request`));
+  info(chalk.grey(` -  hjs generate put [url]: scenario for a PUT request`));
+  info(chalk.grey(` -  hjs generate patch [url]: scenario for a PATCH request`));
+  info(chalk.green(`\nYou can use the following abreviatures:\n`));
+  info(chalk.grey(` -  generate = g  (hjs g get ...)`));
+  info(chalk.grey(` -  get = g       (hjs g g ...)`));
+  info(chalk.grey(` -  post = p      (hjs g p ...)`));
+  info(chalk.grey(` -  delete = d    (hjs g d ...)`));
+  info(chalk.grey(` -  head = h      (hjs g h ...)`));
+  info(chalk.grey(` -  put = pu      (hjs g pu ...)`));
+  info(chalk.grey(` -  patch = pa    (hjs g pa ...)\n`));
+  info(chalk.grey(` -  trace = t     (hjs g t ...)\n`));
 }
