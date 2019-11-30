@@ -1,12 +1,6 @@
+import { libraries } from "../common.template";
 
-export const healthTest = `
-'use strict';
-
-var app = require('../app');
-var chai = require('chai');
-var request = require('supertest');
-
-var expect = chai.expect;
+export const healthTest = libraries() + `
 describe('GET - health ', () => {
 	it('should exist', (done) => {
 		request(app)

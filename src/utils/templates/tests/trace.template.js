@@ -1,19 +1,12 @@
 import { getHeaders, arrayToJson, buildUrl, getStatus } from "../../utils.cli";
+import { libraries } from "../common.template";
 
 export const traceTestTemplate = (args, idsFormatted) => {
   let path = args._[2];
   const pathWithDummyData = buildUrl(path, idsFormatted);
   const headers = getHeaders(args);
   const status = getStatus(args);
-  return `
-'use strict';
-
-var app = require('../app');
-var chai = require('chai');
-var request = require('supertest');
-
-var expect = chai.expect;
-
+  return libraries() + `
 describe('TRACE - ${path} ', () => {
   it('should exist', (done) => {
     request(app)
