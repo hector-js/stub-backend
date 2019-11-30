@@ -7,15 +7,7 @@ export const putTestTemplate = (args, idsFormatted) => {
   const headers = getHeaders(args);
   const status = getStatus(args);
 
-  return `
-'use strict';
-
-var app = require('../app');
-var chai = require('chai');
-var request = require('supertest');
-
-var expect = chai.expect;
-
+  return libraries() + `
 describe('PUT - ${path} ', () => {
   it('should exist', (done) => {
     request(app)
