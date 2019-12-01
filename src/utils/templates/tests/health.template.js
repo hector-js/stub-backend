@@ -1,4 +1,4 @@
-import { libraries } from "../common.template";
+import { libraries } from "../builder/libraries.template";
 
 export const healthTest = libraries() + `
 describe('GET - health ', () => {
