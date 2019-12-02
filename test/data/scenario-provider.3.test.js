@@ -31,7 +31,7 @@ module.exports = dbXML = {
       _body: '<xml><title><name>pedro</name></title></xml>',
     },
   ],
-  '/xml/{id}/xml':[
+  '/xml/{id}/xml': [
     {
       _id: 'lucas',
       _headers: [],
@@ -66,5 +66,5 @@ module.exports = dbXML = {
       _xml: true,
       _body: '<xml><title><name>Lucas3</name></title></xml>',
     },
-  ]
+  ],
 };

@@ -240,7 +240,7 @@ describe('scenario provider', () => {
       });
     });
 
-    context('when no request is found',()=>{
+    context('when no request is found', ()=>{
       it('should return not request found', () => {
         const body = {
           data: 'data5',
@@ -426,7 +426,7 @@ describe('scenario provider', () => {
 
       const result = contextMatcher.getKeyValueUri('/customer/{v0}/data/{v1}');
 
-      expect(result).to.deep.equal([{ _v0: 'hello' }, { _v1: 'any' }]);
+      expect(result).to.deep.equal([{_v0: 'hello'}, {_v1: 'any'}]);
     });
   });
 });
