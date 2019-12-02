@@ -5,7 +5,6 @@ module.exports = dbPost = [
     _requestBody: {
       data: 'data1',
     },
-    _description: 'Nathan customers data',
     _body: {
       name: 'Nathan',
     },
@@ -16,7 +15,6 @@ module.exports = dbPost = [
     _requestBody: {
       data: 'data2',
     },
-    _description: 'Nathan customers data',
     _body: {
       name: 'Nathan',
     },
@@ -27,7 +25,6 @@ module.exports = dbPost = [
     _requestBody: {
       data: 'data6',
     },
-    _description: 'Nathan customers data',
     _body: {
       name: 'first',
     },
@@ -38,7 +35,6 @@ module.exports = dbPost = [
     _requestBody: {
       data: 'data6',
     },
-    _description: 'Nathan customers data',
     _body: {
       name: 'second',
     },

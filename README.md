@@ -7,7 +7,7 @@
  - ![](https://github.com/HecJimSan/stub-backend/workflows/Unit%20tests/badge.svg)
  - ![](https://github.com/HecJimSan/stub-backend/workflows/Coverage/badge.svg)
 
- ## Others measures
+ Others measures
 
  - ![](https://img.shields.io/npm/v/@hectorjs/stub-backend?label=version&logo=npm)
  - ![](https://img.shields.io/npm/dt/@hectorjs/stub-backend?logo=npm&logoColor=blue)
@@ -358,6 +358,31 @@ The response will be like this:
     "name": "Nathan"
 }
 ```
+
+## Advance options
+
+### Xml
+
+This section is in progress. At this moment, the user can response a xml setting the **_xml** flag to true like the following scenario:
+
+```json
+{
+ "_post" :{
+      "/stories/{id}/budget": [
+        {
+          "_id": "Nathan",
+          "_requestBody": {
+            "anyData": "anyData"
+          },
+          "_xml": true
+          "_body": "<xml><book><title>Flash</title></book></xml>"
+        }
+      ]
+  }
+}
+```
+
+In the next releases, the user will be able to assert xml or json request and response xml or json as well. 
 
 # Respository
 
