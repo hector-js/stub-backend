@@ -222,11 +222,13 @@ describe('scenario provider', () => {
     });
 
     it('should return the scenario with the same request', () => {
-      const body = {
-        data: 'data1',
+      const req = {
+        body: {
+          data: 'data1',
+        },
       };
 
-      const scenario = scenarioProvider.filterByRequest(body, dbPost);
+      const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
       expect(scenario).to.deep.equal({
         _id: 'juan',
@@ -240,13 +242,15 @@ describe('scenario provider', () => {
       });
     });
 
-    context('when no request is found', ()=>{
+    context('when no request is found', () => {
       it('should return not request found', () => {
-        const body = {
-          data: 'data5',
+        const req = {
+          body: {
+            data: 'data5',
+          },
         };
 
-        const scenario = scenarioProvider.filterByRequest(body, dbPost);
+        const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
         expect(scenario).to.deep.equal({
           errorCode: 404,
@@ -256,11 +260,13 @@ describe('scenario provider', () => {
     });
 
     it('should return the first scenario found', () => {
-      const body = {
-        data: 'data6',
+      const req = {
+        body: {
+          data: 'data6',
+        },
       };
 
-      const scenario = scenarioProvider.filterByRequest(body, dbPost);
+      const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
       expect(Array.isArray(scenario)).to.be.false;
       expect(scenario).to.deep.equal({

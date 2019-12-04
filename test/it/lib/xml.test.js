@@ -4,6 +4,7 @@ const app = require('../../../lib/app');
 const chai = require('chai');
 const request = require('supertest');
 
+
 const expect = chai.expect;
 
 describe('xml', () => {
@@ -11,8 +12,10 @@ describe('xml', () => {
     it('returns a xml', (done) => {
       request(app)
           .delete('/xml')
-          .set('Accept', 'application/json')
-          .send({'data': 'data'})
+          .set('Accept', 'text/xml; charset=utf-8')
+          .set('Content-type', 'application/xml')
+          .type('application/xml')
+          .send('<xml><data>Data</data></xml>')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
