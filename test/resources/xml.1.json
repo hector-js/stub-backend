@@ -3,9 +3,7 @@
     "/xml": [
       {
         "_headers": [],
-        "_requestBody": {
-          "data": "data1"
-        },
+        "_requestBody": "<xml><data>Data</data></xml>",
         "_xml": true,
         "description": "Nathan customers data",
         "_body": "<xml><book><title>The Lion King</title></book></xml>"
@@ -52,9 +50,7 @@
     "/xml": [
       {
         "_headers": [],
-        "_requestBody": {
-          "data": "data"
-        },
+        "_requestBody": "<xml><data>Data</data></xml>",
         "_xml": true,
         "_body": "<xml><book><title>data1</title></book></xml>"
       },

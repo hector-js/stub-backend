@@ -53,7 +53,7 @@ describe('db utils', () => {
       const jsonA = {var1: 'var-1', var2: 'var-2'};
       const jsonB = {var2: 'var-2', var1: 'var-1'};
 
-      const result = DBUtils.compare(jsonA, jsonB);
+      const result = DBUtils.compareJSON(jsonA, jsonB);
 
       expect(result).to.be.true;
     });
@@ -63,7 +63,7 @@ describe('db utils', () => {
         const jsonA = {var1: 'var1', var2: 'var-2'};
         const jsonB = {var2: 'var-2', var1: 'var-1'};
 
-        const result = DBUtils.compare(jsonA, jsonB);
+        const result = DBUtils.compareJSON(jsonA, jsonB);
 
         expect(result).to.be.false;
       });
@@ -74,7 +74,7 @@ describe('db utils', () => {
         const jsonA = {var0: 'var-1', var2: 'var-2'};
         const jsonB = {var2: 'var-2', var1: 'var-1'};
 
-        const result = DBUtils.compare(jsonA, jsonB);
+        const result = DBUtils.compareJSON(jsonA, jsonB);
 
         expect(result).to.be.false;
       });
@@ -85,7 +85,7 @@ describe('db utils', () => {
         const jsonA = {var2: 'var-2'};
         const jsonB = {var2: 'var-2', var1: 'var-1'};
 
-        const result = DBUtils.compare(jsonA, jsonB);
+        const result = DBUtils.compareJSON(jsonA, jsonB);
 
         expect(result).to.be.false;
       });
