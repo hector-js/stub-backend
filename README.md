@@ -372,7 +372,7 @@ This section is in progress. At this moment, the user can response a xml setting
         {
           "_id": "Nathan",
           "_requestBody": "<xml><book><title>The lyon king</title></book></xml>",
-          "_xml": true
+          "_xml": true,
           "_body": "<xml><book><title>Flash</title></book></xml>"
         }
       ]
