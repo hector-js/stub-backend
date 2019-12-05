@@ -371,18 +371,14 @@ This section is in progress. At this moment, the user can response a xml setting
       "/stories/{id}/budget": [
         {
           "_id": "Nathan",
-          "_requestBody": {
-            "anyData": "anyData"
-          },
-          "_xml": true
+          "_requestBody": "<xml><book><title>The lyon king</title></book></xml>",
+          "_xml": true,
           "_body": "<xml><book><title>Flash</title></book></xml>"
         }
       ]
   }
 }
 ```
-
-In the next releases, the user will be able to assert xml or json request and response xml or json as well. 
 
 # Respository
 
