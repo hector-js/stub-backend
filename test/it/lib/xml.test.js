@@ -13,7 +13,6 @@ describe('xml', () => {
       request(app)
           .delete('/xml')
           .set('Accept', 'text/xml; charset=utf-8')
-          .set('Content-type', 'application/xml')
           .type('application/xml')
           .send('<xml><data>Data</data></xml>')
           .end((err, res) => {
@@ -44,8 +43,9 @@ describe('xml', () => {
     it('returns a xml', (done) => {
       request(app)
           .patch('/xml')
-          .set('Accept', 'application/json')
-          .send({'data': 'data'})
+          .set('Accept', 'application/xml')
+          .type('application/xml')
+          .send('<xml><data>Data</data></xml>')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
@@ -60,8 +60,9 @@ describe('xml', () => {
     it('returns a xml', (done) => {
       request(app)
           .post('/xml')
-          .set('Accept', 'application/json')
-          .send({'data': 'data'})
+          .set('Accept', 'application/xml')
+          .type('application/xml')
+          .send('<xml><data>Data</data></xml>')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
@@ -76,8 +77,9 @@ describe('xml', () => {
     it('returns a xml', (done) => {
       request(app)
           .put('/xml')
-          .set('Accept', 'application/json')
-          .send({'data': 'data'})
+          .set('Accept', 'application/xml')
+          .type('application/xml')
+          .send('<xml><data>Data</data></xml>')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);

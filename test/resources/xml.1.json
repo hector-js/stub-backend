@@ -70,9 +70,7 @@
     "/xml": [
       {
         "_headers": [],
-        "_requestBody": {
-          "data": "data"
-        },
+        "_requestBody": "<xml><data>Data</data></xml>",
         "_xml": true,
         "_body": "<xml><book><title>Patch</title></book></xml>"
       },
@@ -92,9 +90,7 @@
     "/xml": [
       {
         "_headers": [],
-        "_requestBody": {
-          "data": "data"
-        },
+        "_requestBody": "<xml><data>Data</data></xml>",
         "_xml": true,
         "_body": "<xml><book><title>post</title></book></xml>"
       },
@@ -114,9 +110,7 @@
     "/xml": [
       {
         "_headers": [],
-        "_requestBody": {
-          "data": "data"
-        },
+        "_requestBody": "<xml><data>Data</data></xml>",
         "_xml": true,
         "_body": "<xml><book><title>put</title></book></xml>"
       },
