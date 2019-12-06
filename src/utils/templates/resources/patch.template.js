@@ -1,14 +1,16 @@
 import {
   convertIdsToJsonProperties,
-  convertHeadersToJsonProperties,
+  convertArrayToJsonProperties,
   getHeaders,
-  getStatus
+  getStatus,
+  getCookies
 } from "../../utils.cli";
 
 export const patchTemplate = (args, idsFormatted) => {
   let path = args._[2];
   let headers = getHeaders(args);
   let status = getStatus(args);
+  let cookies = getCookies(args);
 
   if(path.charAt(0)!== '/'){
     path = `/${path}`;
@@ -22,9 +24,9 @@ export const patchTemplate = (args, idsFormatted) => {
           "dummy": "dummy"
         },
         "_body" : { "dummyResponse": "dummyResponse" },
-        "_headers" : [ ${convertHeadersToJsonProperties(headers)} ],
+        "_headers" : [ ${convertArrayToJsonProperties(headers)} ],
         ${status ? `"_status": ${status},` : ''}
-        "_cookies" : [],
+        "_cookies" : [ ${convertArrayToJsonProperties(cookies)} ],
         "_description" : "Description to be defined"
       }
     ]

@@ -71,6 +71,10 @@ export const getHeaders = (args) => {
     return args.headers? args.headers.replace(' ', '').split(','): null;
 }
 
+export const getCookies = (args) => {
+    return args.cookies? args.cookies.replace(' ', '').split(','): null;
+}
+
 export const getStatus = (args) => {
     return args.status? args.status: null;
 }
@@ -85,21 +89,27 @@ export const convertIdsToJsonProperties = (idsFormatted) => {
     return ids;
 }
 
-export const convertHeadersToJsonProperties = (headers) => {
-    var headersCustom = '';
-    if (headers) {
-        headers.forEach(header => {
-            headersCustom = headersCustom + `"${header}",`;
+export const convertArrayToJsonProperties = (array) => {
+    var resultCustom = '';
+    if (array) {
+        array.forEach(element => {
+            resultCustom = resultCustom + `"${element}",`;
         });
-        headersCustom = headersCustom.slice(0, -1);
+        resultCustom = resultCustom.slice(0, -1);
     }
-    return headersCustom;
+    return resultCustom;
 }
 
-export const arrayToJson = (headers) => {
-    var headersJson = ''
-    headers.forEach(header => headersJson = headersJson + `${header}: "any value" ,`);
-    return headersJson.slice(0, -1);
+export const arrayToJson = (array) => {
+    var resultJson = ''
+    array.forEach(header => resultJson = resultJson + `${header}: "any value" ,`);
+    return resultJson.slice(0, -1);
+}
+
+export const arrayToArrayValues = (array) => {
+    var resultArray = ''
+    array.forEach(header => resultArray = resultArray + `'${header}=anyValue' ,`);
+    return resultArray.slice(0, -1);
 }
 
 export const buildUrl = (path, ids) => {

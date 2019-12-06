@@ -1,13 +1,15 @@
 import {
   convertIdsToJsonProperties,
-  convertHeadersToJsonProperties,
+  convertArrayToJsonProperties,
   getHeaders,
-  getStatus
+  getStatus,
+  getCookies
 } from "../../utils.cli";
 
 export const getTemplate = (args, idsFormatted) => {
   let path = args._[2];
   let headers = getHeaders(args);
+  let cookies = getCookies(args);
   let status = getStatus(args);
   
   if (path.charAt(0) !== '/') {
@@ -19,9 +21,9 @@ export const getTemplate = (args, idsFormatted) => {
       {
         ${convertIdsToJsonProperties(idsFormatted)}
         "_body" : { "body" : "To be defined" },
-        "_headers" : [ ${convertHeadersToJsonProperties(headers)} ],
+        "_headers" : [ ${convertArrayToJsonProperties(headers)} ],
         ${status ? `"_status": ${status},` : ''}
-        "_cookies" : [],
+        "_cookies" : [ ${convertArrayToJsonProperties(cookies)} ],
         "_description" : "Description to be defined"
       }
     ]

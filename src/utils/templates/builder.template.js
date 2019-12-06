@@ -5,6 +5,7 @@ import { headers } from "./builder/headers.template";
 import { bodyReq } from "./builder/body-req.template";
 import { assert, status, noErrors, body, endAssert, bodyG, emptyBody } from "./builder/assert.template";
 import { libraries } from "./builder/libraries.template";
+import { cookies } from "./builder/cookies.template";
 
 export class TemplateBuilder {
 
@@ -45,6 +46,10 @@ export class TemplateBuilder {
 
     headers() {
         this.template = this.template + headers(this.args);
+        return this;
+    }
+    cookies() {
+        this.template = this.template + cookies(this.args);
         return this;
     }
 
