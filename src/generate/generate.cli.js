@@ -14,17 +14,23 @@ export function generateCli(args) {
   if (args.help) {
     if (args.headers) {
       info(chalk.green('\nHeader options:\n'));
-      info(chalk.grey(`  -- headers [header1],[header2]`));
-      info(chalk.grey(`     Example: hjs g g customrers --headers authorization,client_id`));
+      info(chalk.grey(`  --headers [header1],[header2]`));
+      info(chalk.grey(`    Example: hjs g g customrers --headers authorization,client_id`));
     }
 
     if (args.status) {
       info(chalk.green('\nStatus options:\n'));
-      info(chalk.grey(`  -- status [status]`));
-      info(chalk.grey(`     Example: hjs g g customrers --status 404`));
+      info(chalk.grey(`  --status [status]`));
+      info(chalk.grey(`    Example: hjs g g customrers --status 404`));
     }
 
-    if (!args.headers && !args.status) {
+    if (args.cookies) {
+      info(chalk.green('\nCookies options:\n'));
+      info(chalk.grey(`  --cookies [status]`));
+      info(chalk.grey(`    Example: hjs g g customrers --cookies NormalCookie`));
+    }
+
+    if (!args.headers && !args.cookies && !args.status) {
       displayGeneratorOpts();
     }
 
