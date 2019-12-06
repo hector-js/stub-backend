@@ -55,8 +55,8 @@ describe('db utils', () => {
       let result;
 
       it(`should return true when jsonA is equal to jsonB`, () => {
-        jsonA = { var1: 'var-1', var2: 'var-2' };
-        jsonB = { var2: 'var-2', var1: 'var-1' };
+        jsonA = {var1: 'var-1', var2: 'var-2'};
+        jsonB = {var2: 'var-2', var1: 'var-1'};
 
         result = DBUtils.compareJSON(jsonA, jsonB);
 
@@ -65,8 +65,8 @@ describe('db utils', () => {
 
       context('with childs', () => {
         it(`should return true when jsonA is equal to jsonB`, () => {
-          jsonA = { var1: 'var-1', var2: 'var-2', object: { data: 'any' } };
-          jsonB = { var2: 'var-2', var1: 'var-1', object: { data: 'any' } };
+          jsonA = {var1: 'var-1', var2: 'var-2', object: {data: 'any'}};
+          jsonB = {var2: 'var-2', var1: 'var-1', object: {data: 'any'}};
 
           result = DBUtils.compareJSON(jsonA, jsonB);
 
@@ -76,8 +76,8 @@ describe('db utils', () => {
 
       context('when jsonA has the value of one variable different to jsonB', () => {
         it(`should return false`, () => {
-          jsonA = { var1: 'var1', var2: 'var-2' };
-          jsonB = { var2: 'var-2', var1: 'var-1' };
+          jsonA = {var1: 'var1', var2: 'var-2'};
+          jsonB = {var2: 'var-2', var1: 'var-1'};
 
           result = DBUtils.compareJSON(jsonA, jsonB);
 
@@ -87,8 +87,8 @@ describe('db utils', () => {
 
       context('when jsonA has the key different to jsonB', () => {
         it(`should return false`, () => {
-          jsonA = { var0: 'var-1', var2: 'var-2' };
-          jsonB = { var2: 'var-2', var1: 'var-1' };
+          jsonA = {var0: 'var-1', var2: 'var-2'};
+          jsonB = {var2: 'var-2', var1: 'var-1'};
 
           result = DBUtils.compareJSON(jsonA, jsonB);
 
@@ -98,8 +98,8 @@ describe('db utils', () => {
 
       context('when jsonA has a key value different to jsonB', () => {
         it(`should return false`, () => {
-          jsonA = { var2: 'var-2' };
-          jsonB = { var2: 'var-2', var1: 'var-1' };
+          jsonA = {var2: 'var-2'};
+          jsonB = {var2: 'var-2', var1: 'var-1'};
 
           result = DBUtils.compareJSON(jsonA, jsonB);
 
@@ -121,7 +121,7 @@ describe('db utils', () => {
       context('when jsonA is undefined and jsonB contains a value', () => {
         it('should return true', () => {
           jsonA = undefined;
-          jsonB = { var1: 'var-1' };
+          jsonB = {var1: 'var-1'};
 
           result = DBUtils.compareJSON(jsonA, jsonB);
 
@@ -131,7 +131,7 @@ describe('db utils', () => {
 
       context('when jsonB is undefined and jsonA contains a value', () => {
         it('should return true', () => {
-          jsonA = { var1: 'var-1' };
+          jsonA = {var1: 'var-1'};
           jsonB = undefined;
 
           result = DBUtils.compareJSON(jsonA, jsonB);
