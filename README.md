@@ -206,6 +206,8 @@ It is an array of header keys. Basically, it will validate if the request contai
   ]
 ```
 
+_cli_: ```hjs generate get customers/{id}/data --headers authorization,client_Id```
+
 ##### Validate by key and value
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
@@ -235,6 +237,8 @@ It is an array of cookies keys. Basically, it will validate if the request conta
   ]
 ```
 
+_cli_: ```hjs generate get customers/{id}/data --cookies Universal,sec```
+
 ##### Validate by key and value 
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
@@ -247,18 +251,25 @@ It is an array of objects. The key is the header name and the value is the heade
 ```
 
 _NOTE:_ If the scenario does not contain any cookies section, the service won't check anything.
+
 #### _description
 Brief explanation about the scenario.
 
 ```json
   "_description":"secure scenario given an authorization header"
 ```
+
+_cli_: ```hjs generate get customers/{id}/data --description "Hello world"```
+
 #### _status
 Just in case the request contain the cookie and headers, you can set your own status or leave it 200 as default.
 
 ```json
   "_status":"500"
 ```
+
+_cli_: ```hjs generate get customers/{id}/data --status 404```
+
 #### _body
 This section contains the response for a given request.
 
