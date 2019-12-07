@@ -11,7 +11,8 @@ export const getTemplate = (args, idsFormatted) => {
   let headers = getHeaders(args);
   let cookies = getCookies(args);
   let status = getStatus(args);
-  
+  const description = args.description;
+
   if (path.charAt(0) !== '/') {
     path = `/${path}`;
   }
@@ -24,7 +25,7 @@ export const getTemplate = (args, idsFormatted) => {
         "_headers" : [ ${convertArrayToJsonProperties(headers)} ],
         ${status ? `"_status": ${status},` : ''}
         "_cookies" : [ ${convertArrayToJsonProperties(cookies)} ],
-        "_description" : "Description to be defined"
+        "_description" : "${description ? description : 'Description to be defined'}"
       }
     ]
   }
