@@ -51,6 +51,11 @@ export const createFileInPath = (fileName, path) => {
 };
 
 export const sanitizeRootFile = (path) => {
+    if(!path){
+        error(chalk.red('\nSorry, you missed the path.'));
+        error(chalk.grey('For example: hjs g g [path]\n'));
+        throw new Error();
+    }
     let rootFile = path.replace(/\/\{|\}\/|\=|\?|\&|\{/g, '-').replace(/\}|\//g, '');
     if (rootFile && rootFile.startsWith('-')) {
         rootFile.substr(1);

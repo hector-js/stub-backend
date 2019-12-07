@@ -30,7 +30,13 @@ export function generateCli(args) {
       info(chalk.grey(`    Example: hjs g g customrers --cookies NormalCookie`));
     }
 
-    if (!args.headers && !args.cookies && !args.status) {
+    if (args.description) {
+      info(chalk.green('\nDescription options:\n'));
+      info(chalk.grey(`  --description "[status]"`));
+      info(chalk.grey(`    Example: hjs g g customrers --description "Hello world!"`));
+    }
+
+    if (!args.description && !args.headers && !args.cookies && !args.status) {
       displayGeneratorOpts();
     }
 

@@ -1,4 +1,4 @@
-import { 
+import {
   convertIdsToJsonProperties,
   convertArrayToJsonProperties,
   getHeaders,
@@ -11,7 +11,8 @@ export const traceTemplate = (args, idsFormatted) => {
   const headers = getHeaders(args);
   const status = getStatus(args);
   let cookies = getCookies(args);
-  
+  const description = args.description;
+
   if (path.charAt(0) !== '/') {
     path = `/${path}`;
   }
@@ -23,7 +24,7 @@ export const traceTemplate = (args, idsFormatted) => {
         "_headers" : [ ${convertArrayToJsonProperties(headers)} ],
         ${status ? `"_status": ${status},` : ''}
         "_cookies" : [ ${convertArrayToJsonProperties(cookies)} ],
-        "_description" : "Description to be defined"
+        "_description" : "${description ? description : 'Description to be defined'}"
       }
     ]
   }
