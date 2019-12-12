@@ -6,9 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "bin": {
-    "hjs": "bin/hjs"
-  },
   "dependencies": {
     "@hectorjs/stub-cli": "0.1.0",
     "body-parser": "^1.19.0",
