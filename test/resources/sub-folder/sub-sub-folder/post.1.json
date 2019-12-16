@@ -1,0 +1,14 @@
+{
+  "_post": {
+    "/sub-sub-folder/example": [
+      {
+        "_requestBody": {
+          "data": "data1"
+        },
+        "_body": {
+          "name": "hello"
+        }
+      }
+    ]
+  }
+}
