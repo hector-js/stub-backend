@@ -46,6 +46,21 @@
         }
       }
     ],
+    "/stories/Nathan/authentication":[
+      {
+        "_headers": ["Authorization", "client-ID"],
+        "_requestBody": { "name": "hectorjs" },
+        "_body": {
+          "response": "any"
+        }
+      },
+      {
+        "_headers": [],
+        "_body": {
+          "data": "other"
+        }
+      }
+    ],
     "/customers/{id}/session?scenario={param}": [
       {
         "_id": "1234",

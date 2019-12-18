@@ -8,7 +8,6 @@ const dbNoRequestBody = require('../data/scenario-provider.4.test');
 const dbXML = require('../data/scenario-provider.3.test');
 
 const expect = chai.expect;
-const assert = chai.assert;
 
 describe('scenario provider', () => {
   describe('#isInDB', () => {
@@ -452,7 +451,7 @@ describe('scenario provider', () => {
 
       const result = contextMatcher.getKeyValueUri('/customer/{v0}/data/{v1}');
 
-      expect(result).to.deep.equal([{ _v0: 'hello' }, { _v1: 'any' }]);
+      expect(result).to.deep.equal([{_v0: 'hello'}, {_v1: 'any'}]);
     });
   });
 });
