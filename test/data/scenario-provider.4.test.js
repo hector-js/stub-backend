@@ -22,5 +22,5 @@ module.exports = dbPost4 = [
     _body: {
       name: 'Example_three',
     },
-  }
+  },
 ];
