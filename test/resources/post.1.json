@@ -59,17 +59,22 @@
         }
       },
       {
+        "_id": "1234",
+        "_param": "aaa",
+        "_headers": [],
+        "_body": {
+          "data": "response without request checked"
+        }
+      },
+      {
         "_id": "123",
         "_param": "BBB",
         "_headers": [],
-        "_requestBody": {
-          "custom2": "any data"
-        },
         "_body": {
-          "response": "bbb"
+          "data": "response without request checked"
         }
       },
       {}
-    ]
+      ]
+    }
   }
-}

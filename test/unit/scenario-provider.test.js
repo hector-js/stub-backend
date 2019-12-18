@@ -4,9 +4,11 @@ const ScenarioProvider = require('../../lib/app/shared/scenario-provider');
 const chai = require('chai');
 const db = require('../data/scenario-provider.1.test');
 const dbPost = require('../data/scenario-provider.2.test');
+const dbNoRequestBody = require('../data/scenario-provider.4.test');
 const dbXML = require('../data/scenario-provider.3.test');
 
 const expect = chai.expect;
+const assert = chai.assert;
 
 describe('scenario provider', () => {
   describe('#isInDB', () => {
@@ -280,6 +282,24 @@ describe('scenario provider', () => {
         },
       });
     });
+
+    describe('scenarios without requestBody', () => {
+      it('should return the first scenario found', () => {
+        const req = {
+          body: {
+            data: 'data6',
+          },
+        };
+
+        const scenario = scenarioProvider.filterByRequest(req, dbNoRequestBody);
+
+        expect(Array.isArray(scenario)).to.be.false;
+        expect(scenario).to.deep.equal({
+          errorCode: 500,
+          message: 'Multiple scenarios were found :(',
+        });
+      });
+    });
   });
 
   describe('#getScenarios', () => {
@@ -432,7 +452,7 @@ describe('scenario provider', () => {
 
       const result = contextMatcher.getKeyValueUri('/customer/{v0}/data/{v1}');
 
-      expect(result).to.deep.equal([{_v0: 'hello'}, {_v1: 'any'}]);
+      expect(result).to.deep.equal([{ _v0: 'hello' }, { _v1: 'any' }]);
     });
   });
 });

@@ -39,6 +39,7 @@ describe('POST - stub backend project', () => {
               done();
             });
       });
+
       it('returns a not found response when param does not exist', (done) => {
         request(app)
             .post('/customers/1234/session?scenario=aa')
@@ -50,6 +51,23 @@ describe('POST - stub backend project', () => {
               expect(res.body).to.deep.equal({
                 errorCode: 404,
                 message: 'Scenario not found in the resources! :(',
+              });
+              done();
+            });
+      });
+    });
+
+    context('when the scenario does not have to match with the body request',()=>{
+      it('response with the scenario which does not have any request', (done) => {
+        request(app)
+            .post('/customers/1234/session?scenario=aaa')
+            .set('Accept', 'application/json')
+            .send({'custom': 'any data 2'})
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                'data': 'response without request checked',
               });
               done();
             });
