@@ -4,6 +4,7 @@ const ScenarioProvider = require('../../lib/app/shared/scenario-provider');
 const chai = require('chai');
 const db = require('../data/scenario-provider.1.test');
 const dbPost = require('../data/scenario-provider.2.test');
+const dbNoRequestBody = require('../data/scenario-provider.4.test');
 const dbXML = require('../data/scenario-provider.3.test');
 
 const expect = chai.expect;
@@ -278,6 +279,24 @@ describe('scenario provider', () => {
         _body: {
           name: 'first',
         },
+      });
+    });
+
+    describe('scenarios without requestBody', () => {
+      it('should return the first scenario found', () => {
+        const req = {
+          body: {
+            data: 'data6',
+          },
+        };
+
+        const scenario = scenarioProvider.filterByRequest(req, dbNoRequestBody);
+
+        expect(Array.isArray(scenario)).to.be.false;
+        expect(scenario).to.deep.equal({
+          errorCode: 500,
+          message: 'Multiple scenarios were found :(',
+        });
       });
     });
   });

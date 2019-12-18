@@ -8,7 +8,7 @@ const expect = chai.expect;
 
 describe('POST - stub backend project', () => {
   describe('without Authentication', () => {
-    context('when the url doesnt contain any id', ()=>{
+    context('when the url doesnt contain any id', () => {
       it('returns a valid reponse', (done) => {
         request(app)
             .post('/story/nathan')
@@ -24,7 +24,8 @@ describe('POST - stub backend project', () => {
             });
       });
     });
-    context('when the url contain an id and param', ()=>{
+
+    context('when the url contain an id and param', () => {
       it('returns a valid reponse', (done) => {
         request(app)
             .post('/customers/1234/session?scenario=aaa')
@@ -39,6 +40,7 @@ describe('POST - stub backend project', () => {
               done();
             });
       });
+
       it('returns a not found response when param does not exist', (done) => {
         request(app)
             .post('/customers/1234/session?scenario=aa')
@@ -54,6 +56,41 @@ describe('POST - stub backend project', () => {
               done();
             });
       });
+    });
+
+    context('when the scenario does not have to match with the body request', () => {
+      it('response with the scenario which does not have any request', (done) => {
+        request(app)
+            .post('/customers/1234/session?scenario=aaa')
+            .set('Accept', 'application/json')
+            .send({'custom': 'any data 2'})
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                'data': 'response without request checked',
+              });
+              done();
+            });
+      });
+    });
+  });
+
+  describe('with Authentication', () => {
+    it('returns a valid reponse', (done) => {
+      request(app)
+          .post('/stories/Nathan/authentication')
+          .set('Accept', 'application/json')
+          .set({'Authorization': 'PLACE_YOUR_TOKEN_HERE', 'client-ID': 'MY_ID'})
+          .send({'name': 'hectorjs'})
+          .end((err, res) => {
+            expect(err).to.not.exist;
+            expect(res.status).to.equal(200);
+            expect(res.body).to.deep.equal({
+              'response': 'any',
+            });
+            done();
+          });
     });
   });
 });
