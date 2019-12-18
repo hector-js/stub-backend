@@ -94,17 +94,14 @@ The json must follow the next format:
 ### Method level 
 The first key means the method and it must have a "_" as a prefix. For example:
 
-    ```json
-    {
-      "_get":{
-          
-      },
-      "_post":{
-          
-      }
-      
-    }
-    ```
+```json
+{
+  "_get":{        
+  },
+  "_post":{       
+  }    
+}
+```
 
 ### Path level
 
