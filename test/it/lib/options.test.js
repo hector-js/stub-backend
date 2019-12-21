@@ -12,7 +12,7 @@ describe('OPTIONS - stub backend project', () => {
         .options('/story/nathan')
         .end((err, res) => {
           expect(err).to.not.exist;
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(204);
           expect(res.body).to.be.empty;
           done();
         });
