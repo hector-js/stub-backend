@@ -42,3 +42,24 @@ pre {
 .key {
   color: red; 
 }
+
+.green {
+  background: green;
+}
+
+.red {
+  background: red;
+}
+
+.normal{
+  background: lightblue;
+}
+
+.common {
+  border: 0px;
+  height: 30px;
+  width: 120px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
