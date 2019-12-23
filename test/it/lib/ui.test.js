@@ -38,7 +38,7 @@ describe('UI', () => {
           });
     });
 
-    it('returns an file ico when "/css/main.css" is called', (done) => {
+    it('returns a css when "/css/main.css" is called', (done) => {
       request(app)
           .get('/css/main.css')
           .end((err, res) => {
@@ -48,7 +48,7 @@ describe('UI', () => {
           });
     });
 
-    it('returns an file ico when "/js/main.js" is called', (done) => {
+    it('returns a main.js ico when "/js/main.js" is called', (done) => {
       request(app)
           .get('/js/main.js')
           .end((err, res) => {
@@ -58,7 +58,7 @@ describe('UI', () => {
           });
     });
 
-    it('returns an file ico when "/assets/Icon.png" is called', (done) => {
+    it('returns a file ico when "/assets/Icon.png" is called', (done) => {
       request(app)
           .get('/assets/Icon.png')
           .end((err, res) => {

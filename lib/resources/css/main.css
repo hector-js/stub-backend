@@ -16,6 +16,11 @@ body {
     width: 50px;
 }
 
+.icon-hand {
+    height: 15px;
+    position: absolute;
+}
+
 pre {
   background: whitesmoke;
   border-radius: 2px; 
@@ -44,22 +49,45 @@ pre {
 }
 
 .green {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
   background: green;
+  color: white;
+}
+
+.orange {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background: yellow;
+  color: black;
 }
 
 .red {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
   background: red;
 }
 
 .normal{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
   background: lightblue;
 }
 
 .common {
   border: 0px;
   height: 30px;
-  width: 120px;
+  width: 150px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.common:hover{
+  border-color: blue;
+  border: 1 solid;
+}
+
+.header {
+  width: 100%;
 }
 
