@@ -31,10 +31,10 @@
   "scripts": {
     "hjs": "hjs",
     "start": "set NODE_ENV=test & nodemon lib/app.js --profile test --logs tiny --port 3005",
-    "test": "set NODE_ENV=test & sh ./scripts/test.sh",
-    "coverage": "set NODE_ENV=test & sh ./scripts/test-coverage.sh",
+    "test": "env KEY=test mocha --recursive --exit",
+    "coverage": "env KEY=test nyc --reporter=html --reporter=text mocha --recursive --exit",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
-    "test-all": "eslint ./lib/**/*.js ./test/**/*.js && (set NODE_ENV=test & sh ./scripts/test-coverage.sh) "
+    "test-all": "eslint ./lib/**/*.js ./test/**/*.js && npm run coverage "
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
