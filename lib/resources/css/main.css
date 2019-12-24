@@ -80,6 +80,9 @@ pre {
   width: 150px;
   border-radius: 5px;
   cursor: pointer;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
 }
 
 .common:hover{
@@ -89,5 +92,45 @@ pre {
 
 .header {
   width: 100%;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+#buttonTest:focus {
+  outline-width: 0;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: -12px;
+  margin-right: 8px;
+}
+
+.fa-spinner:before {
+  content: "\f110";
+}
+
+@keyframes fa-spin{
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
 
