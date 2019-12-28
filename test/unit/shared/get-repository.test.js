@@ -1,6 +1,6 @@
 'use strict';
 
-const GetRespository = require('../../lib/app/components/get/get.repository');
+const GetRespository = require('../../../lib/app/components/get/get.repository');
 const chai = require('chai');
 
 const expect = chai.expect;

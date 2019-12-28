@@ -1,6 +1,6 @@
 'use strict';
 
-const DBUtils = require('./../../lib/app/shared/utils/db-utils');
+const DBUtils = require('./../../../lib/app/utils/db-utils');
 const chai = require('chai');
 
 const expect = chai.expect;

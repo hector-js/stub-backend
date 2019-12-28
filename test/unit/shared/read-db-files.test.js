@@ -1,6 +1,6 @@
 'use strict';
 
-const Data = require('../../lib/app/shared/read-db-files');
+const Data = require('../../../lib/app/shared/read-db-files');
 const chai = require('chai');
 
 const expect = chai.expect;
