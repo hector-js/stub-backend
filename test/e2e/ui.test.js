@@ -1,6 +1,6 @@
 'use strict';
 
-const app = require('../../../lib/app');
+const app = require('../../lib/app');
 const chai = require('chai');
 const request = require('supertest');
 
@@ -40,7 +40,7 @@ describe('UI', () => {
 
     it('returns a css when "/css/main.css" is called', (done) => {
       request(app)
-          .get('/css/main.css')
+          .get('/_css/main.css')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
@@ -50,7 +50,7 @@ describe('UI', () => {
 
     it('returns a main.js ico when "/js/main.js" is called', (done) => {
       request(app)
-          .get('/js/main.js')
+          .get('/_js/main.js')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
@@ -60,7 +60,7 @@ describe('UI', () => {
 
     it('returns a file ico when "/assets/Icon.png" is called', (done) => {
       request(app)
-          .get('/assets/Icon.png')
+          .get('/_assets/Icon.png')
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);

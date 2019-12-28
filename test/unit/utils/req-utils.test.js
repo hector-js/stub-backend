@@ -1,6 +1,6 @@
 'use strict';
 
-const ReqUtils = require('../../lib/app/shared/utils/req-utils');
+const ReqUtils = require('./../../../lib/app/utils/req-utils');
 const chai = require('chai');
 
 const expect = chai.expect;

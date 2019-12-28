@@ -1,6 +1,6 @@
 'use strict';
 
-const GetRespository = require('../../lib/app/components/get/get.repository');
+const GetRespository = require('../../../lib/app/components/get/get.repository');
 const chai = require('chai');
 
 const expect = chai.expect;
@@ -18,7 +18,7 @@ describe('get repository', () => {
     expect(body).to.deep.equal({
       _id: 'Nathan',
       _headers: [],
-      _description: 'Get person details related to Nathan',
+      _description: 'ANY DESCRIPTION',
       _body: {
         name: 'Nathan',
       },

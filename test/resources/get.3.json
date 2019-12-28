@@ -4,7 +4,7 @@
       {
         "_id": "1234",
         "_cookies": [{"session":"4321"}],
-        "_description": "Get scenario by key value for cookie",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Thor"
         }
@@ -12,14 +12,14 @@
       {
         "_id": "123",
         "_cookies": ["session"],
-        "_description": "Request with check cookie",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Hector"
         }
       },
       {
         "_id": "123",
-        "_description": "Request without cookie",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Aquiles"
         }
@@ -29,7 +29,7 @@
       {
         "_id": "1234",
         "_headers": [{"authorization":"Beurer 1234"}, {"client_id": "1234"}],
-        "_description": "Get scenario by key value for cookie",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "pet": "dog"
         }
@@ -37,14 +37,14 @@
       {
         "_id": "123",
         "_headers": ["authorization"],
-        "_description": "Request with check cookie",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "pet": "cat"
         }
       },
       {
         "_id": "123",
-        "_description": "Request without cookie",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "pet": "elephant"
         }
