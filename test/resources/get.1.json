@@ -9,7 +9,7 @@
           "session-id",
           "key-id"
         ],
-        "_description": "Get confidential details related to Christopher with a cookie provided",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "gender": "male",
           "dob": "12/12/1990"
@@ -24,7 +24,7 @@
           "session-id",
           "key-id"
         ],
-        "_description": "Get confidential details related to Mark with a cookie and header provided",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "gender": "male",
           "dob": "12/12/1990"
@@ -33,7 +33,7 @@
       {
         "_id": "Smith",
         "_status": 404,
-        "_description": "Get confidential details related to Christopher with a cookie and header provided",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "messageError": "request not found"
         }

@@ -4,7 +4,7 @@
       {
         "_id": "Nathan",
         "_headers": [],
-        "_description": "Get person details related to Nathan",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Nathan"
         }
@@ -12,7 +12,7 @@
       {
         "_id": "mark",
         "_headers": [],
-        "_description": "Get person details related to Mark",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Mark"
         }
@@ -21,7 +21,7 @@
     "/stories/people": [
       {
         "_headers": [],
-        "_description": "Get stories for all the people",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "people": [
             {
@@ -38,7 +38,7 @@
       {
         "_id": "",
         "_headers": [],
-        "_description": "Get all budgets",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "people": [
             {
@@ -55,7 +55,7 @@
       {
         "_id": "",
         "_headers": [],
-        "_description": "Get all budgets",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "people": [
             {
@@ -74,7 +74,7 @@
         "_headers": [
           "authorization"
         ],
-        "_description": "Get budget details related to Nathan with authentication header",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Nathan"
         }
@@ -85,7 +85,7 @@
           "authorization",
           "id"
         ],
-        "_description": "Get budget details related to Nathan with Authorization, id in the headers",
+        "_description": "ANY DESCRIPTION",
         "_body": {
           "name": "Nathan"
         }

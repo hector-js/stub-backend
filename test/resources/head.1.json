@@ -9,7 +9,7 @@
           "session-id",
           "key-id"
         ],
-        "_description": "Get confidential details related to Christopher with a cookie provided"
+        "_description": "ANY DESCRIPTION"
       },
       {
         "_id": "Mark",
@@ -20,12 +20,12 @@
           "session-id",
           "key-id"
         ],
-        "_description": "Get confidential details related to Mark with a cookie and header provided"
+        "_description": "ANY DESCRIPTION"
       },
       {
         "_id": "Smith",
         "_status": 404,
-        "_description": "Get confidential details related to Christopher with a cookie and header provided"
+        "_description": "ANY DESCRIPTION"
       }
     ]
   }
