@@ -4,32 +4,32 @@ module.exports = db = {
       _id: 'Nathan',
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
+        name: 'Nathan'
+      }
     },
     {
       _id: 'mark',
       _headers: [],
       _body: {
-        name: 'Mark',
-      },
-    },
+        name: 'Mark'
+      }
+    }
   ],
   '/customers/{id}': [
     {
       id_: 'Nathan',
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
+        name: 'Nathan'
+      }
     },
     {
       id_: 'mark',
       _headers: [],
       _body: {
-        name: 'Mark',
-      },
-    },
+        name: 'Mark'
+      }
+    }
   ],
   '/customers/{id}/data?name={d1}&dateOfBirth={d2}': [
     {
@@ -38,8 +38,8 @@ module.exports = db = {
       _d1: 'hector',
       _d2: '10-10-200',
       _body: {
-        name: 'Nathan',
-      },
+        name: 'Nathan'
+      }
     },
     {
       _headers: [],
@@ -47,46 +47,46 @@ module.exports = db = {
       _d1: 'valueTwo',
       _d2: 'valueThree',
       _body: {
-        name: 'Nathan',
-      },
-    },
+        name: 'Nathan'
+      }
+    }
   ],
   '/customers/age': [
     {
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
-    },
+        name: 'Nathan'
+      }
+    }
   ],
   '/customers/multiple/scenarios': [
     {
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
+        name: 'Nathan'
+      }
     },
     {
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
-    },
+        name: 'Nathan'
+      }
+    }
   ],
   '/customers/{id}/multiple/scenarios': [
     {
       _id: 'juan',
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
+        name: 'Nathan'
+      }
     },
     {
       _id: 'juan',
       _headers: [],
       _body: {
-        name: 'Nathan',
-      },
-    },
-  ],
+        name: 'Nathan'
+      }
+    }
+  ]
 };

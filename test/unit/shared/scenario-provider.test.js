@@ -89,8 +89,8 @@ describe('scenario provider', () => {
             _id: 'mark',
             _headers: [],
             _body: {
-              name: 'Mark',
-            },
+              name: 'Mark'
+            }
           });
         });
 
@@ -104,7 +104,7 @@ describe('scenario provider', () => {
 
             expect(result).to.deep.equal({
               errorCode: 500,
-              message: 'Multiple scenarios were found :(',
+              message: 'Multiple scenarios were found :('
             });
           });
         });
@@ -119,7 +119,7 @@ describe('scenario provider', () => {
 
             expect(result).to.deep.equal({
               errorCode: 404,
-              message: 'Scenario not found in the resources! :(',
+              message: 'Scenario not found in the resources! :('
             });
           });
         });
@@ -139,8 +139,8 @@ describe('scenario provider', () => {
             _d1: 'valueTwo',
             _d2: 'valueThree',
             _body: {
-              name: 'Nathan',
-            },
+              name: 'Nathan'
+            }
           });
         });
       });
@@ -156,8 +156,8 @@ describe('scenario provider', () => {
           expect(scenario).to.deep.equal({
             _headers: [],
             _body: {
-              name: 'Nathan',
-            },
+              name: 'Nathan'
+            }
           });
         });
 
@@ -171,7 +171,7 @@ describe('scenario provider', () => {
 
             expect(result).to.deep.equal({
               errorCode: 500,
-              message: 'Multiple scenarios were found :(',
+              message: 'Multiple scenarios were found :('
             });
           });
         });
@@ -191,7 +191,7 @@ describe('scenario provider', () => {
             _id: 'juan',
             _headers: [],
             _xml: true,
-            _body: '<xml><title><name>Whatever</name></title></xml>',
+            _body: '<xml><title><name>Whatever</name></title></xml>'
           });
         });
       });
@@ -208,7 +208,7 @@ describe('scenario provider', () => {
             _id: 'pedro',
             _headers: [],
             _xml: true,
-            _body: '<xml><title><name>pedro</name></title></xml>',
+            _body: '<xml><title><name>pedro</name></title></xml>'
           });
         });
       });
@@ -225,8 +225,8 @@ describe('scenario provider', () => {
     it('should return the scenario with the same request', () => {
       const req = {
         body: {
-          data: 'data1',
-        },
+          data: 'data1'
+        }
       };
 
       const scenario = scenarioProvider.filterByRequest(req, dbPost);
@@ -235,11 +235,11 @@ describe('scenario provider', () => {
         _id: 'juan',
         _headers: [],
         _requestBody: {
-          data: 'data1',
+          data: 'data1'
         },
         _body: {
-          name: 'Nathan',
-        },
+          name: 'Nathan'
+        }
       });
     });
 
@@ -247,15 +247,15 @@ describe('scenario provider', () => {
       it('should return not request found', () => {
         const req = {
           body: {
-            data: 'data5',
-          },
+            data: 'data5'
+          }
         };
 
         const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
         expect(scenario).to.deep.equal({
           errorCode: 404,
-          message: 'Request body not found in the resources! :(',
+          message: 'Request body not found in the resources! :('
         });
       });
     });
@@ -263,8 +263,8 @@ describe('scenario provider', () => {
     it('should return the first scenario found', () => {
       const req = {
         body: {
-          data: 'data6',
-        },
+          data: 'data6'
+        }
       };
 
       const scenario = scenarioProvider.filterByRequest(req, dbPost);
@@ -274,11 +274,11 @@ describe('scenario provider', () => {
         _id: 'juan',
         _headers: [],
         _requestBody: {
-          data: 'data6',
+          data: 'data6'
         },
         _body: {
-          name: 'first',
-        },
+          name: 'first'
+        }
       });
     });
 
@@ -286,8 +286,8 @@ describe('scenario provider', () => {
       it('should return the first scenario found', () => {
         const req = {
           body: {
-            data: 'data6',
-          },
+            data: 'data6'
+          }
         };
 
         const scenario = scenarioProvider.filterByRequest(req, dbNoRequestBody);
@@ -295,7 +295,7 @@ describe('scenario provider', () => {
         expect(Array.isArray(scenario)).to.be.false;
         expect(scenario).to.deep.equal({
           errorCode: 500,
-          message: 'Multiple scenarios were found :(',
+          message: 'Multiple scenarios were found :('
         });
       });
     });
@@ -317,8 +317,8 @@ describe('scenario provider', () => {
             _id: 'mark',
             _headers: [],
             _body: {
-              name: 'Mark',
-            },
+              name: 'Mark'
+            }
           });
         });
 
@@ -336,8 +336,8 @@ describe('scenario provider', () => {
               _id: 'juan',
               _headers: [],
               _body: {
-                name: 'Nathan',
-              },
+                name: 'Nathan'
+              }
             };
             expect(scenarios[0]).to.deep.equal(expectScenario);
             expect(scenarios[1]).to.deep.equal(expectScenario);
@@ -354,7 +354,7 @@ describe('scenario provider', () => {
 
             expect(result).to.deep.equal({
               errorCode: 404,
-              message: 'Scenario not found in the resources! :(',
+              message: 'Scenario not found in the resources! :('
             });
           });
         });
@@ -377,8 +377,8 @@ describe('scenario provider', () => {
               _d1: 'valueTwo',
               _d2: 'valueThree',
               _body: {
-                name: 'Nathan',
-              },
+                name: 'Nathan'
+              }
             });
           });
         });
@@ -395,8 +395,8 @@ describe('scenario provider', () => {
           expect(scenario).to.deep.equal({
             _headers: [],
             _body: {
-              name: 'Nathan',
-            },
+              name: 'Nathan'
+            }
           });
         });
 
@@ -410,7 +410,7 @@ describe('scenario provider', () => {
 
             expect(result).to.deep.equal({
               errorCode: 500,
-              message: 'Multiple scenarios were found :(',
+              message: 'Multiple scenarios were found :('
             });
           });
         });
@@ -432,13 +432,13 @@ describe('scenario provider', () => {
             _id: 'lucas',
             _headers: [],
             _xml: true,
-            _body: '<xml><title><name>Lucas1</name></title></xml>',
+            _body: '<xml><title><name>Lucas1</name></title></xml>'
           });
           expect(scenarios[1]).to.deep.equal({
             _id: 'lucas',
             _headers: [],
             _xml: true,
-            _body: '<xml><title><name>Lucas3</name></title></xml>',
+            _body: '<xml><title><name>Lucas3</name></title></xml>'
           });
         });
       });
@@ -451,7 +451,7 @@ describe('scenario provider', () => {
 
       const result = contextMatcher.getKeyValueUri('/customer/{v0}/data/{v1}');
 
-      expect(result).to.deep.equal([{_v0: 'hello'}, {_v1: 'any'}]);
+      expect(result).to.deep.equal([{ _v0: 'hello' }, { _v1: 'any' }]);
     });
   });
 });

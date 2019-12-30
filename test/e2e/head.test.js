@@ -92,7 +92,7 @@ describe('HEAD - stub backend project', () => {
     it('returns a valid reponse', (done) => {
       request(app)
           .head('/stories/Nathan/budget')
-          .set({Authorization: 'PLACE_YOUR_TOKEN_HERE', id: 'MY_ID'})
+          .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE', id: 'MY_ID' })
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
@@ -104,7 +104,7 @@ describe('HEAD - stub backend project', () => {
     it('returns 404 when it is not finding the scenario', (done) => {
       request(app)
           .head('/stories/Nathan/age')
-          .set({Authorization: 'PLACE_YOUR_TOKEN_HERE'})
+          .set({ Authorization: 'PLACE_YOUR_TOKEN_HERE' })
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(404);

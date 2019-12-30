@@ -13,12 +13,12 @@ describe('POST - stub backend project', () => {
         request(app)
             .post('/story/nathan')
             .set('Accept', 'application/json')
-            .send({'name': 'Nathan'})
+            .send({ 'name': 'Nathan' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
               expect(res.body).to.deep.equal({
-                'custom': 'response',
+                'custom': 'response'
               });
               done();
             });
@@ -30,12 +30,12 @@ describe('POST - stub backend project', () => {
         request(app)
             .post('/customers/1234/session?scenario=aaa')
             .set('Accept', 'application/json')
-            .send({'custom': 'any data'})
+            .send({ 'custom': 'any data' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
               expect(res.body).to.deep.equal({
-                'response': 'any',
+                'response': 'any'
               });
               done();
             });
@@ -45,13 +45,13 @@ describe('POST - stub backend project', () => {
         request(app)
             .post('/customers/1234/session?scenario=aa')
             .set('Accept', 'application/json')
-            .send({'custom': 'any data'})
+            .send({ 'custom': 'any data' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(404);
               expect(res.body).to.deep.equal({
                 errorCode: 404,
-                message: 'Scenario not found in the resources! :(',
+                message: 'Scenario not found in the resources! :('
               });
               done();
             });
@@ -63,12 +63,12 @@ describe('POST - stub backend project', () => {
         request(app)
             .post('/customers/1234/session?scenario=aaa')
             .set('Accept', 'application/json')
-            .send({'custom': 'any data 2'})
+            .send({ 'custom': 'any data 2' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
               expect(res.body).to.deep.equal({
-                'data': 'response without request checked',
+                'data': 'response without request checked'
               });
               done();
             });
@@ -81,13 +81,13 @@ describe('POST - stub backend project', () => {
       request(app)
           .post('/stories/Nathan/authentication')
           .set('Accept', 'application/json')
-          .set({'Authorization': 'PLACE_YOUR_TOKEN_HERE', 'client-ID': 'MY_ID'})
-          .send({'name': 'hectorjs'})
+          .set({ 'Authorization': 'PLACE_YOUR_TOKEN_HERE', 'client-ID': 'MY_ID' })
+          .send({ 'name': 'hectorjs' })
           .end((err, res) => {
             expect(err).to.not.exist;
             expect(res.status).to.equal(200);
             expect(res.body).to.deep.equal({
-              'response': 'any',
+              'response': 'any'
             });
             done();
           });
