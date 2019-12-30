@@ -13,12 +13,12 @@ describe('DELETE - stub backend project', () => {
         request(app)
             .delete('/story/nathan')
             .set('Accept', 'application/json')
-            .send({'name': 'Nathan'})
+            .send({ 'name': 'Nathan' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
               expect(res.body).to.deep.equal({
-                'custom': 'response',
+                'custom': 'response'
               });
               done();
             });
@@ -29,12 +29,12 @@ describe('DELETE - stub backend project', () => {
         request(app)
             .delete('/customers/1234/session?scenario=aaa')
             .set('Accept', 'application/json')
-            .send({'custom': 'any data'})
+            .send({ 'custom': 'any data' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
               expect(res.body).to.deep.equal({
-                'response': 'any',
+                'response': 'any'
               });
               done();
             });
@@ -43,13 +43,13 @@ describe('DELETE - stub backend project', () => {
         request(app)
             .delete('/customers/1234/session?scenario=aa')
             .set('Accept', 'application/json')
-            .send({'custom': 'any data'})
+            .send({ 'custom': 'any data' })
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(404);
               expect(res.body).to.deep.equal({
                 errorCode: 404,
-                message: 'Scenario not found in the resources! :(',
+                message: 'Scenario not found in the resources! :('
               });
               done();
             });

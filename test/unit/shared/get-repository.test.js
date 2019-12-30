@@ -10,7 +10,7 @@ describe('get repository', () => {
     const contextPath = '/stories/nathan/person';
     const req = {
       url: contextPath,
-      method: 'GET',
+      method: 'GET'
     };
 
     const body = GetRespository.findData(req);
@@ -20,8 +20,8 @@ describe('get repository', () => {
       _headers: [],
       _description: 'ANY DESCRIPTION',
       _body: {
-        name: 'Nathan',
-      },
+        name: 'Nathan'
+      }
     });
   });
 
@@ -30,14 +30,14 @@ describe('get repository', () => {
       const contextPath = '/stories/nathan/age';
       const req = {
         url: contextPath,
-        method: 'GET',
+        method: 'GET'
       };
 
       const body = GetRespository.findData(req);
 
       expect(body).to.deep.equal({
         errorCode: 404,
-        message: 'Scenario not found in the resources! :(',
+        message: 'Scenario not found in the resources! :('
       });
     });
   });

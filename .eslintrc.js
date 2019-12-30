@@ -15,6 +15,9 @@ module.exports = {
     'ecmaVersion': 2018,
   },
   'rules': {
+    "no-tabs": ["error", {"allowIndentationTabs": true}],
+    "object-curly-spacing": ["error", "always"],
+    "comma-dangle": ["error", "never"],
     "max-len": [2, {"code": 140, "tabWidth": 2, "ignoreUrls": true}]
   },
 };
