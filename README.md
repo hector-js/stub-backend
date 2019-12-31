@@ -6,6 +6,7 @@
  - ![](https://github.com/HecJimSan/stub-backend/workflows/eslint%2Dconfig%2Dgoogle/badge.svg)
  - ![](https://github.com/HecJimSan/stub-backend/workflows/Unit%20tests/badge.svg)
  - ![](https://github.com/HecJimSan/stub-backend/workflows/Coverage/badge.svg)
+ - [![codecov](https://codecov.io/gh/HecJimSan/stub-backend/branch/development/graph/badge.svg)](https://codecov.io/gh/HecJimSan/stub-backend)
 
  Others measures
 
