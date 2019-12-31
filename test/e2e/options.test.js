@@ -7,12 +7,12 @@ const request = require('supertest');
 const expect = chai.expect;
 
 describe('OPTIONS - stub backend project', () => {
-  it('returns a 200 status', (done) => {
+  it('returns a 204 status', (done) => {
     request(app)
         .options('/story/nathan')
         .end((err, res) => {
           expect(err).to.not.exist;
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(204);
           expect(res.body).to.be.empty;
           done();
         });

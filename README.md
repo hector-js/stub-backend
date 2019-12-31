@@ -350,6 +350,44 @@ This section is in progress. At this moment, the user can response a xml setting
 }
 ```
 
+### Config file
+You can add your config file in the root of the mock service or in the root of the project. The name of the file must be _.hjs.config.json_
+
+At this moment, the developer can use the following options:
+
+#### corsOptions
+
+You can add _corsOptions_ as the [cors library](https://www.npmjs.com/package/cors#configuring-cors) is doing. For example:
+
+```json
+{
+  "corsOptions":{
+    "origin": "http://your-url.com",
+    "optionsSuccessStatus": 200
+  }
+}
+```
+
+#### logs
+
+You can include the level of logs fot the mock using [morgan options](https://www.npmjs.com/package/morgan). For example: 
+
+```json
+{
+  "logs": ":method :url :status :res[content-length] - :response-time ms"
+}
+```
+
+#### port
+
+Expecify the port. It is 3005 by default.
+
+```json
+{
+  "port": 8081
+}
+```
+
 # Respository
 
 https://github.com/HecJimSan/stub-backend
