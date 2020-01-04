@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "deep-equal": "^1.1.1",
     "express": "^4.17.1",
-    "fast-xml-parser": "^3.15.0",
+    "fast-xml-parser": "^3.15.1",
     "minimist": "^1.2.0",
     "morgan": "^1.9.1",
     "shelljs": "^0.8.3",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^6.7.1",
+    "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "mocha": "^5.2.0",
     "nyc": "^14.1.1",
@@ -34,7 +34,8 @@
     "test": "env KEY=test mocha --recursive --exit",
     "coverage": "env KEY=test nyc --reporter=html --reporter=text mocha --recursive --exit",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
-    "test-all": "eslint ./lib/**/*.js ./test/**/*.js && npm run coverage "
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "test-all": "eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",

@@ -41,4 +41,10 @@ jobs:
         npm run eslint
       env:
         CI: true
+    - name: Publish resport coverage
+      run: |
+        npm -g i codecov@3.6.1
+        npm run report-coverage -- -t ${{ secrets.CODECOV_TOKEN }}
+      env:
+        CI: true
         
