@@ -19,7 +19,7 @@
 
 The aim of this project is to mock backend services building different responses for a given authentication, cookie, request among others.
 
-Make the life easier for a nice development :smile:
+This project gives the chance to focus in your code reducing the amount of work mocking the dependencies. :smile:
 
 # Install
 
@@ -29,12 +29,12 @@ npm install @hectorjs/stub-backend
 
 # CLI
 
-There is a command line to generate methods like get, post, put, among others.
-I recomend you to use it to get  a quicker result.
+There is a command line to generate default methods like get, post, put, among others.
+I recommend you to have a look. It will reduce the time to mock the services.
 
 Have a look:
 
-https://www.npmjs.com/package/@hectorjs/stub-cli
+[@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli)
 
 ## Methods availabe to mock at this moment
 
@@ -60,16 +60,8 @@ npm init -y
 ```
 npm install @hectorjs/stub-backend
 ```
-#### Copy the bin field bellow in the package.json file at the same level of the version:
 
-```json
-  "version" :"example",
-  "bin":{
-    "hjs":"node_modules/@hectorjs/stub-backend/bin/hjs"
-  }
-```
-
-#### Add library to your runner file
+#### Use mock
 
 Create a javascript file and add the library @hectorjs/stub-backend
 
@@ -77,7 +69,21 @@ Create a javascript file and add the library @hectorjs/stub-backend
 const hectorjs = require('@hectorjs/stub-backend')
 ```
 
-Note: add the previous line in app.js file
+#### Use hjs command
+
+Include in your _package.json_ the _hjs_ command as script:
+
+```json
+  "scripts":{
+    "hjs":"hjs"
+  }
+```
+
+Note: You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have install globally the [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli) package.
+
+Hjs command can avoid the following steps because the cli generates all the folder , methods and endpoint for you. Just the data as identifiers, headers, cookies or bodies among others must be added manually.
+
+### Structure
 
 ## Folder data
 
@@ -166,7 +172,8 @@ It is an array of header keys. Basically, it will validate if the request contai
   ]
 ```
 
-_cli_: ```hjs generate get customers/{id}/data --headers authorization,client_Id```
+Using _cli_ command:
+```hjs generate get customers/{id}/data --headers authorization,client_Id```
 
 ##### Validate by key and value
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
@@ -180,12 +187,18 @@ It is an array of objects. The key is the header name and the value is the heade
   ]
 ```
 
-_NOTE:_ If the scenario does not contain any headers section, the service won't check anything.
+Using _cli_ command:
+```hjs generate get customers/{id}/data --headers authorization,client_Id```
 
+Set the key value headers manually.
+
+_NOTE:_ If the scenario does not contain any headers section, the service won't check anything.
 Capital letters are not allow in headers section.
 
 #### _cookies
+
 There are two different ways to validate the cookies:
+
 ##### Validate by key
 It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array. If the request does not contain the cookie,the service will return a 401 response.
 
@@ -252,6 +265,8 @@ Some methods like post, put or delete needs to verify the body response as well.
 ```
 _Note:_ If any field is missed, it means it is not required.
 
+## Example
+
 Below, we have a example:
 
 ```json
@@ -311,7 +326,12 @@ Below, we have a example:
 If you want to test it, copy the previous example and paste it in one of the json files. Then execute the following command:
 
 ```sh
-node app.js
+node .\\node_modules\\@hectorjs\\stub-backend\\lib\\app.js
+```
+or with _cli_
+
+```sh
+hjs start
 ```
 
 The service will be running in the port *3005* waiting for a request.
