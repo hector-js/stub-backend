@@ -17,9 +17,9 @@
 
 # Description
 
-The aim of this project is to mock backend services building different responses for a given authentication, cookie, request among others.
+The aim of this project is to mock the backend services building different responses for a given authentication, cookie, request among others.
 
-This project gives the chance to focus in your code reducing the amount of work mocking the dependencies. :smile:
+This project gives the chance to focus in your code **reducing** the amount of work mocking the dependencies. :smile:
 
 # Install
 
@@ -30,11 +30,9 @@ npm install @hectorjs/stub-backend
 # CLI
 
 There is a command line to generate default methods like get, post, put, among others.
-I recommend you to have a look. It will reduce the time to mock the services.
+I strongly recommend you to have a look and use it. It will reduce the time to mock the services which is one of the main goal of this project.
 
-Have a look:
-
-[@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli)
+Have a look [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
 
 ## Methods availabe to mock at this moment
 
@@ -61,14 +59,6 @@ npm init -y
 npm install @hectorjs/stub-backend
 ```
 
-#### Use mock
-
-Create a javascript file and add the library @hectorjs/stub-backend
-
-```js
-const hectorjs = require('@hectorjs/stub-backend')
-```
-
 #### Use hjs command
 
 Include in your _package.json_ the _hjs_ command as script:
@@ -79,24 +69,27 @@ Include in your _package.json_ the _hjs_ command as script:
   }
 ```
 
-Note: You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have install globally the [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli) package.
+_Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have install globally [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
 
-Hjs command can avoid the following steps because the cli generates all the folder , methods and endpoint for you. Just the data as identifiers, headers, cookies or bodies among others must be added manually.
+**hjs** command can avoid the following steps because the _cli_ generates all the folders, methods and endpoints for you. Just the data as identifiers, headers, cookies or bodies must be added manually.
 
 ### Structure
 
 ## Folder data
 
-Create a folder named _resources_ and add a couple of json files under that folder (it does not matter the name of the files) with the properties.
+Create a folder named _resources_ in packange directory and add a couple of json files under that folder (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
 
 ```
  resources
     ¦
      - *.json
      - *.json
-     - ...
+     - subfolder
+       ¦
+        - *.json
+        - *.json
 ```
-The json must follow the next format:
+Each json file must follow the following format:
 
 ### Method level 
 The first key means the method and it must have a "_" as a prefix. For example:
@@ -109,6 +102,7 @@ The first key means the method and it must have a "_" as a prefix. For example:
   }    
 }
 ```
+_Methods:_ _get, _head, _post, _put, _delete, _options, _trace, _patch
 
 ### Path level
 
@@ -124,12 +118,16 @@ The next level means the endpoint. The path is written like theses examples:
       "_get":{
          "/customers/names":[
            {}
+         ],
+         "/customers/{id}/name":[
+           {}
+         ],
+         "/countries/{id}/product":[
+           {}
+         ],
+         "/countries/{id}/population?town={param1}&postcode={param2}":[
+           {}
          ]
-      },
-      "_post":{
-          "/countries/{id}/product":[
-            {}
-          ]
       }
     }
     ```
@@ -412,3 +410,7 @@ Expecify the port. It is 3005 by default.
 # Respository
 
 https://github.com/HecJimSan/stub-backend
+
+
+Please, I am up for feedback and new issues for the respository.
+Thank you
