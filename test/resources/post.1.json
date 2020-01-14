@@ -89,6 +89,15 @@
           "data": "response without request checked"
         }
       },
+      {
+        "_id": "1234",
+        "_param": "aaa",
+        "_requestBody":{ "custom1": "any data 2", "custom2": { "custom3": "VALUE_TO_NOT_COMPARE" } },
+        "_excludeBodyFields": ["$.custom2.custom3"],
+        "_body": {
+          "data": "you got it:)"
+        }
+      },
       {}
       ]
     }

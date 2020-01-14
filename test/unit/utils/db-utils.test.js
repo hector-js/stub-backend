@@ -52,6 +52,7 @@ describe('db utils', () => {
     describe('json', () => {
       let jsonA;
       let jsonB;
+      let jsonPaths;
       let result;
 
       it(`should return true when jsonA is equal to jsonB`, () => {
@@ -137,6 +138,124 @@ describe('db utils', () => {
           result = DBUtils.compareJSON(jsonA, jsonB);
 
           expect(result).to.be.false;
+        });
+      });
+
+      describe('jsonPaths', () => {
+        context('when xpath exists', () => {
+          context('with xpath matching', () => {
+            context('for just jsonA', () => {
+              it('returns false', () => {
+                jsonA = { var1: 'var-1', var2: 'other' };
+                jsonB = { var3: 'var-2', var1: 'var-1' };
+                jsonPaths = ['$.var2'];
+
+                result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                expect(result).to.be.false;
+              });
+            });
+
+            context('for just jsonB', () => {
+              it('returns false', () => {
+                jsonA = { var1: 'var-1', var3: 'other' };
+                jsonB = { var2: 'var-2', var1: 'var-1' };
+                jsonPaths = ['$.var2'];
+
+                result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                expect(result).to.be.false;
+              });
+            });
+
+            context('for jsonA and jsonB', () => {
+              it('returns true', () => {
+                jsonA = { var1: 'var-1', var2: 'other' };
+                jsonB = { var2: 'var-2', var1: 'var-1' };
+                jsonPaths = ['$.var2'];
+
+                result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                expect(result).to.be.true;
+              });
+            });
+
+            context('complex scenario', () => {
+              context('array', () => {
+                it('returns true', () => {
+                  jsonA = { var1: 'var-1', var2: ['value1', 'value2', 'value4'] };
+                  jsonB = { var1: 'var-1', var2: ['value1', 'value3', 'value4'] };
+                  jsonPaths = ['$.var2[1]'];
+
+                  result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                  expect(result).to.be.true;
+                });
+              });
+
+              context('object', () => {
+                it('returns true', () => {
+                  jsonA = { var1: 'var-1', var2: { var3: 'any' } };
+                  jsonB = { var1: 'var-1', var2: { var4: 'any' } };
+                  jsonPaths = ['$.var2'];
+
+                  result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                  expect(result).to.be.true;
+                });
+              });
+            });
+          });
+
+          context('with no xpath matching', () => {
+            context('with different jsons', () => {
+              it('returns false', () => {
+                jsonA = { var1: 'var-1', var2: 'other' };
+                jsonB = { var2: 'var-2', var1: 'var-1' };
+                jsonPaths = ['$.var3'];
+
+                result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                expect(result).to.be.false;
+              });
+            });
+
+            context('with same jsons', () => {
+              it('returns true', () => {
+                jsonA = { var1: 'var-1', var2: 'var-2' };
+                jsonB = { var2: 'var-2', var1: 'var-1' };
+                jsonPaths = ['$.var3'];
+
+                result = DBUtils.compareJSON(jsonA, jsonB, jsonPaths);
+
+                expect(result).to.be.true;
+              });
+            });
+          });
+        });
+
+        context('when xpath does not exist', () => {
+          context('with different jsons', () => {
+            it('returns false', () => {
+              jsonA = { var1: 'var-1', var2: 'other' };
+              jsonB = { var2: 'var-2', var1: 'var-1' };
+
+              result = DBUtils.compareJSON(jsonA, jsonB);
+
+              expect(result).to.be.false;
+            });
+          });
+
+          context('with same jsons', () => {
+            it('returns true', () => {
+              jsonA = { var1: 'var-1', var2: 'var-2' };
+              jsonB = { var2: 'var-2', var1: 'var-1' };
+
+              result = DBUtils.compareJSON(jsonA, jsonB);
+
+              expect(result).to.be.true;
+            });
+          });
         });
       });
     });
