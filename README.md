@@ -142,18 +142,14 @@ Each scenario contains different properties like **_id**, **_headers**, **_cooki
 #### _[idsKeys]
 Identifiers of a path. For example, given a path ```/customers/{id}/data```, the scenario with an id should be structured like this:
 ```json
-  "/customers/{id}/data" : [
-    {
-
-      "_id": "chris"
-
-    },
-    {
-
-      "_id": "fran"
-
-    }
-  ]
+"/customers/{id}/data" : [
+  {
+    "_id": "chris"
+  },
+  {
+    "_id": "fran"
+  }
+]
 ```
 #### _headers
 
@@ -163,11 +159,11 @@ There are two different ways to validate the headers:
 It is an array of header keys. Basically, it will validate if the request contains the header in the array. If the request does not contain the header, the service will return a 401 response.
 
 ```json
-  "/customers/{id}/data" : [
-    {
-      "_headers": ["authorization", "client_Id"]
-    }
-  ]
+"/customers/{id}/data" : [
+  {
+    "_headers": ["authorization", "client_Id"]
+  }
+]
 ```
 
 Using _cli_ command:
@@ -178,11 +174,11 @@ It is an array of objects. The key is the header name and the value is the heade
 
 
 ```json
-  "/customers/{id}/data" : [
-    {
-      "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
-    }
-  ]
+"/customers/{id}/data" : [
+  {
+    "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
+  }
+]
 ```
 
 Using _cli_ command:
@@ -201,11 +197,11 @@ There are two different ways to validate the cookies:
 It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array. If the request does not contain the cookie,the service will return a 401 response.
 
 ```json
-  "/customers/{id}/data" : [
-    {
-      "_cookies": ["Universal", "sec"]
-    }
-  ]
+"/customers/{id}/data" : [
+  {
+    "_cookies": ["Universal", "sec"]
+  }
+]
 ```
 
 _cli_: ```hjs generate get customers/{id}/data --cookies Universal,sec```
@@ -214,11 +210,11 @@ _cli_: ```hjs generate get customers/{id}/data --cookies Universal,sec```
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
 ```json
-  "/customers/{id}/data" : [
-    {
-      "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
-    }
-  ]
+"/customers/{id}/data" : [
+  {
+    "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
+  }
+]
 ```
 
 _NOTE:_ If the scenario does not contain any cookies section, the service won't check anything.
@@ -227,7 +223,7 @@ _NOTE:_ If the scenario does not contain any cookies section, the service won't 
 Brief explanation about the scenario.
 
 ```json
-  "_description":"secure scenario given an authorization header"
+"_description":"secure scenario given an authorization header"
 ```
 
 _cli_: ```hjs generate get customers/{id}/data --description "Hello world"```
@@ -236,7 +232,7 @@ _cli_: ```hjs generate get customers/{id}/data --description "Hello world"```
 Just in case the request contain the cookie and headers, you can set your own status or leave it 200 as default.
 
 ```json
-  "_status":"500"
+"_status":"500"
 ```
 
 _cli_: ```hjs generate get customers/{id}/data --status 404```
@@ -245,10 +241,9 @@ _cli_: ```hjs generate get customers/{id}/data --status 404```
 This section contains the response for a given request.
 
 ```json
-  "_body": {
-    "dummyResponse": "anyValue"
-     
-  }
+"_body": {
+  "dummyResponse": "anyValue"
+}
 ```
 
 #### _requestBody
@@ -256,12 +251,22 @@ This section contains the response for a given request.
 Some methods like post, put or delete needs to verify the body response as well. **requestBody** is the request for a specific scenario.
 
 ```json
-  "_requestBody": {
-    "dummyRequestBody": "anyValue"
-     
-  }
+"_requestBody": {
+  "dummyRequestBody": "anyValue"   
+}
 ```
 _Note:_ If any field is missed, it means it is not required.
+
+#### _excludeBodyFields
+
+Whenever you need to exclude the comparation of some fields or objects from the __requestBody_. You can do it adding an array of json paths  (you can exlude multiple fields or objects)
+
+```json
+"_excludeBodyFields": [ "$.value1.value2[0]", "$.value3"]
+```
+_Note:_ If you have any doubt about how to do the path, you can have a look to [jsonPath libray](https://www.npmjs.com/package/jsonpath) which is used in the project.
+
+_Note:_ The library will not exclude any field or object if __excludeBodyFields_ is not added.
 
 ## Example
 
@@ -413,4 +418,5 @@ https://github.com/HecJimSan/stub-backend
 
 
 Please, I am up for feedback and new issues for the respository.
+
 Thank you

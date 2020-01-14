@@ -74,6 +74,23 @@ describe('POST - stub backend project', () => {
             });
       });
     });
+
+    context('when the scenario does not need to compare one field', () => {
+      it('response with the correct scenario', (done) => {
+        request(app)
+            .post('/customers/1234/session?scenario=aaa')
+            .set('Accept', 'application/json')
+            .send({ 'custom1': 'any data 2', 'custom2': { 'custom3': 'VALUE_TO_NOT_COMPARE' } })
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                'data': 'you got it:)'
+              });
+              done();
+            });
+      });
+    });
   });
 
   describe('with Authentication', () => {

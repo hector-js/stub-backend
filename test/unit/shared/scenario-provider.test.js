@@ -215,11 +215,44 @@ describe('scenario provider', () => {
     });
   });
 
-
   describe('#filterByRequest', () => {
     let scenarioProvider;
     beforeEach(() => {
       scenarioProvider = new ScenarioProvider(null, null);
+    });
+
+    context('when _excludeBody exists', ()=>{
+      it('should return the scenario with the request', () => {
+        const req = {
+          body: {
+            data1: 'other',
+            data2: 'data2',
+            data3: {
+              data4: 'other',
+              data5: 'data5'
+            }
+          }
+        };
+
+        const scenario = scenarioProvider.filterByRequest(req, dbPost);
+
+        expect(scenario).to.deep.equal( {
+          _id: 'juan',
+          _headers: [],
+          _requestBody: {
+            data1: null,
+            data2: 'data2',
+            data3: {
+              data4: null,
+              data5: 'data5'
+            }
+          },
+          _excludeBodyFields: ['$.data1', '$.data3.data4'],
+          _body: {
+            name: 'second'
+          }
+        });
+      });
     });
 
     it('should return the scenario with the same request', () => {
