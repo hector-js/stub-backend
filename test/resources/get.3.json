@@ -2,52 +2,91 @@
   "_get": {
     "/customers/{id}/person": [
       {
-        "_id": "1234",
-        "_cookies": [{"session":"4321"}],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Thor"
-        }
+        "_req": {
+          "_id": "1234",
+          "_cookies": [
+            {
+              "session": "4321"
+            }
+          ]
+        },
+        "_res": {
+          "_body": {
+            "name": "Thor"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "123",
-        "_cookies": ["session"],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Hector"
-        }
+        "_req": {
+          "_id": "123",
+          "_cookies": [
+            "session"
+          ]
+        },
+        "_res": {
+          "_body": {
+            "name": "Hector"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "123",
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Aquiles"
-        }
+        "_req": {
+          "_id": "123"
+        },
+        "_res": {
+          "_body": {
+            "name": "Aquiles"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ],
     "/customers/{id}/pet": [
       {
-        "_id": "1234",
-        "_headers": [{"authorization":"Beurer 1234"}, {"client_id": "1234"}],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "pet": "dog"
-        }
+        "_req": {
+          "_id": "1234",
+          "_headers": [
+            {
+              "authorization": "Beurer 1234"
+            },
+            {
+              "client_id": "1234"
+            }
+          ]
+        },
+        "_res": {
+          "_body": {
+            "pet": "dog"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "123",
-        "_headers": ["authorization"],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "pet": "cat"
-        }
+        "_req": {
+          "_id": "123",
+          "_headers": [
+            "authorization"
+          ]
+        },
+        "_res": {
+          "_body": {
+            "pet": "cat"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "123",
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "pet": "elephant"
-        }
+        "_req": {
+          "_id": "123"
+        },
+        "_res": {
+          "_body": {
+            "pet": "elephant"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ]
   }

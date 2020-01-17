@@ -2,103 +2,155 @@
   "_post": {
     "/story/nathan": [
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data1"
+        "_req": {
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data1"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_res": {
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data2"
+        "_req": {
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data2"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_res": {
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "name": "Nathan"
+        "_req": {
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "name": "Nathan"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "custom": "response"
-        }
+        "_res": {
+          "_body": {
+            "custom": "response"
+          }
+        },
+        "description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "name": "Mark"
+        "_req": {
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "name": "Mark"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "custom": "responseTwo"
-        }
+        "_res": {
+          "_body": {
+            "custom": "responseTwo"
+          }
+        },
+        "description": "Nathan customers data"
       }
     ],
-    "/stories/Nathan/authentication":[
+    "/stories/Nathan/authentication": [
       {
-        "_headers": ["Authorization", "client-ID"],
-        "_requestBody": { "name": "hectorjs" },
-        "_body": {
-          "response": "any"
+        "_req": {
+          "_headers": [
+            "Authorization",
+            "client-ID"
+          ],
+          "_body": {
+            "name": "hectorjs"
+          }
+        },
+        "_res": {
+          "_body": {
+            "response": "any"
+          }
         }
       },
       {
-        "_headers": [],
-        "_body": {
-          "data": "other"
+        "_req": {
+          "_headers": []
+        },
+        "_res": {
+          "_body": {
+            "data": "other"
+          }
         }
       }
     ],
     "/customers/{id}/session?scenario={param}": [
       {
-        "_id": "1234",
-        "_param": "aaa",
-        "_headers": [],
-        "_requestBody": {
-          "custom": "any data"
+        "_req": {
+          "_id": "1234",
+          "_param": "aaa",
+          "_headers": [],
+          "_body": {
+            "custom": "any data"
+          }
         },
-        "_body": {
-          "response": "any"
+        "_res": {
+          "_body": {
+            "response": "any"
+          }
         }
       },
       {
-        "_id": "1234",
-        "_param": "aaa",
-        "_headers": [],
-        "_body": {
-          "data": "response without request checked"
+        "_req": {
+          "_id": "1234",
+          "_param": "aaa",
+          "_headers": []
+        },
+        "_res": {
+          "_body": {
+            "data": "response without request checked"
+          }
         }
       },
       {
-        "_id": "123",
-        "_param": "BBB",
-        "_headers": [],
-        "_body": {
-          "data": "response without request checked"
+        "_req": {
+          "_id": "123",
+          "_param": "BBB",
+          "_headers": []
+        },
+        "_res": {
+          "_body": {
+            "data": "response without request checked"
+          }
         }
       },
       {
-        "_id": "1234",
-        "_param": "aaa",
-        "_requestBody":{ "custom1": "any data 2", "custom2": { "custom3": "VALUE_TO_NOT_COMPARE" } },
-        "_excludeBodyFields": ["$.custom2.custom3"],
-        "_body": {
-          "data": "you got it:)"
+        "_req": {
+          "_id": "1234",
+          "_param": "aaa",
+          "_body": {
+            "custom1": "any data 2",
+            "custom2": {
+              "custom3": "VALUE_TO_NOT_COMPARE"
+            }
+          },
+          "_excludeBodyFields": [
+            "$.custom2.custom3"
+          ]
+        },
+        "_res": {
+          "_body": {
+            "data": "you got it:)"
+          }
         }
       },
       {}
-      ]
-    }
+    ]
   }
+}

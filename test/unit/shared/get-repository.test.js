@@ -16,12 +16,16 @@ describe('get repository', () => {
     const body = GetRespository.findData(req);
 
     expect(body).to.deep.equal({
-      _id: 'Nathan',
-      _headers: [],
-      _description: 'ANY DESCRIPTION',
-      _body: {
-        name: 'Nathan'
-      }
+      _req: {
+        _id: 'Nathan',
+        _headers: []
+      },
+      _res: {
+        _body: {
+          name: 'Nathan'
+        }
+      },
+      _description: 'ANY DESCRIPTION'
     });
   });
 

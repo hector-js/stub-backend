@@ -2,71 +2,95 @@
   "_put": {
     "/story/nathan": [
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data1"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data1"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data2"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data2"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "name": "Nathan"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "name": "Nathan"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "custom": "response"
-        }
+        "_res":{
+          "_body": {
+            "custom": "response"
+          }
+        },
+        "_description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "name": "Mark"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "name": "Mark"
+          }
         },
-        "description": "Nathan customers data",
-        "_body": {
-          "custom": "responseTwo"
-        }
+        "_res":{
+          "_body": {
+            "custom": "responseTwo"
+          }
+        },
+        "_description": "Nathan customers data"
       }
     ],
     "/customers/{id}/session?scenario={param}": [
       {
-        "_id": "1234",
-        "_param": "aaa",
-        "_headers": [],
-        "_requestBody": {
-          "custom": "any data"
+        "_req":{
+          "_id": "1234",
+          "_param": "aaa",
+          "_headers": [],
+          "_body": {
+            "custom": "any data"
+          }
         },
-        "_body": {
-          "response": "any"
+        "_res":{
+          "_body": {
+            "response": "any"
+          }
         }
       },
       {
-        "_id": "123",
-        "_param": "BBB",
-        "_headers": [],
-        "_requestBody": {
-          "custom2": "any data"
+        "_req":{
+          "_id": "123",
+          "_param": "BBB",
+          "_headers": [],
+          "_body": {
+            "custom2": "any data"
+          }
         },
-        "_body": {
-          "response": "bbb"
+        "_res":{
+          "_body": {
+            "response": "bbb"
+          }
         }
       },
       {}

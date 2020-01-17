@@ -2,50 +2,85 @@
   "_head": {
     "/stories/{id}/person": [
       {
-        "_id": "Nathan",
-        "_headers": [],
+        "_req":{
+          "_id": "Nathan",
+          "_headers": []
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "mark",
-        "_headers": [],
+        "_req":{
+          "_id": "mark",
+          "_headers": []
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories/people": [
       {
-        "_headers": [],
+        "_req":{
+          "_headers": []
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories/budgets": [
       {
-        "_id": "",
-        "_headers": [],
+        "_req":{
+          "_id": "",
+          "_headers": []
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories": [
       {
-        "_id": "",
-        "_headers": [],
+        "_req":{
+          "_id": "",
+          "_headers": []
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories/{id}/budget": [
       {
-        "_id": "Nathan",
-        "_headers": [
-          "authorization"
-        ],
+        "_req":{
+          "_id": "Nathan",
+          "_headers": [
+            "authorization"
+          ]
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "Smith",
-        "_headers": [
-          "authorization",
-          "id"
-        ],
+        "_req":{
+          "_id": "Smith",
+          "_headers": [
+            "authorization",
+            "id"
+          ]
+        },
+        "_res":{
+
+        },
         "_description": "ANY DESCRIPTION"
       }
     ]
