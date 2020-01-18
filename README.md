@@ -144,6 +144,8 @@ An array of possible responses based on different identifiers.
 
 Each scenario has two mandatory sections **_req** (request) and **_res** (response) where we will place the properties related to the request and response.
 
+Both level are **mandatory** in each scenario.
+
 ### _req
 
 This section deals with the request and it is checking if the request is matching with the scenario.

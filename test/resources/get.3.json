@@ -88,6 +88,49 @@
         },
         "_description": "ANY DESCRIPTION"
       }
+    ],
+    "/no/{id}/req": [
+      {
+        "_res": {
+          "_body": {
+            "try": "one"
+          }
+        }
+      },
+      {
+        "_req": {
+          "_id": "lucas"
+        },
+        "_res": {
+          "_body": {
+            "try": "two"
+          }
+        }
+      },
+      {
+        "_req": {
+          "_id": "carl"
+        }
+      }
+    ],
+    "/no/req/and/id": [
+      {
+        "_res": {
+          "_body": {
+            "try": "one"
+          }
+        }
+      }
+    ],
+    "/no/req/and/id/good": [
+      {
+        "_req":{},
+        "_res": {
+          "_body": {
+            "try": "one"
+          }
+        }
+      }
     ]
   }
 }

@@ -25,6 +25,7 @@ describe('GET - stub backend project', () => {
       request(app)
           .get('/stories/mark/person')
           .end((err, res) => {
+            expect(err).to.not.exist;
             expect(res.status).to.equal(200);
             expect(res.body).to.deep.equal({
               'name': 'Mark'
@@ -58,6 +59,82 @@ describe('GET - stub backend project', () => {
             });
             done();
           });
+    });
+
+    context('when resource does not have any req for an enpoint', () => {
+      it('should return the scenario with the body', (done) => {
+        request(app)
+            .get('/no/mark/req')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(404);
+              expect(res.body).to.deep.equal({
+                errorCode: 404,
+                message: 'Scenario not found in the resources! :('
+              });
+              done();
+            });
+      });
+
+      it('should return the scenario when id exists', (done) => {
+        request(app)
+            .get('/no/lucas/req')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                try: 'two'
+              });
+              done();
+            });
+      });
+    });
+
+    context('when res is not set', () => {
+      it('should returns scenario not found', (done) => {
+        request(app)
+            .get('/no/carl/req')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(500);
+              expect(res.body).to.deep.equal({
+                errorCode: 500,
+                message: '_res is missed in some scenario :('
+              });
+              done();
+            });
+      });
+    });
+
+    context('when req is not set and req does not exist', () => {
+      it('should throw an error', (done) => {
+        request(app)
+            .get('/no/req/and/id')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(500);
+              expect(res.body).to.deep.equal({
+                errorCode: 500,
+                message: '_req is missed in some scenario :('
+              });
+              done();
+            });
+      });
+    });
+
+    context('when req is not set and req exists', () => {
+      it('should throw an error', (done) => {
+        request(app)
+            .get('/no/req/and/id/good')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                try: 'one'
+              });
+              done();
+            });
+      });
     });
 
     describe('get all resources', () => {
