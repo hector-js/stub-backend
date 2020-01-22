@@ -1,6 +1,5 @@
 {
   "_get": {
-
     "/stories/{id}/confidential": [
       {
         "_req":{
