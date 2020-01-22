@@ -8,91 +8,187 @@ const expect = chai.expect;
 
 describe('GET - stub backend project', () => {
   describe('without Authentication', () => {
-    it('returns a valid reponse for Nathan id', (done) => {
-      request(app)
-          .get('/stories/nathan/person')
-          .end((err, res) => {
-            expect(err).to.not.exist;
-            expect(res.status).to.equal(200);
-            expect(res.body).to.deep.equal({
-              'name': 'Nathan'
-            });
-            done();
-          });
+    describe('valid scenarios', () => {
+      describe('id', () => {
+        it('returns a valid reponse for Nathan id', (done) => {
+          request(app)
+              .get('/stories/nathan/person')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  'name': 'Nathan'
+                });
+                done();
+              });
+        });
+
+        it('returns a valid reponse for Mark id', (done) => {
+          request(app)
+              .get('/stories/mark/person')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  'name': 'Mark'
+                });
+                done();
+              });
+        });
+      });
     });
 
-    it('returns a valid reponse for Mark id', (done) => {
-      request(app)
-          .get('/stories/mark/person')
-          .end((err, res) => {
-            expect(res.status).to.equal(200);
-            expect(res.body).to.deep.equal({
-              'name': 'Mark'
+    describe('negative scenarios', () => {
+      it('returns 404 when is not finding the scenario', (done) => {
+        request(app)
+            .get('/stories/nathan/age')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(404);
+              expect(res.body).to.deep.equal({
+                errorCode: 404,
+                message: 'Scenario not found in the resources! :('
+              });
+              done();
             });
-            done();
-          });
+      });
+
+      it('returns 404 when it exists an status in the json file', (done) => {
+        request(app)
+            .get('/stories/smith/confidential')
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(404);
+              expect(res.body).to.deep.equal({
+                messageError: 'request not found'
+              });
+              done();
+            });
+      });
+
+      context('when resource does not have any req for an enpoint', () => {
+        it('should return the scenario with the body', (done) => {
+          request(app)
+              .get('/no/mark/req')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(404);
+                expect(res.body).to.deep.equal({
+                  errorCode: 404,
+                  message: 'Scenario not found in the resources! :('
+                });
+                done();
+              });
+        });
+
+        it('should return the scenario when id exists', (done) => {
+          request(app)
+              .get('/no/lucas/req')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  try: 'two'
+                });
+                done();
+              });
+        });
+      });
+
+      context('when res is not set', () => {
+        it('should returns scenario not found', (done) => {
+          request(app)
+              .get('/no/carl/req')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(500);
+                expect(res.body).to.deep.equal({
+                  errorCode: 500,
+                  message: '_res is missed in some scenario :('
+                });
+                done();
+              });
+        });
+      });
+
+      context('when req is not set and req does not exist', () => {
+        it('should throw an error', (done) => {
+          request(app)
+              .get('/no/req/and/id')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(500);
+                expect(res.body).to.deep.equal({
+                  errorCode: 500,
+                  message: '_req is missed in some scenario :('
+                });
+                done();
+              });
+        });
+      });
+
+      context('when req is not set and req exists', () => {
+        it('should throw an error', (done) => {
+          request(app)
+              .get('/no/req/and/id/good')
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  try: 'one'
+                });
+                done();
+              });
+        });
+      });
     });
 
-    it('returns 404 when is not finding the scenario', (done) => {
-      request(app)
-          .get('/stories/nathan/age')
-          .end((err, res) => {
-            expect(err).to.not.exist;
-            expect(res.status).to.equal(404);
-            expect(res.body).to.deep.equal({
-              errorCode: 404,
-              message: 'Scenario not found in the resources! :('
-            });
-            done();
-          });
-    });
-
-    it('returns 404 when it exists an status in the json file', (done) => {
-      request(app)
-          .get('/stories/smith/confidential')
-          .end((err, res) => {
-            expect(err).to.not.exist;
-            expect(res.status).to.equal(404);
-            expect(res.body).to.deep.equal({
-              messageError: 'request not found'
-            });
-            done();
-          });
-    });
 
     describe('get all resources', () => {
       it('returns a response when there is no id', (done) => {
-        const response = { 'people': [{ 'name': 'Nathan' }, { 'name': 'Mark' }] };
         request(app)
             .get('/stories/people')
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
-              expect(res.body).to.deep.equal(response);
+              expect(res.body).to.deep.equal({
+                people: [
+                  { name: 'Nathan' },
+                  { name: 'Mark' }
+                ]
+              });
               done();
             });
       });
 
       it('returns a response when there is id empty', (done) => {
-        const bodyResp = { 'people': [{ 'budget': '1000' }, { 'budget': '5000' }] };
         request(app)
             .get('/stories/budgets')
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
-              expect(res.body).to.deep.equal(bodyResp);
+              expect(res.body).to.deep.equal({
+                people: [
+                  { budget: '1000' },
+                  { budget: '5000' }
+                ]
+              });
               done();
             });
       });
 
       it('returns a response when the path contains just one word', (done) => {
-        const bodyResp = { 'people': [{ 'budget': '15000' }, { 'budget': '5000' }] };
         request(app)
             .get('/stories')
             .end((err, res) => {
               expect(err).to.not.exist;
               expect(res.status).to.equal(200);
-              expect(res.body).to.deep.equal(bodyResp);
+              expect(res.body).to.deep.equal({
+                people: [
+                  { budget: '15000' },
+                  { budget: '5000' }
+                ]
+              });
               done();
             });
       });
@@ -199,7 +295,7 @@ describe('GET - stub backend project', () => {
       });
     });
 
-    describe('cookies&headers', () => {
+    describe('cookies and headers', () => {
       context('when a cookie and header are not presented', () => {
         it('should return 401', (done) => {
           request(app)

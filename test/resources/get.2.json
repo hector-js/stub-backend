@@ -2,93 +2,121 @@
   "_get": {
     "/stories/{id}/person": [
       {
-        "_id": "Nathan",
-        "_headers": [],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_req":{
+          "_id": "Nathan",
+          "_headers": []
+        },
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "mark",
-        "_headers": [],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Mark"
-        }
+        "_req":{
+          "_id": "mark",
+          "_headers": []
+        },
+        "_res":{
+          "_body": {
+            "name": "Mark"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories/people": [
       {
-        "_headers": [],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "people": [
-            {
-              "name": "Nathan"
-            },
-            {
-              "name": "Mark"
-            }
-          ]
-        }
+        "_req":{
+          "_headers": []
+        },
+        "_res":{
+          "_body": {
+            "people": [
+              {
+                "name": "Nathan"
+              },
+              {
+                "name": "Mark"
+              }
+            ]
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories/budgets": [
       {
-        "_id": "",
-        "_headers": [],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "people": [
-            {
-              "budget": "1000"
-            },
-            {
-              "budget": "5000"
-            }
-          ]
-        }
+        "_req":{
+          "_id": "",
+          "_headers": []
+        },
+        "_res":{
+          "_body": {
+            "people": [
+              {
+                "budget": "1000"
+              },
+              {
+                "budget": "5000"
+              }
+            ]
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories": [
       {
-        "_id": "",
-        "_headers": [],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "people": [
-            {
-              "budget": "15000"
-            },
-            {
-              "budget": "5000"
-            }
-          ]
-        }
+        "_req":{
+          "_id": "",
+          "_headers": []
+        },
+        "_res":{
+          "_body": {
+            "people": [
+              {
+                "budget": "15000"
+              },
+              {
+                "budget": "5000"
+              }
+            ]
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ],
     "/stories/{id}/budget": [
       {
-        "_id": "Nathan",
-        "_headers": [
-          "authorization"
-        ],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_req":{
+          "_id": "Nathan",
+          "_headers": [
+            "authorization"
+          ]
+        },
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "Smith",
-        "_headers": [
-          "authorization",
-          "id"
-        ],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_req":{
+          "_id": "Smith",
+          "_headers": [
+            "authorization",
+            "id"
+          ]
+        },
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ]
   }

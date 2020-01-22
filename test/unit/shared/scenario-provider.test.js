@@ -86,10 +86,14 @@ describe('scenario provider', () => {
           const scenario = contextMatcher.getScenario(endpoint);
 
           expect(scenario).to.deep.equal({
-            _id: 'mark',
-            _headers: [],
-            _body: {
-              name: 'Mark'
+            _req: {
+              _id: 'mark',
+              _headers: []
+            },
+            _res: {
+              _body: {
+                name: 'Mark'
+              }
             }
           });
         });
@@ -134,12 +138,16 @@ describe('scenario provider', () => {
           const scenario = contextMatcher.getScenario(endpoint);
 
           expect(scenario).to.deep.equal({
-            _headers: [],
-            _id: 'valueOne',
-            _d1: 'valueTwo',
-            _d2: 'valueThree',
-            _body: {
-              name: 'Nathan'
+            _req: {
+              _headers: [],
+              _id: 'valueOne',
+              _d1: 'valueTwo',
+              _d2: 'valueThree'
+            },
+            _res: {
+              _body: {
+                name: 'Nathan'
+              }
             }
           });
         });
@@ -154,9 +162,13 @@ describe('scenario provider', () => {
           const scenario = contextMatcher.getScenario(endpoint);
 
           expect(scenario).to.deep.equal({
-            _headers: [],
-            _body: {
-              name: 'Nathan'
+            _req: {
+              _headers: []
+            },
+            _res: {
+              _body: {
+                name: 'Nathan'
+              }
             }
           });
         });
@@ -188,10 +200,14 @@ describe('scenario provider', () => {
           const scenario = contextMatcher.getScenario(endpoint);
 
           expect(scenario).to.deep.equal({
-            _id: 'juan',
-            _headers: [],
-            _xml: true,
-            _body: '<xml><title><name>Whatever</name></title></xml>'
+            _req: {
+              _id: 'juan',
+              _headers: []
+            },
+            _res: {
+              _xml: true,
+              _body: '<xml><title><name>Whatever</name></title></xml>'
+            }
           });
         });
       });
@@ -205,10 +221,14 @@ describe('scenario provider', () => {
           const scenario = contextMatcher.getScenario(endpoint);
 
           expect(scenario).to.deep.equal({
-            _id: 'pedro',
-            _headers: [],
-            _xml: true,
-            _body: '<xml><title><name>pedro</name></title></xml>'
+            _req: {
+              _id: 'pedro',
+              _headers: []
+            },
+            _res: {
+              _xml: true,
+              _body: '<xml><title><name>pedro</name></title></xml>'
+            }
           });
         });
       });
@@ -221,7 +241,7 @@ describe('scenario provider', () => {
       scenarioProvider = new ScenarioProvider(null, null);
     });
 
-    context('when _excludeBody exists', ()=>{
+    context('when _excludeBody exists', () => {
       it('should return the scenario with the request', () => {
         const req = {
           body: {
@@ -236,20 +256,24 @@ describe('scenario provider', () => {
 
         const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
-        expect(scenario).to.deep.equal( {
-          _id: 'juan',
-          _headers: [],
-          _requestBody: {
-            data1: null,
-            data2: 'data2',
-            data3: {
-              data4: null,
-              data5: 'data5'
-            }
+        expect(scenario).to.deep.equal({
+          _req: {
+            _id: 'juan',
+            _headers: [],
+            _body: {
+              data1: null,
+              data2: 'data2',
+              data3: {
+                data4: null,
+                data5: 'data5'
+              }
+            },
+            _excludeBodyFields: ['$.data1', '$.data3.data4']
           },
-          _excludeBodyFields: ['$.data1', '$.data3.data4'],
-          _body: {
-            name: 'second'
+          _res: {
+            _body: {
+              name: 'second'
+            }
           }
         });
       });
@@ -265,13 +289,17 @@ describe('scenario provider', () => {
       const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
       expect(scenario).to.deep.equal({
-        _id: 'juan',
-        _headers: [],
-        _requestBody: {
-          data: 'data1'
+        _req: {
+          _id: 'juan',
+          _headers: [],
+          _body: {
+            data: 'data1'
+          }
         },
-        _body: {
-          name: 'Nathan'
+        _res: {
+          _body: {
+            name: 'Nathan'
+          }
         }
       });
     });
@@ -304,13 +332,17 @@ describe('scenario provider', () => {
 
       expect(Array.isArray(scenario)).to.be.false;
       expect(scenario).to.deep.equal({
-        _id: 'juan',
-        _headers: [],
-        _requestBody: {
-          data: 'data6'
+        _req: {
+          _id: 'juan',
+          _headers: [],
+          _body: {
+            data: 'data6'
+          }
         },
-        _body: {
-          name: 'first'
+        _res: {
+          _body: {
+            name: 'first'
+          }
         }
       });
     });
@@ -347,10 +379,14 @@ describe('scenario provider', () => {
           expect(scenarios).to.exist;
           expect(scenarios.length).to.equal(1);
           expect(scenarios[0]).to.deep.equal({
-            _id: 'mark',
-            _headers: [],
-            _body: {
-              name: 'Mark'
+            _req: {
+              _id: 'mark',
+              _headers: []
+            },
+            _res: {
+              _body: {
+                name: 'Mark'
+              }
             }
           });
         });
@@ -366,10 +402,14 @@ describe('scenario provider', () => {
             expect(scenarios).to.exist;
             expect(scenarios.length).to.equal(2);
             const expectScenario = {
-              _id: 'juan',
-              _headers: [],
-              _body: {
-                name: 'Nathan'
+              _req: {
+                _id: 'juan',
+                _headers: []
+              },
+              _res: {
+                _body: {
+                  name: 'Nathan'
+                }
               }
             };
             expect(scenarios[0]).to.deep.equal(expectScenario);
@@ -405,12 +445,16 @@ describe('scenario provider', () => {
             expect(scenarios).to.exist;
             expect(scenarios.length).to.equal(1);
             expect(scenarios[0]).to.deep.equal({
-              _headers: [],
-              _id: 'valueOne',
-              _d1: 'valueTwo',
-              _d2: 'valueThree',
-              _body: {
-                name: 'Nathan'
+              _req: {
+                _headers: [],
+                _id: 'valueOne',
+                _d1: 'valueTwo',
+                _d2: 'valueThree'
+              },
+              _res: {
+                _body: {
+                  name: 'Nathan'
+                }
               }
             });
           });
@@ -426,9 +470,13 @@ describe('scenario provider', () => {
           const scenario = contextMatcher.getScenario(endpoint);
 
           expect(scenario).to.deep.equal({
-            _headers: [],
-            _body: {
-              name: 'Nathan'
+            _req: {
+              _headers: []
+            },
+            _res: {
+              _body: {
+                name: 'Nathan'
+              }
             }
           });
         });
@@ -462,16 +510,24 @@ describe('scenario provider', () => {
           expect(scenarios).to.exist;
           expect(scenarios.length).to.equal(2);
           expect(scenarios[0]).to.deep.equal({
-            _id: 'lucas',
-            _headers: [],
-            _xml: true,
-            _body: '<xml><title><name>Lucas1</name></title></xml>'
+            _req: {
+              _id: 'lucas',
+              _headers: []
+            },
+            _res: {
+              _xml: true,
+              _body: '<xml><title><name>Lucas1</name></title></xml>'
+            }
           });
           expect(scenarios[1]).to.deep.equal({
-            _id: 'lucas',
-            _headers: [],
-            _xml: true,
-            _body: '<xml><title><name>Lucas3</name></title></xml>'
+            _req: {
+              _id: 'lucas',
+              _headers: []
+            },
+            _res: {
+              _body: '<xml><title><name>Lucas3</name></title></xml>',
+              _xml: true
+            }
           });
         });
       });

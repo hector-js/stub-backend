@@ -73,7 +73,7 @@ _Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --vers
 
 **hjs** command can avoid the following steps because the _cli_ generates all the folders, methods and endpoints for you. Just the data as identifiers, headers, cookies or bodies must be added manually.
 
-### Structure
+# Structure
 
 ## Folder data
 
@@ -91,7 +91,7 @@ Create a folder named _resources_ in packange directory and add a couple of json
 ```
 Each json file must follow the following format:
 
-### Method level 
+## Method level 
 The first key means the method and it must have a "_" as a prefix. For example:
 
 ```json
@@ -104,7 +104,7 @@ The first key means the method and it must have a "_" as a prefix. For example:
 ```
 _Methods:_ _get, _head, _post, _put, _delete, _options, _trace, _patch
 
-### Path level
+## Path level
 
 The next level means the endpoint. The path is written like theses examples:
 
@@ -133,21 +133,59 @@ The next level means the endpoint. The path is written like theses examples:
     ```
 _NOTE_: id, param1 or param2 can be named as you want.
 
-### Array of scenarios
+## Array of scenarios
+
+Index:
+ - [_req](#_req)
+ - [_res](#_res)
+
 
 An array of possible responses based on different identifiers.
 
-Each scenario contains different properties like **_id**, **_headers**, **_cookies** or **_description** among others.
+Each scenario has two mandatory sections **_req** (request) and **_res** (response) where we will place the properties related to the request and response.
 
-#### _[idsKeys]
-Identifiers of a path. For example, given a path ```/customers/{id}/data```, the scenario with an id should be structured like this:
+Both level are **mandatory** in each scenario.
+
+### _req
+
+This section deals with the request and it is checking if the request is matching with the scenario.
+
 ```json
-"/customers/{id}/data" : [
+"/customers/{id1}/data/{id2}" : [
   {
-    "_id": "chris"
+    "_req":{
+    }
   },
   {
-    "_id": "fran"
+    "_req":{
+    }
+  }
+]
+```
+
+You can have the following properties:
+ - [_[id]](#_[id])
+ - [_headers](#_headers)
+ - [_cookies](#_cookies)
+ - [_body](#_body)
+ - [_excludeBodyFields](#_excludeBodyFields)
+
+#### _[id]
+
+Identifiers of a path. For example, given a path ```/customers/{id}/data```, the scenario with an id should be structured like this:
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_req":{
+      "_id1": "chris",
+      "_id2": "1"
+    }
+  },
+  {
+    "_req":{
+      "_id1": "fran",
+      "_id2": "2"
+    }
   }
 ]
 ```
@@ -156,12 +194,15 @@ Identifiers of a path. For example, given a path ```/customers/{id}/data```, the
 There are two different ways to validate the headers:
 
 ##### Validate by key
+
 It is an array of header keys. Basically, it will validate if the request contains the header in the array. If the request does not contain the header, the service will return a 401 response.
 
 ```json
 "/customers/{id}/data" : [
   {
-    "_headers": ["authorization", "client_Id"]
+    "_req":{
+      "_headers": ["authorization", "client_Id"]
+    }
   }
 ]
 ```
@@ -170,13 +211,16 @@ Using _cli_ command:
 ```hjs generate get customers/{id}/data --headers authorization,client_Id```
 
 ##### Validate by key and value
+
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
 
 ```json
 "/customers/{id}/data" : [
   {
-    "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
+    "_req":{
+      "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
+    }
   }
 ]
 ```
@@ -194,72 +238,64 @@ Capital letters are not allow in headers section.
 There are two different ways to validate the cookies:
 
 ##### Validate by key
+
 It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array. If the request does not contain the cookie,the service will return a 401 response.
 
 ```json
 "/customers/{id}/data" : [
   {
-    "_cookies": ["Universal", "sec"]
+    "_req":{
+      "_cookies": ["Universal", "sec"]
+    }
   }
 ]
 ```
 
 _cli_: ```hjs generate get customers/{id}/data --cookies Universal,sec```
 
-##### Validate by key and value 
+##### Validate by key and value
+
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
 ```json
 "/customers/{id}/data" : [
   {
-    "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
+    "_req": {
+      "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
+    }
   }
 ]
 ```
 
 _NOTE:_ If the scenario does not contain any cookies section, the service won't check anything.
 
-#### _description
-Brief explanation about the scenario.
-
-```json
-"_description":"secure scenario given an authorization header"
-```
-
-_cli_: ```hjs generate get customers/{id}/data --description "Hello world"```
-
-#### _status
-Just in case the request contain the cookie and headers, you can set your own status or leave it 200 as default.
-
-```json
-"_status":"500"
-```
-
-_cli_: ```hjs generate get customers/{id}/data --status 404```
-
 #### _body
-This section contains the response for a given request.
-
-```json
-"_body": {
-  "dummyResponse": "anyValue"
-}
-```
-
-#### _requestBody
 
 Some methods like post, put or delete needs to verify the body response as well. **requestBody** is the request for a specific scenario.
 
 ```json
-"_requestBody": {
-  "dummyRequestBody": "anyValue"   
-}
+"/customers/{id}/data" : [
+  {
+    "_req": {
+      "_body": {
+        "dummyRequestBody1": "anyValue"   
+      }
+    },
+    "_res":{
+      "_body": {
+        "dummyRequestBody2": "anyValue"   
+      }
+    },
+    "_description":"secure scenario given an authorization header"
+  }
+]
 ```
+
 _Note:_ If any field is missed, it means it is not required.
 
 #### _excludeBodyFields
 
-Whenever you need to exclude the comparation of some fields or objects from the __requestBody_. You can do it adding an array of json paths  (you can exlude multiple fields or objects)
+Whenever you need to exclude the comparation of some fields or objects from the __body_. You can do it adding an array of json paths  (you can exlude multiple fields or objects)
 
 ```json
 "_excludeBodyFields": [ "$.value1.value2[0]", "$.value3"]
@@ -268,7 +304,92 @@ _Note:_ If you have any doubt about how to do the path, you can have a look to [
 
 _Note:_ The library will not exclude any field or object if __excludeBodyFields_ is not added.
 
-## Example
+### _res
+
+This section create a response when an scenario is matched.
+
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+    }
+  },
+  {
+    "_res":{
+    }
+  }
+]
+```
+
+You can have the following properties:
+ - [_status](#_status)
+ - [_body](#_body)
+
+#### _status
+
+Just in case the request contain the cookie and headers, you can set your own status or leave it 200 as default.
+
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_status":"400"
+    }
+  },
+  {
+    "_res":{
+      "_status":"500"
+    }
+  }
+]
+```
+
+_cli_: ```hjs generate get customers/{id}/data --status 404```
+
+#### _body
+
+This section contains the response for a given request.
+
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_body": {
+        "dummyResponse1": "anyValue"
+      }
+    }
+  },
+  {
+    "_res":{
+      "_body": {
+        "dummyResponse2": "anyValue"
+      }
+    }
+  }
+]
+```
+
+### _description
+
+Brief explanation about the scenario.
+
+```json
+"/customers/{id}/data" : [
+  {
+    "_req": {
+      
+    },
+    "_res":{
+
+    },
+    "_description":"secure scenario given an authorization header"
+  }
+]
+```
+
+_cli_: ```hjs generate get customers/{id}/data --description "Hello world"```
+
+# Example
 
 Below, we have a example:
 
@@ -277,49 +398,65 @@ Below, we have a example:
   "_get": {
     "/stories/{id}/person$": [
       {
-        "_id": "Nathan",
-        "_headers": [],
-        "_description": "Get person details related to  Nathan without authentication",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_req":{
+          "_id": "Nathan",
+          "_headers": []
+        },
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "Get person details related to  Nathan without authentication"
       },
       {
-        "_id": "Lucas",
-        "_headers": [],
-        "_status": 304,
-        "_description": "There won't be any response    because the status is 304",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_req":{
+          "_id": "Lucas",
+          "_headers": []
+        },
+        "_res":{
+          "_status": 304,
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "There won't be any response    because the status is 304"
       },
       {
-        "_id": "mark",
-        "_headers": ["authorization"],
-        "_cookies": [],
-        "_description": "Get person details related to Mark     with authentication",
-        "_body": {
-          "name": "Mark"
-        }
+        "_req":{
+          "_id": "mark",
+          "_headers": ["authorization"],
+          "_cookies": []
+        },
+        "_res":{
+          "_body": {
+            "name": "Mark"
+          }
+        },
+        "_description": "Get person details related to Mark     with authentication"
       }
-    ],
+    ]
   },
   "_post" :{
       "/stories/{id}/budget": [
         {
-          "_id": "Nathan",
-          "_headers": ["Client_id"],
-          "_cookies": [
-            "session-id",
-            "key-id"
-          ],
-          "_description": "Get budget details related to  Nathan with authentication",
-          "_requestBody": {
-            "anyData": "anyData"
+          "_req":{
+            "_id": "Nathan",
+            "_headers": ["Client_id"],
+            "_cookies": [
+              "session-id",
+              "key-id"
+            ],
+            "_body": {
+              "anyData": "anyData"
+            },
           },
-          "_body": {
-            "name": "Nathan"
-          }
+          "_res":{
+            "_body": {
+              "name": "Nathan"
+            }
+          },
+          "_description": "Get budget details related to  Nathan with authentication"
         }
       ]
   }
@@ -353,33 +490,38 @@ The response will be like this:
 }
 ```
 
-## Advance options
+# Advance options
 
-### Xml
+## Xml
 
 This section is in progress. At this moment, the user can response a xml setting the **_xml** flag to true like the following scenario:
 
 ```json
 {
  "_post" :{
-      "/stories/{id}/budget": [
-        {
+    "/stories/{id}/budget": [
+      {
+        "_req":{
           "_id": "Nathan",
-          "_requestBody": "<xml><book><title>The lyon king</title></book></xml>",
+          "_body": "<xml><book><title>The lyon king</title></book></xml>",
+        },
+        "_res":{
           "_xml": true,
           "_body": "<xml><book><title>Flash</title></book></xml>"
         }
-      ]
+      }
+    ]
   }
 }
 ```
 
-### Config file
+## Config file
+
 You can add your config file in the root of the mock service or in the root of the project. The name of the file must be _.hjs.config.json_
 
 At this moment, the developer can use the following options:
 
-#### corsOptions
+### corsOptions
 
 You can add _corsOptions_ as the [cors library](https://www.npmjs.com/package/cors#configuring-cors) is doing. For example:
 
@@ -392,7 +534,7 @@ You can add _corsOptions_ as the [cors library](https://www.npmjs.com/package/co
 }
 ```
 
-#### logs
+### logs
 
 You can include the level of logs fot the mock using [morgan options](https://www.npmjs.com/package/morgan). For example: 
 

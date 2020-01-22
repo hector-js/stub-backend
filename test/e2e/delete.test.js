@@ -24,6 +24,7 @@ describe('DELETE - stub backend project', () => {
             });
       });
     });
+
     context('when the url contain an id and param', ()=>{
       it('returns a valid reponse', (done) => {
         request(app)
@@ -39,6 +40,7 @@ describe('DELETE - stub backend project', () => {
               done();
             });
       });
+
       it('returns a not found response when param does not exist', (done) => {
         request(app)
             .delete('/customers/1234/session?scenario=aa')
@@ -51,6 +53,21 @@ describe('DELETE - stub backend project', () => {
                 errorCode: 404,
                 message: 'Scenario not found in the resources! :('
               });
+              done();
+            });
+      });
+    });
+
+    context('when the _body of "_res" is empty', ()=>{
+      it('should return empty', (done)=>{
+        request(app)
+            .delete('/res/body/empty')
+            .set('Accept', 'application/json')
+            .send({ 'custom': 'any data' })
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.be.empty;
               done();
             });
       });

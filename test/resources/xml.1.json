@@ -2,46 +2,64 @@
   "_get": {
     "/xml": [
       {
-        "_headers": [],
-        "_requestBody": "<xml><data>Data</data></xml>",
-        "_xml": true,
-        "description": "Nathan customers data",
-        "_body": "<xml><book><title>The Lion King</title></book></xml>"
+        "_req": {
+          "_headers": [],
+          "_body": "<xml><data>Data</data></xml>",
+          "_xml": true
+        },
+        "_res": {
+          "_xml": true,
+          "_body": "<xml><book><title>The Lion King</title></book></xml>"
+        },
+        "_description": "Nathan customers data"
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data2"
+        "_req": {
+          "_id": "juan",
+          "_headers": [],
+          "_xml": false,
+          "_body": {
+            "data": "data2"
+          }
         },
-        "_xml": false,
-        "description": "Nathan customers data",
-        "_body": {
-          "name": "Nathan"
-        }
+        "_res": {
+          "_xml": false,
+          "_body": {
+            "name": "Nathan"
+          }
+        },
+        "_description": "Nathan customers data"
       }
     ],
     "/xml2": [
       {
-        "_id": "1234",
-        "_param": "aaa",
-        "_headers": [],
-        "_requestBody": {
-          "custom": "any data"
+        "_req": {
+          "_id": "1234",
+          "_param": "aaa",
+          "_headers": [],
+          "_body": {
+            "custom": "any data"
+          }
         },
-        "_body": {
-          "response": "any"
+        "_res": {
+          "_body": {
+            "response": "any"
+          }
         }
       },
       {
-        "_id": "123",
-        "_param": "BBB",
-        "_headers": [],
-        "_requestBody": {
-          "custom2": "any data"
+        "_req": {
+          "_param": "BBB",
+          "_id": "123",
+          "_headers": [],
+          "_body": {
+            "custom2": "any data"
+          }
         },
-        "_body": {
-          "response": "bbb"
+        "_res": {
+          "_body": {
+            "response": "bbb"
+          }
         }
       }
     ]
@@ -49,19 +67,27 @@
   "_delete": {
     "/xml": [
       {
-        "_headers": [],
-        "_requestBody": "<xml><data>Data</data></xml>",
-        "_xml": true,
-        "_body": "<xml><book><title>data1</title></book></xml>"
+        "_req": {
+          "_headers": [],
+          "_body": "<xml><data>Data</data></xml>"
+        },
+        "_res": {
+          "_body": "<xml><book><title>data1</title></book></xml>",
+          "_xml": true
+        }
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data"
+        "_req": {
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data"
+          }
         },
-        "_body": {
-          "name": "Nathan"
+        "_res": {
+          "_body": {
+            "name": "Nathan"
+          }
         }
       }
     ]
@@ -69,19 +95,27 @@
   "_patch": {
     "/xml": [
       {
-        "_headers": [],
-        "_requestBody": "<xml><data>Data</data></xml>",
-        "_xml": true,
-        "_body": "<xml><book><title>Patch</title></book></xml>"
+        "_req": {
+          "_headers": [],
+          "_body": "<xml><data>Data</data></xml>"
+        },
+        "_res": {
+          "_xml": true,
+          "_body": "<xml><book><title>Patch</title></book></xml>"
+        }
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data"
+          }
         },
-        "_body": {
-          "name": "Nathan"
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
         }
       }
     ]
@@ -89,19 +123,27 @@
   "_post": {
     "/xml": [
       {
-        "_headers": [],
-        "_requestBody": "<xml><data>Data</data></xml>",
-        "_xml": true,
-        "_body": "<xml><book><title>post</title></book></xml>"
+        "_req":{
+          "_headers": [],
+          "_body": "<xml><data>Data</data></xml>"
+        },
+        "_res":{
+          "_body": "<xml><book><title>post</title></book></xml>",
+          "_xml": true
+        }
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data"
+          }
         },
-        "_body": {
-          "name": "Nathan"
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
         }
       }
     ]
@@ -109,19 +151,27 @@
   "_put": {
     "/xml": [
       {
-        "_headers": [],
-        "_requestBody": "<xml><data>Data</data></xml>",
-        "_xml": true,
-        "_body": "<xml><book><title>put</title></book></xml>"
+        "_req":{
+          "_headers": [],
+          "_body": "<xml><data>Data</data></xml>"
+        },
+        "_res":{
+          "_body": "<xml><book><title>put</title></book></xml>",
+          "_xml": true
+        }
       },
       {
-        "_id": "juan",
-        "_headers": [],
-        "_requestBody": {
-          "data": "data"
+        "_req":{
+          "_id": "juan",
+          "_headers": [],
+          "_body": {
+            "data": "data"
+          }
         },
-        "_body": {
-          "name": "Nathan"
+        "_res":{
+          "_body": {
+            "name": "Nathan"
+          }
         }
       }
     ]

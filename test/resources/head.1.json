@@ -1,30 +1,39 @@
 {
   "_head": {
-  
     "/stories/{id}/confidential": [
       {
-        "_id": "Christopher",
-        "_headers": [],
-        "_cookies": [
-          "session-id",
-          "key-id"
-        ],
+        "_req": {
+          "_id": "Christopher",
+          "_headers": [],
+          "_cookies": [
+            "session-id",
+            "key-id"
+          ]
+        },
+        "_res": {},
         "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "Mark",
-        "_headers": [
-          "Authorization"
-        ],
-        "_cookies": [
-          "session-id",
-          "key-id"
-        ],
+        "_req": {
+          "_id": "Mark",
+          "_headers": [
+            "Authorization"
+          ],
+          "_cookies": [
+            "session-id",
+            "key-id"
+          ]
+        },
+        "_res": {},
         "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "Smith",
-        "_status": 404,
+        "_req": {
+          "_id": "Smith"
+        },
+        "_res": {
+          "_status": 404
+        },
         "_description": "ANY DESCRIPTION"
       }
     ]
