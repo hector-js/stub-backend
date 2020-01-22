@@ -1,42 +1,53 @@
 {
   "_get": {
-  
     "/stories/{id}/confidential": [
       {
-        "_id": "Christopher",
-        "_headers": [],
-        "_cookies": [
-          "session-id",
-          "key-id"
-        ],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "gender": "male",
-          "dob": "12/12/1990"
-        }
+        "_req":{
+          "_id": "Christopher",
+          "_headers": [],
+          "_cookies": [
+            "session-id",
+            "key-id"
+          ]
+        },
+        "_res":{
+          "_body": {
+            "gender": "male",
+            "dob": "12/12/1990"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "Mark",
-        "_headers": [
-          "authorization"
-        ],
-        "_cookies": [
-          "session-id",
-          "key-id"
-        ],
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "gender": "male",
-          "dob": "12/12/1990"
-        }
+        "_req":{
+          "_id": "Mark",
+          "_headers": [
+            "authorization"
+          ],
+          "_cookies": [
+            "session-id",
+            "key-id"
+          ]
+        },
+        "_res":{
+          "_body": {
+            "gender": "male",
+            "dob": "12/12/1990"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       },
       {
-        "_id": "Smith",
-        "_status": 404,
-        "_description": "ANY DESCRIPTION",
-        "_body": {
-          "messageError": "request not found"
-        }
+        "_req":{
+          "_id": "Smith"
+        },
+        "_res":{
+          "_status": 404,
+          "_body": {
+            "messageError": "request not found"
+          }
+        },
+        "_description": "ANY DESCRIPTION"
       }
     ]
   }
