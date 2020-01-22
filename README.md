@@ -64,9 +64,9 @@ npm install @hectorjs/stub-backend
 Include in your _package.json_ the _hjs_ command as script:
 
 ```json
-  "scripts":{
-    "hjs":"hjs"
-  }
+"scripts":{
+  "hjs":"hjs"
+}
 ```
 
 _Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have install globally [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
