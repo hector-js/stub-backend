@@ -143,7 +143,6 @@ describe('GET - stub backend project', () => {
       });
     });
 
-
     describe('get all resources', () => {
       it('returns a response when there is no id', (done) => {
         request(app)
