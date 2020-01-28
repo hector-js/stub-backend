@@ -350,6 +350,7 @@ This section create a response when an scenario is matched.
 
 You can have the following properties:
  - [_status](#_status)
+ - [_delay](#_delay)
  - [_body](#_body)
 
 #### _status
@@ -365,13 +366,29 @@ Just in case the request contain the cookie and headers, you can set your own st
   },
   {
     "_res":{
-      "_status":"500"
+      "_status":"404"
     }
   }
 ]
 ```
 
-_cli_: ```hjs generate get customers/{id}/data --status 404```
+_cli_: ```hjs generate get customers/{id}/data/{id2} --status 404```
+
+#### _delay
+
+It is adding a delay in milliseconds to the response.
+
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_delay": 10000
+    }
+  }
+]
+```
+
+_cli_: ```hjs generate get customers/{id}/data --delay 1000```
 
 #### _body
 
