@@ -58,37 +58,63 @@ describe('POST - stub backend project', () => {
       });
     });
 
-    context('when the scenario does not have to match with the body request', () => {
-      it('response with the scenario which does not have any request', (done) => {
-        request(app)
-            .post('/customers/1234/session?scenario=aaa')
-            .set('Accept', 'application/json')
-            .send({ 'custom': 'any data 2' })
-            .end((err, res) => {
-              expect(err).to.not.exist;
-              expect(res.status).to.equal(200);
-              expect(res.body).to.deep.equal({
-                'data': 'response without request checked'
+    describe('body', () => {
+      context('when the scenario does not have to match with the body request', () => {
+        it('response with the scenario which does not have any request', (done) => {
+          request(app)
+              .post('/customers/1234/session?scenario=aaa')
+              .set('Accept', 'application/json')
+              .send({ 'custom': 'any data 2' })
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  'data': 'response without request checked'
+                });
+                done();
               });
-              done();
-            });
+        });
+      });
+
+      context('when the scenario does not need to compare one field', () => {
+        it('response with the correct scenario', (done) => {
+          request(app)
+              .post('/customers/1234/session?scenario=aaa')
+              .set('Accept', 'application/json')
+              .send({ 'custom1': 'any data 2', 'custom2': { 'custom3': 'VALUE_TO_NOT_COMPARE' } })
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  'data': 'you got it:)'
+                });
+                done();
+              });
+        });
       });
     });
 
-    context('when the scenario does not need to compare one field', () => {
-      it('response with the correct scenario', (done) => {
-        request(app)
-            .post('/customers/1234/session?scenario=aaa')
-            .set('Accept', 'application/json')
-            .send({ 'custom1': 'any data 2', 'custom2': { 'custom3': 'VALUE_TO_NOT_COMPARE' } })
-            .end((err, res) => {
-              expect(err).to.not.exist;
-              expect(res.status).to.equal(200);
-              expect(res.body).to.deep.equal({
-                'data': 'you got it:)'
+    describe('jsonPath', () => {
+      context('when there is a scenario found', () => {
+        it('returns the scenario', (done) => {
+          request(app)
+              .post('/jsonPath/happy/path')
+              .set('Accept', 'application/json')
+              .send({
+                custom: {
+                  name: 'superman',
+                  lastName: 'other'
+                }
+              })
+              .end((err, res) => {
+                expect(err).to.not.exist;
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  data: 'You found superman!'
+                });
+                done();
               });
-              done();
-            });
+        });
       });
     });
   });
