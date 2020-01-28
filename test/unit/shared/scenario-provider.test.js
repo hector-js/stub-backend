@@ -6,8 +6,11 @@ const db = require('../../data/scenario-provider.1.test');
 const dbPost = require('../../data/scenario-provider.2.test');
 const dbNoRequestBody = require('../../data/scenario-provider.4.test');
 const dbXML = require('../../data/scenario-provider.3.test');
+const dbPost5 = require('../../data/scenario-provider.5.test');
+const dbPost6 = require('../../data/scenario-provider.6.test');
 
 const expect = chai.expect;
+const assert = chai.assert;
 
 describe('scenario provider', () => {
   describe('#isInDB', () => {
@@ -241,16 +244,49 @@ describe('scenario provider', () => {
       scenarioProvider = new ScenarioProvider(null, null);
     });
 
-    context('when _excludeBody exists', () => {
-      it('should return the scenario with the request', () => {
+    describe('body', () => {
+      context('when _excludeBodyFields exists', () => {
+        it('should return the scenario with the request', () => {
+          const req = {
+            body: {
+              data1: 'other',
+              data2: 'data2',
+              data3: {
+                data4: 'other',
+                data5: 'data5'
+              }
+            }
+          };
+
+          const scenario = scenarioProvider.filterByRequest(req, dbPost);
+
+          expect(scenario).to.deep.equal({
+            _req: {
+              _id: 'juan',
+              _headers: [],
+              _body: {
+                data1: null,
+                data2: 'data2',
+                data3: {
+                  data4: null,
+                  data5: 'data5'
+                }
+              },
+              _excludeBodyFields: ['$.data1', '$.data3.data4']
+            },
+            _res: {
+              _body: {
+                name: 'second'
+              }
+            }
+          });
+        });
+      });
+
+      it('should return the scenario with the same request', () => {
         const req = {
           body: {
-            data1: 'other',
-            data2: 'data2',
-            data3: {
-              data4: 'other',
-              data5: 'data5'
-            }
+            data: 'data1'
           }
         };
 
@@ -261,93 +297,34 @@ describe('scenario provider', () => {
             _id: 'juan',
             _headers: [],
             _body: {
-              data1: null,
-              data2: 'data2',
-              data3: {
-                data4: null,
-                data5: 'data5'
-              }
-            },
-            _excludeBodyFields: ['$.data1', '$.data3.data4']
+              data: 'data1'
+            }
           },
           _res: {
             _body: {
-              name: 'second'
+              name: 'Nathan'
             }
           }
         });
       });
-    });
 
-    it('should return the scenario with the same request', () => {
-      const req = {
-        body: {
-          data: 'data1'
-        }
-      };
+      context('when no request is found', () => {
+        it('should return not request found', () => {
+          const req = {
+            body: {
+              data: 'data5'
+            }
+          };
 
-      const scenario = scenarioProvider.filterByRequest(req, dbPost);
+          const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
-      expect(scenario).to.deep.equal({
-        _req: {
-          _id: 'juan',
-          _headers: [],
-          _body: {
-            data: 'data1'
-          }
-        },
-        _res: {
-          _body: {
-            name: 'Nathan'
-          }
-        }
-      });
-    });
-
-    context('when no request is found', () => {
-      it('should return not request found', () => {
-        const req = {
-          body: {
-            data: 'data5'
-          }
-        };
-
-        const scenario = scenarioProvider.filterByRequest(req, dbPost);
-
-        expect(scenario).to.deep.equal({
-          errorCode: 404,
-          message: 'Request body not found in the resources! :('
+          expect(scenario).to.deep.equal({
+            errorCode: 404,
+            message: 'Request body not found in the resources! :('
+          });
         });
       });
-    });
 
-    it('should return the first scenario found', () => {
-      const req = {
-        body: {
-          data: 'data6'
-        }
-      };
-
-      const scenario = scenarioProvider.filterByRequest(req, dbPost);
-
-      expect(Array.isArray(scenario)).to.be.false;
-      expect(scenario).to.deep.equal({
-        _req: {
-          _id: 'juan',
-          _headers: [],
-          _body: {
-            data: 'data6'
-          }
-        },
-        _res: {
-          _body: {
-            name: 'first'
-          }
-        }
-      });
-    });
-
-    describe('scenarios without requestBody', () => {
       it('should return the first scenario found', () => {
         const req = {
           body: {
@@ -355,12 +332,83 @@ describe('scenario provider', () => {
           }
         };
 
-        const scenario = scenarioProvider.filterByRequest(req, dbNoRequestBody);
+        const scenario = scenarioProvider.filterByRequest(req, dbPost);
 
         expect(Array.isArray(scenario)).to.be.false;
         expect(scenario).to.deep.equal({
-          errorCode: 500,
-          message: 'Multiple scenarios were found :('
+          _req: {
+            _id: 'juan',
+            _headers: [],
+            _body: {
+              data: 'data6'
+            }
+          },
+          _res: {
+            _body: {
+              name: 'first'
+            }
+          }
+        });
+      });
+
+      describe('scenarios without body', () => {
+        it('should return the first scenario found', () => {
+          const req = {
+            body: {
+              data: 'data6'
+            }
+          };
+
+          const scenario = scenarioProvider.filterByRequest(req, dbNoRequestBody);
+
+          expect(Array.isArray(scenario)).to.be.false;
+          expect(scenario).to.deep.equal({
+            errorCode: 500,
+            message: 'Multiple scenarios were found :('
+          });
+        });
+      });
+    });
+
+    describe('bodyPath', () => {
+      context('when bodyPath is matching', () => {
+        it('should return the scenario', () => {
+          const req = {
+            body: {
+              data: {
+                name: 'superman',
+                company: 'marvel'
+              }
+            }
+          };
+
+          const scenario = scenarioProvider.filterByRequest(req, dbPost5);
+
+          expect(Array.isArray(scenario)).to.be.false;
+          expect(scenario).to.deep.equal({
+            _req: {
+              _bodyPaths: [{ '$.data.name': 'superman' }]
+            },
+            _res: {
+              _body: {
+                ok: 'you found superman and marvel!'
+              }
+            }
+          });
+        });
+      });
+
+      context('when _body and _bodyPath are in the same scenario', ()=>{
+        it('should throw an error', ()=>{
+          const req = {
+            body: {
+              data: 'data6'
+            }
+          };
+
+          const fnError = () => scenarioProvider.filterByRequest(req, dbPost6);
+
+          assert.throws(fnError, '_body and _bodyPath should not be added at the same time.');
         });
       });
     });

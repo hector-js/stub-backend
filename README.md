@@ -69,7 +69,7 @@ Include in your _package.json_ the _hjs_ command as script:
 }
 ```
 
-_Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have install globally [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
+_Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have previously installed it globally [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
 
 **hjs** command can avoid the following steps because the _cli_ generates all the folders, methods and endpoints for you. Just the data as identifiers, headers, cookies or bodies must be added manually.
 
@@ -77,7 +77,7 @@ _Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --vers
 
 ## Folder data
 
-Create a folder named _resources_ in packange directory and add a couple of json files under that folder (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
+Create a folder named _resources_ in the package root directory and add a couple of json files under that folder (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
 
 ```
  resources
@@ -102,7 +102,7 @@ The first key means the method and it must have a "_" as a prefix. For example:
   }    
 }
 ```
-_Methods:_ _get, _head, _post, _put, _delete, _options, _trace, _patch
+_Methods:_ _get, _head, _post, _put, _delete, _options, _trace, _patch.
 
 ## Path level
 
@@ -140,15 +140,15 @@ Index:
  - [_res](#_res)
 
 
-An array of possible responses based on different identifiers.
+An array of possible scenarios based on different identifiers.
 
-Each scenario has two mandatory sections **_req** (request) and **_res** (response) where we will place the properties related to the request and response.
+Each scenario has two mandatory sections **_req** (request) and **_res** (response) where we place the properties related to the request and response.
 
-Both level are **mandatory** in each scenario.
+Both level are **mandatory** in each scenario. Even if you dont want to add anything in the request, you must add an empty __req_.
 
 ### _req
 
-This section deals with the request and it is checking if the request is matching with the scenario.
+This section deals with the request and it checks if the request is matching with the scenario.
 
 ```json
 "/customers/{id1}/data/{id2}" : [
@@ -168,6 +168,7 @@ You can have the following properties:
  - [_headers](#_headers)
  - [_cookies](#_cookies)
  - [_body](#_body)
+ - [_bodyPaths](#_bodyPaths)
  - [_excludeBodyFields](#_excludeBodyFields)
 
 #### _[id]
@@ -292,6 +293,32 @@ Some methods like post, put or delete needs to verify the body response as well.
 ```
 
 _Note:_ If any field is missed, it means it is not required.
+
+#### _bodyPaths
+
+Instead of verifying the entire body of the request, you can choose to verify just a specific fields or objects using __bodyPaths_.
+
+_bodyPaths is an array of key values objects where the _key_ is the jsonPath and the _value_ is the object to check.
+
+Example:
+
+```json
+"/customers/{id}/data" : [
+  {
+    "_req": {
+      "_bodyPaths" :[
+        { "$.heroes": { "name": "superman"}}, 
+        { "$.cities[0].name": "madrid" }
+      ]
+    },
+    "_res":{
+    },
+    "_description":"secure scenario given an authorization header"
+  }
+]
+```
+
+_NOTE:_ bodyPaths and body section can not be at the same time.
 
 #### _excludeBodyFields
 
