@@ -350,6 +350,7 @@ This section create a response when an scenario is matched.
 
 You can have the following properties:
  - [_status](#_status)
+ - [_headers](#_headers)
  - [_delay](#_delay)
  - [_body](#_body)
 
@@ -373,6 +374,39 @@ Just in case the request contain the cookie and headers, you can set your own st
 ```
 
 _cli_: ```hjs generate get customers/{id}/data/{id2} --status 404```
+
+#### _headers
+
+You have the option to set headers in the response just by key or key-value.
+
+##### by key
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_headers": ["key-header-1", "key-header-2"]
+    }
+  }
+]
+```
+
+_NOTE:_ the value of each key will be setted
+
+##### by key-value
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_headers": [
+        {"key-header-1": "custom-value-1"},
+        {"key-header-2": "custom-value-2"}
+      ]
+    }
+  }
+]
+```
+
+
 
 #### _delay
 
