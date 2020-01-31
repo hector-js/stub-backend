@@ -1,0 +1,72 @@
+{
+  "_get": {
+    "/headers/{id}/key": [
+      {
+        "_req": {
+          "_id": "1"
+        },
+        "_res": {
+          "_body": {
+            "ok": "you got a response with just key headers"
+          },
+          "_headers": [
+            "header-res-1",
+            "header-res-2"
+          ]
+        }
+      },
+      {
+        "_req": {
+          "_id": "2"
+        },
+        "_res": {
+          "_body": {
+            "ok": "you got a response with key and values headers"
+          },
+          "_headers": [
+            {
+              "header-res-1": "custom-value-1"
+            },
+            {
+              "header-res-2": "custom-value-2"
+            }
+          ]
+        }
+      }
+    ],
+    "/cookies/{id}/key": [
+      {
+        "_req": {
+          "_id": "1"
+        },
+        "_res": {
+          "_body": {
+            "ok": "you got a response with just key cookie"
+          },
+          "_cookies": [
+            "cookie-res-1",
+            "cookie-res-2"
+          ]
+        }
+      },
+      {
+        "_req": {
+          "_id": "2"
+        },
+        "_res": {
+          "_body": {
+            "ok": "you got a response with key and values cookies"
+          },
+          "_cookies": [
+            {
+              "cookie-res-1": "custom-value-1"
+            },
+            {
+              "cookie-res-2": "custom-value-2"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
