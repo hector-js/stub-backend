@@ -349,8 +349,10 @@ This section create a response when an scenario is matched.
 ```
 
 You can have the following properties:
+
  - [_status](#_status)
  - [_headers](#_headers)
+ - [_cookies](#_cookies)
  - [_delay](#_delay)
  - [_body](#_body)
 
@@ -390,7 +392,7 @@ You have the option to set headers in the response just by key or key-value.
 ]
 ```
 
-_NOTE:_ the value of each key will be setted
+_NOTE:_ the value of each key will be generated with default values.
 
 ##### by key-value
 ```json
@@ -407,6 +409,36 @@ _NOTE:_ the value of each key will be setted
 ```
 
 
+#### _cookies
+
+You have the option to set cookies in the response just by key or key-value.
+
+##### by key
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_cookies": ["key-cookie-1", "key-cookie-2"]
+    }
+  }
+]
+```
+
+_NOTE:_ the value of each key will be generated with default values.
+
+##### by key-value
+```json
+"/customers/{id1}/data/{id2}" : [
+  {
+    "_res":{
+      "_cookies": [
+        {"key-cookie-1": "custom-value-1"},
+        {"key-cookie-2": "custom-value-2"}
+      ]
+    }
+  }
+]
+```
 
 #### _delay
 
