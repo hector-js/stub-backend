@@ -39,7 +39,7 @@ describe('response utils', () => {
       it('updates the headers in the response', () => {
         scenario = {
           _res: {
-            _headers: { key1: 'val1' ,  key2: 'val2' }
+            _headers: { key1: 'val1', key2: 'val2' }
           }
         };
 
@@ -107,7 +107,7 @@ describe('response utils', () => {
       it('updates the cookies in the response', () => {
         scenario = {
           _res: {
-            _cookies: [{ key1: 'val1' }, { key2: 'val2' }]
+            _cookies: { key1: 'val1', key2: 'val2' }
           }
         };
 

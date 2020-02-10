@@ -53,14 +53,10 @@
           "_body": {
             "ok": "you got a response with key and values cookies"
           },
-          "_cookies": [
-            {
-              "cookie-res-1": "custom-value-1"
-            },
-            {
-              "cookie-res-2": "custom-value-2"
-            }
-          ]
+          "_cookies": {
+            "cookie-res-1": "custom-value-1",
+            "cookie-res-2": "custom-value-2"
+          }
         }
       }
     ]

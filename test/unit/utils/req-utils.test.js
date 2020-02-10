@@ -121,7 +121,7 @@ describe('request utils', () => {
       context('when one element is not a string', () => {
         it(`should return false`, () => {
           elementsArr = ['session', {}];
-          elementsReq = { session: '1234'};
+          elementsReq = { session: '1234' };
 
           result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 

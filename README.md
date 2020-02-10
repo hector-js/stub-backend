@@ -265,7 +265,10 @@ It is an array of objects. The key is the header name and the value is the heade
 "/customers/{id}/data" : [
   {
     "_req": {
-      "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
+      "_cookies": {
+        "Universal":"123", 
+        "sec":"1232"
+        }
     }
   }
 ]
@@ -434,10 +437,10 @@ _NOTE:_ the value of each key will be generated with default values.
 "/customers/{id1}/data/{id2}" : [
   {
     "_res":{
-      "_cookies": [
-        {"key-cookie-1": "custom-value-1"},
-        {"key-cookie-2": "custom-value-2"}
-      ]
+      "_cookies": {
+        "key-cookie-1": "custom-value-1",
+        "key-cookie-2": "custom-value-2"
+      }
     }
   }
 ]
