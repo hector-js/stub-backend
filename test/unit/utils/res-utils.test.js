@@ -39,7 +39,7 @@ describe('response utils', () => {
       it('updates the headers in the response', () => {
         scenario = {
           _res: {
-            _headers: [{ key1: 'val1' }, { key2: 'val2' }]
+            _headers: { key1: 'val1' ,  key2: 'val2' }
           }
         };
 

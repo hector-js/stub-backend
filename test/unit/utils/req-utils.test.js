@@ -14,7 +14,7 @@ describe('request utils', () => {
       context('when the request does not contain any element', () => {
         [undefined, null].forEach((value)=>{
           it(`should return false for ${value}`, () => {
-            elementsArr = [{ session: '1234' }];
+            elementsArr = { session: '1234' };
             elementsReq = value;
 
             result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
@@ -26,7 +26,7 @@ describe('request utils', () => {
 
       context('when all the elements have the same key and value', () => {
         it(`should return false`, () => {
-          elementsArr = [{ session: '1234' }];
+          elementsArr = { session: '1234' };
           elementsReq = { session: '1234' };
 
           result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
@@ -37,7 +37,7 @@ describe('request utils', () => {
 
       context('when one element is not matching with different size', () => {
         it(`should return true`, () => {
-          elementsArr = [{ session: '1234' }, { product: '54321' }];
+          elementsArr = { session: '1234', product: '54321' };
           elementsReq = { session: '1234' };
 
           result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
@@ -48,7 +48,7 @@ describe('request utils', () => {
 
       context('when one element is not matching with same size', () => {
         it(`should return true`, () => {
-          elementsArr = [{ session: '1234' }, { product: '54321' }];
+          elementsArr = { session: '1234', product: '54321' };
           elementsReq = { session: '1234', product: '123' };
 
           result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
@@ -115,6 +115,17 @@ describe('request utils', () => {
           result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
 
           expect(result).to.be.true;
+        });
+      });
+
+      context('when one element is not a string', () => {
+        it(`should return false`, () => {
+          elementsArr = ['session', {}];
+          elementsReq = { session: '1234'};
+
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
+
+          expect(result).to.be.false;
         });
       });
 

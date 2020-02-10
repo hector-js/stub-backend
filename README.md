@@ -173,7 +173,7 @@ You can have the following properties:
 
 #### _[id]
 
-Identifiers of a path. For example, given a path ```/customers/{id}/data```, the scenario with an id should be structured like this:
+Identifiers of a path. For example, given a path ```/customers/{id1}/data/{id2}```, the scenario with an id should be structured like this:
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -220,7 +220,10 @@ It is an array of objects. The key is the header name and the value is the heade
 "/customers/{id}/data" : [
   {
     "_req":{
-      "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
+      "_headers": {
+        "authorization":"1234",
+        "client_Id":"121"
+        }
     }
   }
 ]
@@ -399,10 +402,10 @@ _NOTE:_ the value of each key will be generated with default values.
 "/customers/{id1}/data/{id2}" : [
   {
     "_res":{
-      "_headers": [
-        {"key-header-1": "custom-value-1"},
-        {"key-header-2": "custom-value-2"}
-      ]
+      "_headers": {
+        "key-header-1": "custom-value-1",
+        "key-header-2": "custom-value-2"
+      }
     }
   }
 ]
