@@ -154,20 +154,21 @@
     ],
     "/jsonPath/happy/path": [
       {
-        "_req":{
-          "_body":{
-            "other":"other"
+        "_req": {
+          "_body": {
+            "other": "other"
           }
         },
-        "_res":{
-        }
+        "_res": {}
       },
       {
-        "_req":{
-          "_bodyPaths":[{"$.custom.name": "superman"}]
+        "_req": {
+          "_bodyPaths": {
+            "$.custom.name": "superman"
+          }
         },
-        "_res":{
-          "_body":{
+        "_res": {
+          "_body": {
             "data": "You found superman!"
           }
         }

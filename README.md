@@ -29,7 +29,7 @@ npm install @hectorjs/stub-backend
 
 # CLI
 
-There is a command line to generate default methods like get, post, put, among others.
+There is a command line to generate default methods like get, post, put, among others methods.
 I strongly recommend you to have a look and use it. It will reduce the time to mock the services which is one of the main goal of this project.
 
 Have a look [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
@@ -312,10 +312,10 @@ Example:
 "/customers/{id}/data" : [
   {
     "_req": {
-      "_bodyPaths" :[
-        { "$.heroes": { "name": "superman"}}, 
-        { "$.cities[0].name": "madrid" }
-      ]
+      "_bodyPa}hs": {
+        "$.heroes": { "name": "superman"}, 
+        "$.cities[0].name": "madrid"
+      }
     },
     "_res":{
     },

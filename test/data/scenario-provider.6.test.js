@@ -23,7 +23,7 @@ module.exports = dbPost6 = [
   {
     _req: {
       _body: { val: 'f' },
-      _bodyPaths: [{ '$.data.name': 'superman' }]
+      _bodyPaths: { '$.data.name': 'superman' }
     },
     _res: {
       _body: {

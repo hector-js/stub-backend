@@ -387,7 +387,7 @@ describe('scenario provider', () => {
           expect(Array.isArray(scenario)).to.be.false;
           expect(scenario).to.deep.equal({
             _req: {
-              _bodyPaths: [{ '$.data.name': 'superman' }]
+              _bodyPaths: { '$.data.name': 'superman' }
             },
             _res: {
               _body: {
