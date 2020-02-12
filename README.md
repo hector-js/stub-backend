@@ -29,7 +29,7 @@ npm install @hectorjs/stub-backend
 
 # CLI
 
-There is a command line to generate default methods like get, post, put, among others.
+There is a command line to generate default methods like get, post, put, among others methods.
 I strongly recommend you to have a look and use it. It will reduce the time to mock the services which is one of the main goal of this project.
 
 Have a look [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
@@ -173,7 +173,7 @@ You can have the following properties:
 
 #### _[id]
 
-Identifiers of a path. For example, given a path ```/customers/{id}/data```, the scenario with an id should be structured like this:
+Identifiers of a path. For example, given a path ```/customers/{id1}/data/{id2}```, the scenario with an id should be structured like this:
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -220,7 +220,10 @@ It is an array of objects. The key is the header name and the value is the heade
 "/customers/{id}/data" : [
   {
     "_req":{
-      "_headers": [{"authorization":"1234"},{ "client_Id":"121"}]
+      "_headers": {
+        "authorization":"1234",
+        "client_Id":"121"
+        }
     }
   }
 ]
@@ -262,7 +265,10 @@ It is an array of objects. The key is the header name and the value is the heade
 "/customers/{id}/data" : [
   {
     "_req": {
-      "_cookies": [{"Universal":"123"}, {"sec":"1232"}]
+      "_cookies": {
+        "Universal":"123", 
+        "sec":"1232"
+        }
     }
   }
 ]
@@ -306,10 +312,10 @@ Example:
 "/customers/{id}/data" : [
   {
     "_req": {
-      "_bodyPaths" :[
-        { "$.heroes": { "name": "superman"}}, 
-        { "$.cities[0].name": "madrid" }
-      ]
+      "_bodyPa}hs": {
+        "$.heroes": { "name": "superman"}, 
+        "$.cities[0].name": "madrid"
+      }
     },
     "_res":{
     },
@@ -399,10 +405,10 @@ _NOTE:_ the value of each key will be generated with default values.
 "/customers/{id1}/data/{id2}" : [
   {
     "_res":{
-      "_headers": [
-        {"key-header-1": "custom-value-1"},
-        {"key-header-2": "custom-value-2"}
-      ]
+      "_headers": {
+        "key-header-1": "custom-value-1",
+        "key-header-2": "custom-value-2"
+      }
     }
   }
 ]
@@ -431,10 +437,10 @@ _NOTE:_ the value of each key will be generated with default values.
 "/customers/{id1}/data/{id2}" : [
   {
     "_res":{
-      "_cookies": [
-        {"key-cookie-1": "custom-value-1"},
-        {"key-cookie-2": "custom-value-2"}
-      ]
+      "_cookies": {
+        "key-cookie-1": "custom-value-1",
+        "key-cookie-2": "custom-value-2"
+      }
     }
   }
 ]

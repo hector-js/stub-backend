@@ -4,11 +4,9 @@
       {
         "_req": {
           "_id": "1234",
-          "_cookies": [
-            {
-              "session": "4321"
-            }
-          ]
+          "_cookies": {
+            "session": "4321"
+          }
         },
         "_res": {
           "_body": {
@@ -47,14 +45,10 @@
       {
         "_req": {
           "_id": "1234",
-          "_headers": [
-            {
-              "authorization": "Beurer 1234"
-            },
-            {
-              "client_id": "1234"
-            }
-          ]
+          "_headers": {
+            "authorization": "Beurer 1234",
+            "client_id": "1234"
+          }
         },
         "_res": {
           "_body": {
@@ -124,7 +118,7 @@
     ],
     "/no/req/and/id/good": [
       {
-        "_req":{},
+        "_req": {},
         "_res": {
           "_body": {
             "try": "one"
