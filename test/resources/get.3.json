@@ -85,6 +85,37 @@
     ],
     "/no/{id}/req": [
       {
+        "_req":{
+
+        },
+        "_res": {
+          "_body": {
+            "try": "one"
+          }
+        }
+      },
+      {
+        "_req": {
+          "_id": "lucas"
+        },
+        "_res": {
+          "_body": {
+            "try": "two"
+          }
+        }
+      },
+      {
+        "_req": {
+          "_id": "carl"
+        },
+        "_res":{}
+      }
+    ],
+    "/no/{id}/no/req": [
+      {
+        "_req":{
+
+        },
         "_res": {
           "_body": {
             "try": "one"

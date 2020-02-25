@@ -8,6 +8,8 @@ const dbNoRequestBody = require('../../data/scenario-provider.4.test');
 const dbXML = require('../../data/scenario-provider.3.test');
 const dbPost5 = require('../../data/scenario-provider.5.test');
 const dbPost6 = require('../../data/scenario-provider.6.test');
+const dbPost7 = require('../../data/scenario-provider.7.test');
+const dbPost8 = require('../../data/scenario-provider.8.test');
 
 const expect = chai.expect;
 const assert = chai.assert;
@@ -134,8 +136,8 @@ describe('scenario provider', () => {
 
       describe('multiple ids', () => {
         it('should return the scenario given one specific id', () => {
-          const request = '/customers/valueOne/data?name=valueTwo&dateOfBirth=valueThree';
-          const contextMatcher = new ScenarioProvider(request, db);
+          const path = '/customers/valueOne/data?name=valueTwo&dateOfBirth=valueThree';
+          const contextMatcher = new ScenarioProvider(path, db);
           const endpoint = contextMatcher.isInDB();
 
           const scenario = contextMatcher.getScenario(endpoint);
@@ -187,6 +189,151 @@ describe('scenario provider', () => {
             expect(result).to.deep.equal({
               errorCode: 500,
               message: 'Multiple scenarios were found :('
+            });
+          });
+        });
+      });
+
+      describe('filters', () => {
+        describe('filterByHeaders', () => {
+          describe('keys', () => {
+            it('should filter cases by key', () => {
+              const path = '/edge-cases/filterByHeader';
+              const headers = {
+                key1: 'any1',
+                key2: 'any2'
+              };
+
+              const contextMatcher = new ScenarioProvider(path, dbPost7, headers, null);
+              const endpoint = contextMatcher.isInDB();
+
+              const scenario = contextMatcher.getScenario(endpoint);
+
+              expect(scenario).to.deep.equal({
+                _req: {
+                  _headers: ['key1', 'key2']
+                },
+                _res: {
+                  _body: {
+                    name: 'other'
+                  }
+                }
+              });
+            });
+          });
+
+          describe('keys and value', () => {
+            it('should filter cases by key', () => {
+              const request = '/edge-cases/filterByHeader/array';
+              const headers = {
+                key1: 'value1',
+                key2: 'value2'
+              };
+              const contextMatcher = new ScenarioProvider(request, dbPost7, headers, null);
+              const endpoint = contextMatcher.isInDB();
+
+              const scenario = contextMatcher.getScenario(endpoint);
+
+              expect(scenario).to.deep.equal({
+                _req: {
+                  _headers: {
+                    key1: 'value1',
+                    key2: 'value2'
+                  }
+                },
+                _res: {
+                  _body: {
+                    name: 'other'
+                  }
+                }
+              });
+            });
+          });
+
+          describe('null', () => {
+            it('returns not founde', () => {
+              const request = '/edge-cases/filterByHeader/array';
+              const headers = null;
+              const contextMatcher = new ScenarioProvider(request, dbPost7, headers, null);
+              const endpoint = contextMatcher.isInDB();
+
+              const scenario = contextMatcher.getScenario(endpoint);
+
+              expect(scenario).to.deep.equal({
+                errorCode: 500,
+                message: 'Multiple scenarios were found :('
+              });
+            });
+          });
+        });
+
+        describe('filterByCookies', () => {
+          describe('keys', () => {
+            it('should filter cases by key', () => {
+              const request = '/edge-cases/filterByCookies';
+              const cookies = {
+                key1: 'any1',
+                key2: 'any1'
+              };
+              const contextMatcher = new ScenarioProvider(request, dbPost7, null, cookies);
+              const endpoint = contextMatcher.isInDB();
+
+              const scenario = contextMatcher.getScenario(endpoint);
+
+              expect(scenario).to.deep.equal({
+                _req: {
+                  _cookies: ['key1', 'key2']
+                },
+                _res: {
+                  _body: {
+                    name: 'other'
+                  }
+                }
+              });
+            });
+          });
+
+          describe('keys and value', () => {
+            it('should filter cases by key', () => {
+              const request = '/edge-cases/filterByCookies/array';
+              const cookies = {
+                key1: 'value1',
+                key2: 'value2'
+              };
+              const contextMatcher = new ScenarioProvider(request, dbPost7, null, cookies);
+              const endpoint = contextMatcher.isInDB();
+
+              const scenario = contextMatcher.getScenario(endpoint);
+
+              expect(scenario).to.deep.equal({
+                _req: {
+                  _cookies: {
+                    key1: 'value1',
+                    key2: 'value2'
+                  }
+                },
+                _res: {
+                  _body: {
+                    name: 'other'
+                  }
+                }
+              });
+            });
+          });
+
+          describe('null', () => {
+            it('returns not founde', () => {
+              const request = '/edge-cases/filterByHeader/array';
+              const cookies = null;
+              const contextMatcher = new ScenarioProvider(request, dbPost7, null, cookies);
+              const endpoint = contextMatcher.isInDB();
+
+              const scenario = contextMatcher.getScenario(endpoint);
+
+              expect(scenario).to.deep.equal({
+                errorCode: 500,
+                message: 'Multiple scenarios were found :('
+              });
             });
           });
         });
@@ -398,8 +545,8 @@ describe('scenario provider', () => {
         });
       });
 
-      context('when _body and _bodyPath are in the same scenario', ()=>{
-        it('should throw an error', ()=>{
+      context('when _body and _bodyPath are in the same scenario', () => {
+        it('should throw an error', () => {
           const req = {
             body: {
               data: 'data6'
@@ -576,6 +723,172 @@ describe('scenario provider', () => {
               _body: '<xml><title><name>Lucas3</name></title></xml>',
               _xml: true
             }
+          });
+        });
+      });
+    });
+
+    describe('validation', () => {
+      it('returns _req missing message', () => {
+        const path = '/edge-cases/validation/req';
+        const contextMatcher = new ScenarioProvider(path, dbPost8, null, null);
+        const endpoint = contextMatcher.isInDB();
+
+        const scenario = contextMatcher.getScenarios(endpoint);
+
+        expect(scenario).to.deep.equal({
+          errorCode: 500,
+          message: '_req is missed in some scenario :('
+        });
+      });
+
+      it('returns _res missing message', () => {
+        const path = '/edge-cases/validation/res';
+        const contextMatcher = new ScenarioProvider(path, dbPost8, null, null);
+        const endpoint = contextMatcher.isInDB();
+
+        const scenario = contextMatcher.getScenarios(endpoint);
+
+        expect(scenario).to.deep.equal({
+          errorCode: 500,
+          message: '_res is missed in some scenario :('
+        });
+      });
+    });
+
+    describe('filters', () => {
+      describe('filterByHeaders', () => {
+        describe('keys', () => {
+          it('should filter cases by key', () => {
+            const path = '/edge-cases/filterByHeader';
+            const headers = {
+              key1: 'value1',
+              key2: 'value2'
+            };
+            const contextMatcher = new ScenarioProvider(path, dbPost7, headers, null);
+            const endpoint = contextMatcher.isInDB();
+
+            const scenario = contextMatcher.getScenarios(endpoint);
+
+            expect(scenario).to.deep.equal([{
+              _req: {
+                _headers: ['key1', 'key2']
+              },
+              _res: {
+                _body: {
+                  name: 'other'
+                }
+              }
+            }]);
+          });
+        });
+
+        describe('keys and value', () => {
+          it('should filter cases by key', () => {
+            const request = '/edge-cases/filterByHeader/array';
+            const headers = {
+              key1: 'value1',
+              key2: 'value2'
+            };
+            const contextMatcher = new ScenarioProvider(request, dbPost7, headers, null);
+            const endpoint = contextMatcher.isInDB();
+
+            const scenario = contextMatcher.getScenarios(endpoint);
+
+            expect(scenario).to.deep.equal([{
+              _req: {
+                _headers: {
+                  key1: 'value1',
+                  key2: 'value2'
+                }
+              },
+              _res: {
+                _body: {
+                  name: 'other'
+                }
+              }
+            }]);
+          });
+        });
+
+        describe('null', () => {
+          it('returns not founde', () => {
+            const request = '/edge-cases/filterByHeader/array';
+            const headers = null;
+            const contextMatcher = new ScenarioProvider(request, dbPost7, headers, null);
+            const endpoint = contextMatcher.isInDB();
+
+            const scenario = contextMatcher.getScenarios(endpoint);
+
+            expect(scenario.length).to.deep.equal(3);
+          });
+        });
+      });
+
+      describe('filterByCookies', () => {
+        describe('keys', () => {
+          it('should filter cases by key', () => {
+            const request = '/edge-cases/filterByCookies';
+            const cookies = {
+              key1: 'value1',
+              key2: 'value2'
+            };
+            const contextMatcher = new ScenarioProvider(request, dbPost7, null, cookies);
+            const endpoint = contextMatcher.isInDB();
+
+            const scenario = contextMatcher.getScenarios(endpoint);
+
+            expect(scenario).to.deep.equal([{
+              _req: {
+                _cookies: ['key1', 'key2']
+              },
+              _res: {
+                _body: {
+                  name: 'other'
+                }
+              }
+            }]);
+          });
+        });
+
+        describe('keys and value', () => {
+          it('should filter cases by key', () => {
+            const request = '/edge-cases/filterByCookies/array';
+            const cookies = {
+              key1: 'value1',
+              key2: 'value2'
+            };
+            const contextMatcher = new ScenarioProvider(request, dbPost7, null, cookies);
+            const endpoint = contextMatcher.isInDB();
+
+            const scenario = contextMatcher.getScenarios(endpoint);
+
+            expect(scenario).to.deep.equal([{
+              _req: {
+                _cookies: {
+                  key1: 'value1',
+                  key2: 'value2'
+                }
+              },
+              _res: {
+                _body: {
+                  name: 'other'
+                }
+              }
+            }]);
+          });
+        });
+
+        describe('null', () => {
+          it('returns not founde', () => {
+            const request = '/edge-cases/filterByHeader/array';
+            const cookies = null;
+            const contextMatcher = new ScenarioProvider(request, dbPost7, null, cookies);
+            const endpoint = contextMatcher.isInDB();
+
+            const scenario = contextMatcher.getScenarios(endpoint);
+
+            expect(scenario.length).to.equal(3);
           });
         });
       });
