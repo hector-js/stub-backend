@@ -114,12 +114,12 @@ describe('HEAD - stub backend project', () => {
 
     describe('headers', () => {
       context('when authorization header is not in the request', () => {
-        it('returns 401', (done) => {
+        it('returns 404', (done) => {
           request(app)
               .head('/stories/nathan/budget')
               .end((err, res) => {
                 expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
+                expect(res.status).to.equal(404);
                 expect(res.body).to.be.empty;
                 done();
               });
@@ -127,12 +127,12 @@ describe('HEAD - stub backend project', () => {
       });
 
       context('when id header is not in the request', () => {
-        it('returns 401', (done) => {
+        it('returns 404', (done) => {
           request(app)
               .head('/stories/smith/budget')
               .end((err, res) => {
                 expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
+                expect(res.status).to.equal(404);
                 expect(res.body).to.be.empty;
                 done();
               });
@@ -156,13 +156,13 @@ describe('HEAD - stub backend project', () => {
       });
 
       context('when a cookie is not presented in the request', () => {
-        it('should return 401', (done) => {
+        it('should return 404', (done) => {
           request(app)
               .head('/stories/christopher/confidential')
               .set('Cookie', ['session-id=12345667'])
               .end((err, res) => {
                 expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
+                expect(res.status).to.equal(404);
                 expect(res.body).to.be.empty;
                 done();
               });
@@ -170,15 +170,15 @@ describe('HEAD - stub backend project', () => {
       });
     });
 
-    describe('cookies&headers', () => {
+    describe('cookies & headers', () => {
       context('when a cookie and header are not presented', () => {
-        it('should return 401', (done) => {
+        it('should return 404', (done) => {
           request(app)
               .head('/stories/mark/confidential')
               .set('Cookie', ['session-id=12345667'])
               .end((err, res) => {
                 expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
+                expect(res.status).to.equal(404);
                 expect(res.body).to.be.empty;
                 done();
               });

@@ -1,66 +1,31 @@
 # @hectorjs/stub-backend
 
-## Quality measures
-
 ![](https://github.com/HecJimSan/stub-backend/workflows/%40hectorjs%2Fstub%2Dbackend/badge.svg)
- - ![](https://github.com/HecJimSan/stub-backend/workflows/eslint%2Dconfig%2Dgoogle/badge.svg)
- - ![](https://github.com/HecJimSan/stub-backend/workflows/Unit%20tests/badge.svg)
- - ![](https://github.com/HecJimSan/stub-backend/workflows/Coverage/badge.svg)
- - [![codecov](https://codecov.io/gh/HecJimSan/stub-backend/branch/development/graph/badge.svg)](https://codecov.io/gh/HecJimSan/stub-backend)
-
- Others measures
-
- - ![](https://img.shields.io/npm/v/@hectorjs/stub-backend?label=version&logo=npm)
- - ![](https://img.shields.io/npm/dt/@hectorjs/stub-backend?logo=npm&logoColor=blue)
- - ![](https://img.shields.io/snyk/vulnerabilities/npm/@hectorjs/stub-backend?logo=snyk)
- - ![](https://img.shields.io/github/last-commit/HecJimSan/stub-backend?logo=github)
+ - ![](https://github.com/HecJimSan/stub-backend/workflows/eslint%2Dconfig%2Dgoogle/badge.svg) ![](https://github.com/HecJimSan/stub-backend/workflows/Unit%20tests/badge.svg) ![](https://github.com/HecJimSan/stub-backend/workflows/Coverage/badge.svg) [![codecov](https://codecov.io/gh/HecJimSan/stub-backend/branch/development/graph/badge.svg)](https://codecov.io/gh/HecJimSan/stub-backend)
+ - ![](https://img.shields.io/npm/v/@hectorjs/stub-backend?label=version&logo=npm) ![](https://img.shields.io/npm/dt/@hectorjs/stub-backend?logo=npm&logoColor=blue) ![](https://img.shields.io/snyk/vulnerabilities/npm/@hectorjs/stub-backend?logo=snyk) ![](https://img.shields.io/github/last-commit/HecJimSan/stub-backend?logo=github)
 
 # Description
 
-The aim of this project is to mock the backend services building different responses for a given authentication, cookie, request among others.
+The aim of this project is to mock the backend services based on a *JSON* configuration. You don't need to do anything programmatically.
 
-This project gives the chance to focus in your code **reducing** the amount of work mocking the dependencies. :smile:
-
-# Install
-
-```sh
-npm install @hectorjs/stub-backend
-```
+This library gives the chance to focus in your code **reducing** the amount of work mocking the dependencies. :smile:
 
 # CLI
 
 There is a command line to generate default methods like get, post, put, among others methods.
+
 I strongly recommend you to have a look and use it. It will reduce the time to mock the services which is one of the main goal of this project.
 
 Have a look [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
 
-## Methods availabe to mock at this moment
-
-- [x] GET
-- [x] HEAD
-- [x] POST
-- [x] PUT
-- [x] DELETE
-- [x] OPTIONS
-- [x] TRACE
-- [x] PATCH
-
-
 # Usage
 ## Shortcut
 ### Install the library locally
-
-#### Execute npm init with your data:
-```
-npm init -y
-```
 #### Install the library 
 ```
-npm install @hectorjs/stub-backend
+npm i @hectorjs/stub-backend --save-dev
 ```
-
 #### Use hjs command
-
 Include in your _package.json_ the _hjs_ command as script:
 
 ```json
@@ -69,17 +34,17 @@ Include in your _package.json_ the _hjs_ command as script:
 }
 ```
 
-_Note:_ You can check it running ```npm run hjs -- --version``` or ```hjs --version``` if you have previously installed it globally [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
+_Note:_ You can check it executing ```npm run hjs -- --version``` or ```hjs --version``` (If you have previously installed [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli) globally) in your terminal.
 
-**hjs** command can avoid the following steps because the _cli_ generates all the folders, methods and endpoints for you. Just the data as identifiers, headers, cookies or bodies must be added manually.
+:information_source: **hjs** command can avoid the following steps because the _cli_ generates all the folders, methods and endpoints for you. Just the data as identifiers, headers, cookies or bodies must be added manually.
 
 # Structure
-
 ## Folder data
 
 Create a folder named _resources_ in the package root directory and add a couple of json files under that folder (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
 
 ```
+ package.json
  resources
     ¦
      - *.json
@@ -89,10 +54,8 @@ Create a folder named _resources_ in the package root directory and add a couple
         - *.json
         - *.json
 ```
-Each json file must follow the following format:
-
 ## Method level 
-The first key means the method and it must have a "_" as a prefix. For example:
+Each json file must contain a json. The first key means the method and it must have a "_" as a prefix. For example:
 
 ```json
 {
@@ -101,6 +64,7 @@ The first key means the method and it must have a "_" as a prefix. For example:
   "_post":{       
   }    
 }
+
 ```
 _Methods:_ _get, _head, _post, _put, _delete, _options, _trace, _patch.
 
@@ -131,9 +95,9 @@ The next level means the endpoint. The path is written like theses examples:
       }
     }
     ```
-_NOTE_: id, param1 or param2 can be named as you want.
+_NOTE_: id, param1 or param2 can be named as you want. However, ther must be unique.
 
-## Array of scenarios
+## Scenarios
 
 Index:
  - [_req](#_req)
@@ -142,13 +106,13 @@ Index:
 
 An array of possible scenarios based on different identifiers.
 
-Each scenario has two mandatory sections **_req** (request) and **_res** (response) where we place the properties related to the request and response.
+Each scenario contains two sections **_req** (request) and **_res** (response) where we place the properties in relation with the request and response.
 
 Both level are **mandatory** in each scenario. Even if you dont want to add anything in the request, you must add an empty __req_.
 
 ### _req
 
-This section deals with the request and it checks if the request is matching with the scenario.
+Basically, the scenario which is going to be selected to provide the response is the one which has more matches in the _req section with it.
 
 ```json
 "/customers/{id1}/data/{id2}" : [
@@ -163,7 +127,7 @@ This section deals with the request and it checks if the request is matching wit
 ]
 ```
 
-You can have the following properties:
+You can have the following properties for matching:
  - [_[id]](#_[id])
  - [_headers](#_headers)
  - [_cookies](#_cookies)
@@ -196,7 +160,7 @@ There are two different ways to validate the headers:
 
 ##### Validate by key
 
-It is an array of header keys. Basically, it will validate if the request contains the header in the array. If the request does not contain the header, the service will return a 401 response.
+It is an array of header keys. Basically, it will validate if the request contains the header in the array.
 
 ```json
 "/customers/{id}/data" : [
@@ -243,7 +207,7 @@ There are two different ways to validate the cookies:
 
 ##### Validate by key
 
-It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array. If the request does not contain the cookie,the service will return a 401 response.
+It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array.
 
 ```json
 "/customers/{id}/data" : [

@@ -98,7 +98,7 @@ describe('GET - stub backend project', () => {
       context('when res is not set', () => {
         it('should returns scenario not found', (done) => {
           request(app)
-              .get('/no/carl/req')
+              .get('/no/carl/no/req')
               .end((err, res) => {
                 expect(err).to.not.exist;
                 expect(res.status).to.equal(500);
@@ -194,7 +194,7 @@ describe('GET - stub backend project', () => {
     });
   });
 
-  describe('with Authentication', () => {
+  describe('with headers', () => {
     it('returns a valid reponse', (done) => {
       request(app)
           .get('/stories/Nathan/budget')
@@ -223,125 +223,91 @@ describe('GET - stub backend project', () => {
             done();
           });
     });
+  });
 
-    describe('headers', () => {
-      context('when authorization header is not in the request', () => {
-        it('returns 401', (done) => {
-          request(app)
-              .get('/stories/nathan/budget')
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
-                expect(res.body).to.deep.equal({
-                  errorCode: 401,
-                  message: 'Header not found! :('
-                });
-                done();
+  describe('with cookies', () => {
+    context('when a cookie is in the request', () => {
+      it('should return a valid response', (done) => {
+        request(app)
+            .get('/stories/christopher/confidential')
+            .set('Cookie', ['session-id=12345667', 'key-id=KEY_ENCRYPTED'])
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                'gender': 'male',
+                'dob': '12/12/1990'
               });
-        });
-      });
-
-      context('when id header is not in the request', () => {
-        it('returns 401', (done) => {
-          request(app)
-              .get('/stories/smith/budget')
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
-                expect(res.body).to.deep.equal({
-                  errorCode: 401,
-                  message: 'Header not found! :('
-                });
-                done();
-              });
-        });
+              done();
+            });
       });
     });
 
-    describe('cookies', () => {
-      context('when a cookie is in the request', () => {
-        it('should return a valid response', (done) => {
-          request(app)
-              .get('/stories/christopher/confidential')
-              .set('Cookie', ['session-id=12345667', 'key-id=KEY_ENCRYPTED'])
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(200);
-                expect(res.body).to.deep.equal({
-                  'gender': 'male',
-                  'dob': '12/12/1990'
-                });
-                done();
+    context('when a cookie is not presented in the request', () => {
+      it('should return 404', (done) => {
+        request(app)
+            .get('/stories/christopher/confidential')
+            .set('Cookie', ['session-id=12345667'])
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(404);
+              expect(res.body).to.deep.equal({
+                errorCode: 404,
+                message: 'Scenario not found in the resources! :('
               });
-        });
+              done();
+            });
       });
+    });
+  });
 
-      context('when a cookie is not presented in the request', () => {
-        it('should return 401', (done) => {
-          request(app)
-              .get('/stories/christopher/confidential')
-              .set('Cookie', ['session-id=12345667'])
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
-                expect(res.body).to.deep.equal({
-                  errorCode: 401,
-                  message: 'Cookie not found in the request! :('
-                });
-                done();
+  describe('cookies and headers', () => {
+    context('when a cookie and header are not presented', () => {
+      it('should return 404', (done) => {
+        request(app)
+            .get('/stories/mark/confidential')
+            .set('Cookie', ['session-id=12345667'])
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(404);
+              expect(res.body).to.deep.equal({
+                errorCode: 404,
+                message: 'Scenario not found in the resources! :('
               });
-        });
+              done();
+            });
       });
     });
 
-    describe('cookies and headers', () => {
-      context('when a cookie and header are not presented', () => {
-        it('should return 401', (done) => {
-          request(app)
-              .get('/stories/mark/confidential')
-              .set('Cookie', ['session-id=12345667'])
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(401);
-                expect(res.body).to.deep.equal({
-                  errorCode: 401,
-                  message: 'Cookie and header not found in the request! :('
-                });
-                done();
+    describe('check cookie by key and value', () => {
+      it('should return a valid response', (done) => {
+        request(app)
+            .get('/customers/1234/person')
+            .set('Cookie', ['session=4321', 'product=12'])
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                name: 'Thor'
               });
-        });
+              done();
+            });
       });
+    });
 
-      describe('check cookie by key and value', () => {
-        it('should return a valid response', (done) => {
-          request(app)
-              .get('/customers/1234/person')
-              .set('Cookie', ['session=4321', 'product=12'])
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(200);
-                expect(res.body).to.deep.equal({
-                  name: 'Thor'
-                });
-                done();
+    describe('check header by key and value', () => {
+      it('should return a valid response', (done) => {
+        request(app)
+            .get('/customers/1234/pet')
+            .set({ 'authorization': 'Beurer 1234', 'client_id': '1234' })
+            .end((err, res) => {
+              expect(err).to.not.exist;
+              expect(res.status).to.equal(200);
+              expect(res.body).to.deep.equal({
+                pet: 'dog'
               });
-        });
-      });
-
-      describe('check header by key and value', () => {
-        it('should return a valid response', (done) => {
-          request(app)
-              .get('/customers/1234/pet')
-              .set({ 'authorization': 'Beurer 1234', 'client_id': '1234' })
-              .end((err, res) => {
-                expect(err).to.not.exist;
-                expect(res.status).to.equal(200);
-                expect(res.body).to.deep.equal({
-                  pet: 'dog'
-                });
-                done();
-              });
-        });
+              done();
+            });
       });
     });
   });
