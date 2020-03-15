@@ -41,18 +41,20 @@ _Note:_ You can check it executing ```npm run hjs -- --version``` or ```hjs --ve
 # Structure
 ## Folder data
 
-Create a folder named _resources_ in the package root directory and add a couple of json files under that folder (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
+Create a folder name _hjs_ in the package root directory. Under that folder, create _resources_ folder and add a couple of json files (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
 
 ```
  package.json
- resources
-    ¦
-     - *.json
-     - *.json
-     - subfolder
-       ¦
-        - *.json
-        - *.json
+ _hjs
+ ¦
+  resources
+  ¦
+   - *.json
+   - *.json
+   - subfolder
+     ¦
+      - *.json
+      - *.json
 ```
 ## Method level 
 Each json file must contain a json. The first key means the method and it must have a "_" as a prefix. For example:
@@ -378,7 +380,6 @@ _NOTE:_ the value of each key will be generated with default values.
 ]
 ```
 
-
 #### _cookies
 
 You have the option to set cookies in the response just by key or key-value.
@@ -633,6 +634,10 @@ Expecify the port. It is 3005 by default.
   "port": 8081
 }
 ```
+
+# Compatibility
+
+ It requires 0.21.0 or newer versions of @hectorjs/cli.
 
 # Respository
 
