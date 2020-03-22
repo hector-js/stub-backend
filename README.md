@@ -596,6 +596,21 @@ This section is in progress. At this moment, the user can response a xml setting
 }
 ```
 
+## Banner
+You can use your own banner instead of hectorjs one. You just need to add a file called ```.hjs.banner.js``` in the roor of your project. Have a look to the following example:
+
+```js
+module.exports = function(){
+    console.log('\x1b[32m%s\x1b[0m', 'My custom message');
+}
+```
+
+_NOTE:_ you can add a config file using the following command:
+For an existing project:
+  * ```hjs config --banner``` have upper version  0.24.0 hectorjs/stub-cli.
+For a new mock service:
+  * ```hjs new --banner``` create project with a custom banner.
+
 ## Config file
 
 You can add your config file in the root of the mock service or in the root of the project. The name of the file must be _.hjs.config.json_
