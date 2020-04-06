@@ -36,7 +36,7 @@
     "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "test-all": "eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
+    "test-all": "rm -rf node_modules && npm i &&eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
