@@ -8,25 +8,24 @@
 
 The aim of this project is to mock the backend services based on a *JSON* configuration. You don't need to do anything programmatically.
 
-This library gives the chance to focus in your code **reducing** the amount of work mocking the dependencies. :smile:
+This library gives you the chance to focus in your code **reducing** the amount of work mocking the dependencies. :smile:
 
-# CLI
+# hjs-cli
 
-There is a command line to generate default methods like get, post, put, among others methods.
+There is a command line to generate default scenarios using GET, POST or PUT methods, among others ones.
 
-I strongly recommend you to have a look and use it. It will reduce the time to mock the services which is one of the main goal of this project.
+I suggest you to have a look and give it a try. It will reduce the time to mock the services, which is one of the main goals of this library.
 
 Have a look [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli).
 
-# Usage
-## Shortcut
-### Install the library locally
-#### Install the library 
+# Installation 
 ```
 npm i @hectorjs/stub-backend --save-dev
 ```
-#### Use hjs command
-Include in your _package.json_ the _hjs_ command as script:
+## Set hjs command 
+:warning: _(this step is not necessary if you have the cli globally installed)_
+
+Include _hjs_ command in your _package.json_ as a script:
 
 ```json
 "scripts":{
@@ -34,30 +33,27 @@ Include in your _package.json_ the _hjs_ command as script:
 }
 ```
 
-_Note:_ You can check it executing ```npm run hjs -- --version``` or ```hjs --version``` (If you have previously installed [@hectorjs/stub-cli](https://www.npmjs.com/package/@hectorjs/stub-cli) globally) in your terminal.
-
-:information_source: **hjs** command can avoid the following steps because the _cli_ generates all the folders, methods and endpoints for you. Just the data as identifiers, headers, cookies or bodies must be added manually.
+_Note:_ You can check it executing ```npm run hjs -- --version``` in your terminal.
 
 # Structure
-## Folder data
-
-Create a folder name _hjs_ in the package root directory. Under that folder, create _resources_ folder and add a couple of json files (it does not matter the name of those files) with the properties. You can create subfolders under resources as well.
+## Packages
+Create a folder named _\_hjs_ in the package root directory. Under that folder, create a _resources_ folder and add a couple of json files, which you can name as you wish. You can create subfolders under resources as well.
 
 ```
  package.json
  _hjs
- ¦
-  resources
-  ¦
-   - *.json
-   - *.json
-   - subfolder
-     ¦
-      - *.json
-      - *.json
+ |
+  -resources
+   |
+    - *.json
+    - *.json
+    - subfolder
+      |
+       - *.json
+       - *.json
 ```
-## Method level 
-Each json file must contain a json. The first key means the method and it must have a "_" as a prefix. For example:
+## Files structure 
+Each file must contain a json object. The first key indicates the method of the request and it must have a "_" as a prefix. For example:
 
 ```json
 {
@@ -72,16 +68,16 @@ _Methods:_ _get, _head, _post, _put, _delete, _options, _trace, _patch.
 
 ## Path level
 
-The next level means the endpoint. The path is written like theses examples:
+The next level indicates the endpoint to call. The path is written as the following examples:
 
   - /customers/names
   - /customers/{id}/name
   - /countries/{id}/product
   - /countries/{id}/population?town={param1}&postcode={param2}
 
-     ```json
+    ```json
     {
-      "_get":{
+      "_[method]":{
          "/customers/names":[
            {}
          ],
@@ -97,24 +93,24 @@ The next level means the endpoint. The path is written like theses examples:
       }
     }
     ```
-_NOTE_: id, param1 or param2 can be named as you want. However, ther must be unique.
+_NOTE_: id, param1 or param2 can be named as you want. However, they must be unique.
 
 ## Scenarios
+
+This level indicates possible scenarios based on different parameters.
 
 Index:
  - [_req](#_req)
  - [_res](#_res)
 
 
-An array of possible scenarios based on different identifiers.
+Each scenario contains two sections **_req** (request) and **_res** (response) where we place the properties in relation to the request and response.
 
-Each scenario contains two sections **_req** (request) and **_res** (response) where we place the properties in relation with the request and response.
+:warning: Both levels are **mandatory** in each scenario. Even if you don't want to add anything in the request, you must add an empty __req_.
 
-Both level are **mandatory** in each scenario. Even if you dont want to add anything in the request, you must add an empty __req_.
+## _req
 
-### _req
-
-Basically, the scenario which is going to be selected to provide the response is the one which has more matches in the _req section with it.
+Basically, the scenario which is going to be selected to provide the response is the one which has more matches in the _req section with the real request.
 
 ```json
 "/customers/{id1}/data/{id2}" : [
@@ -129,7 +125,7 @@ Basically, the scenario which is going to be selected to provide the response is
 ]
 ```
 
-You can have the following properties for matching:
+You can have the following properties for matching the request:
  - [_[id]](#_[id])
  - [_headers](#_headers)
  - [_cookies](#_cookies)
@@ -137,9 +133,10 @@ You can have the following properties for matching:
  - [_bodyPaths](#_bodyPaths)
  - [_excludeBodyFields](#_excludeBodyFields)
 
-#### _[id]
+### _[id]
 
-Identifiers of a path. For example, given a path ```/customers/{id1}/data/{id2}```, the scenario with an id should be structured like this:
+Identifiers of a path. For example, given a path ```/customers/{id1}/data/{id2}```, it should be structured as follows:
+
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -150,19 +147,24 @@ Identifiers of a path. For example, given a path ```/customers/{id1}/data/{id2}`
   },
   {
     "_req":{
-      "_id1": "fran",
+      "_id1": "Fran",
       "_id2": "2"
     }
   }
 ]
 ```
-#### _headers
 
-There are two different ways to validate the headers:
+It will choose the first scenario when _id1_ is Chris and _id2_ is 1 and the second one when _id1_ is Fran and _id2_ is 2.
 
-##### Validate by key
+_cli_ ```hjs generate get customers/{id1}/data/{id2}```
 
-It is an array of header keys. Basically, it will validate if the request contains the header in the array.
+### _headers
+
+There are two different ways to match by headers:
+
+#### Match by key
+
+It is an array of header keys. Basically, it will match if the request contains all the headers in the array.
 
 ```json
 "/customers/{id}/data" : [
@@ -174,12 +176,11 @@ It is an array of header keys. Basically, it will validate if the request contai
 ]
 ```
 
-Using _cli_ command:
-```hjs generate get customers/{id}/data --headers authorization,client_Id```
+_cli_ ```hjs generate get customers/{id}/data --headers authorization,client_Id```
 
-##### Validate by key and value
+#### Match by key and value
 
-It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
+It is an array of objects. The key is the header name and the value is the header value. You can see it in the next example:
 
 
 ```json
@@ -195,21 +196,19 @@ It is an array of objects. The key is the header name and the value is the heade
 ]
 ```
 
-Using _cli_ command:
-```hjs generate get customers/{id}/data --headers authorization,client_Id```
+_cli_ ```hjs generate get customers/{id}/data --headers authorization,client_Id```
 
 Set the key value headers manually.
 
-_NOTE:_ If the scenario does not contain any headers section, the service won't check anything.
-Capital letters are not allow in headers section.
+_NOTE:_ If the scenario does not contain any headers section, the service won't check anything. Capital letters are not allow in headers section.
 
-#### _cookies
+### _cookies
 
-There are two different ways to validate the cookies:
+There are two different ways to match the cookies:
 
-##### Validate by key
+#### Match by key
 
-It is an array of cookies keys. Basically, it will validate if the request contains the cookie in the array.
+It is an array of cookies keys. Basically, it will match if the request contains all the cookies in the array.
 
 ```json
 "/customers/{id}/data" : [
@@ -223,7 +222,7 @@ It is an array of cookies keys. Basically, it will validate if the request conta
 
 _cli_: ```hjs generate get customers/{id}/data --cookies Universal,sec```
 
-##### Validate by key and value
+#### Match by key-value
 
 It is an array of objects. The key is the header name and the value is the header value. You can see in the next example:
 
@@ -242,9 +241,9 @@ It is an array of objects. The key is the header name and the value is the heade
 
 _NOTE:_ If the scenario does not contain any cookies section, the service won't check anything.
 
-#### _body
+### _body
 
-Some methods like post, put or delete needs to verify the body response as well. **requestBody** is the request for a specific scenario.
+Some methods like post, put or delete needs to verify the body as well. **_body** object is the request for a specific scenario. It will check the entire object.
 
 ```json
 "/customers/{id}/data" : [
@@ -266,11 +265,11 @@ Some methods like post, put or delete needs to verify the body response as well.
 
 _Note:_ If any field is missed, it means it is not required.
 
-#### _bodyPaths
+### _bodyPaths
 
-Instead of verifying the entire body of the request, you can choose to verify just a specific fields or objects using __bodyPaths_.
+Instead of matching the entire body of the request, you can verify verify just a specific fields or objects using __bodyPaths_.
 
-_bodyPaths is an array of key values objects where the _key_ is the jsonPath and the _value_ is the object to check.
+_bodyPaths_ is an array of key values objects where the _key_ is the jsonPath and the _value_ is the object to match.
 
 Example:
 
@@ -292,20 +291,21 @@ Example:
 
 _NOTE:_ bodyPaths and body section can not be at the same time.
 
-#### _excludeBodyFields
+### _excludeBodyFields
 
 Whenever you need to exclude the comparation of some fields or objects from the __body_. You can do it adding an array of json paths  (you can exlude multiple fields or objects)
 
 ```json
 "_excludeBodyFields": [ "$.value1.value2[0]", "$.value3"]
 ```
+
 _Note:_ If you have any doubt about how to do the path, you can have a look to [jsonPath libray](https://www.npmjs.com/package/jsonpath) which is used in the project.
 
 _Note:_ The library will not exclude any field or object if __excludeBodyFields_ is not added.
 
-### _res
+## _res
 
-This section create a response when an scenario is matched.
+This section create a response when a scenario is matched.
 
 ```json
 "/customers/{id1}/data/{id2}" : [
@@ -328,20 +328,20 @@ You can have the following properties:
  - [_delay](#_delay)
  - [_body](#_body)
 
-#### _status
+### _status
 
-Just in case the request contain the cookie and headers, you can set your own status or leave it 200 as default.
+You can set your own status.
 
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
     "_res":{
-      "_status":"400"
+      "_status": 400
     }
   },
   {
     "_res":{
-      "_status":"404"
+      "_status": 404
     }
   }
 ]
@@ -349,11 +349,13 @@ Just in case the request contain the cookie and headers, you can set your own st
 
 _cli_: ```hjs generate get customers/{id}/data/{id2} --status 404```
 
-#### _headers
+_NOTE:_ if _status doesn't exist, it will return 200.
+
+### _headers
 
 You have the option to set headers in the response just by key or key-value.
 
-##### by key
+#### by key
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -366,7 +368,7 @@ You have the option to set headers in the response just by key or key-value.
 
 _NOTE:_ the value of each key will be generated with default values.
 
-##### by key-value
+#### by key-value
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -380,11 +382,11 @@ _NOTE:_ the value of each key will be generated with default values.
 ]
 ```
 
-#### _cookies
+### _cookies
 
 You have the option to set cookies in the response just by key or key-value.
 
-##### by key
+#### by key
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -397,7 +399,7 @@ You have the option to set cookies in the response just by key or key-value.
 
 _NOTE:_ the value of each key will be generated with default values.
 
-##### by key-value
+#### by key-value
 ```json
 "/customers/{id1}/data/{id2}" : [
   {
@@ -411,7 +413,7 @@ _NOTE:_ the value of each key will be generated with default values.
 ]
 ```
 
-#### _delay
+### _delay
 
 It is adding a delay in milliseconds to the response.
 
@@ -427,7 +429,7 @@ It is adding a delay in milliseconds to the response.
 
 _cli_: ```hjs generate get customers/{id}/data --delay 1000```
 
-#### _body
+### _body
 
 This section contains the response for a given request.
 
@@ -450,7 +452,7 @@ This section contains the response for a given request.
 ]
 ```
 
-### _description
+## _description
 
 Brief explanation about the scenario.
 
