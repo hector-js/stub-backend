@@ -241,9 +241,16 @@ It is an array of objects. The key is the header name and the value is the heade
 
 _NOTE:_ If the scenario does not contain any cookies section, the service won't check anything.
 
+
+_cli_ ```hjs generate get customers/{id}/data --cookies authorization,client_Id```
+
+Set the key value cookies manually.
+
+_NOTE:_ If the scenario does not contain any cookies section, the service won't check anything.
+
 ### _body
 
-Some methods like post, put or delete needs to verify the body as well. **_body** object is the request for a specific scenario. It will check the entire object.
+You might want to match the body for some methods like post, put or delete. **_body** object is the request body  for a specific scenario. It will check the entire object.
 
 ```json
 "/customers/{id}/data" : [
@@ -252,24 +259,19 @@ Some methods like post, put or delete needs to verify the body as well. **_body*
       "_body": {
         "dummyRequestBody1": "anyValue"   
       }
-    },
-    "_res":{
-      "_body": {
-        "dummyRequestBody2": "anyValue"   
-      }
-    },
-    "_description":"secure scenario given an authorization header"
+    }
+    "_description": "secure scenario given an authorization header"
   }
 ]
 ```
 
-_Note:_ If any field is missed, it means it is not required.
+_Note:_ If any field is missed, the scenario will not be matched.
 
 ### _bodyPaths
 
-Instead of matching the entire body of the request, you can verify verify just a specific fields or objects using __bodyPaths_.
+Instead of matching the entire body of a request, you can verify verify just a specific fields or objects using __bodyPaths_.
 
-_bodyPaths_ is an array of key values objects where the _key_ is the jsonPath and the _value_ is the object to match.
+_bodyPaths_ is a key value object where the _key_ is the jsonPath and the _value_ is the object to match.
 
 Example:
 
@@ -277,7 +279,7 @@ Example:
 "/customers/{id}/data" : [
   {
     "_req": {
-      "_bodyPa}hs": {
+      "_bodyPaths": {
         "$.heroes": { "name": "superman"}, 
         "$.cities[0].name": "madrid"
       }
@@ -293,7 +295,7 @@ _NOTE:_ bodyPaths and body section can not be at the same time.
 
 ### _excludeBodyFields
 
-Whenever you need to exclude the comparation of some fields or objects from the __body_. You can do it adding an array of json paths  (you can exlude multiple fields or objects)
+Whenever you need to exclude the comparation of some fields (timestamps for example) or objects from the __body_ or _bodyPaths_,  You can do it adding an array of json paths  (you can exlude multiple fields or objects).
 
 ```json
 "_excludeBodyFields": [ "$.value1.value2[0]", "$.value3"]
@@ -320,7 +322,7 @@ This section create a response when a scenario is matched.
 ]
 ```
 
-You can have the following properties:
+You can have the following properties in the response:
 
  - [_status](#_status)
  - [_headers](#_headers)
