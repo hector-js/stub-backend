@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('response', () => {
+describe('@E2E- Headers response', () => {
   describe('headers', () => {
     context('when headers section exists with just key', () => {
       it('returns a response with the header', (done) => {

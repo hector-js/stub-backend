@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('delay', () => {
+describe('@E2E- delay', () => {
   context('when there is a delay of 5 seconds', () => {
     it('returns a response after 5 seconds', (done) => {
       request(app)

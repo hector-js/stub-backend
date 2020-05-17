@@ -7,7 +7,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('xml', () => {
+describe('@E2E- xml', () => {
   describe('DELETE', () => {
     it('returns a xml', (done) => {
       request(app)

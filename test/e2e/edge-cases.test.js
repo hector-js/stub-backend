@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('edge cases', () => {
+describe('@E2E- edge cases', () => {
   describe('two scenarios with the difference of the headers', () => {
     it('returns a response 1', (done) => {
       request(app)

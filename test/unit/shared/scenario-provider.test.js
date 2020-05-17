@@ -2,14 +2,14 @@
 
 const ScenarioProvider = require('../../../lib/app/shared/scenario-provider');
 const chai = require('chai');
-const db = require('../../data/scenario-provider.1.test');
-const dbPost = require('../../data/scenario-provider.2.test');
-const dbNoRequestBody = require('../../data/scenario-provider.4.test');
-const dbXML = require('../../data/scenario-provider.3.test');
-const dbPost5 = require('../../data/scenario-provider.5.test');
-const dbPost6 = require('../../data/scenario-provider.6.test');
-const dbPost7 = require('../../data/scenario-provider.7.test');
-const dbPost8 = require('../../data/scenario-provider.8.test');
+const db = require('./../data/scenario-provider.1.test');
+const dbPost = require('./../data/scenario-provider.2.test');
+const dbNoRequestBody = require('./../data/scenario-provider.4.test');
+const dbXML = require('./../data/scenario-provider.3.test');
+const dbPost5 = require('./../data/scenario-provider.5.test');
+const dbPost6 = require('./../data/scenario-provider.6.test');
+const dbPost7 = require('./../data/scenario-provider.7.test');
+const dbPost8 = require('./../data/scenario-provider.8.test');
 
 const expect = chai.expect;
 const assert = chai.assert;

@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^0.22.1",
+    "@hectorjs/stub-cli": "^0.26.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
@@ -36,7 +36,7 @@
     "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "test-all": "rm -rf node_modules && npm i &&eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
+    "test-all": "rm -rf node_modules && npm i && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
