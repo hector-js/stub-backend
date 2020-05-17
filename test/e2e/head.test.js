@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('HEAD - stub backend project', () => {
+describe('@E2E- HEAD - stub backend project', () => {
   describe('without Authentication', () => {
     it('returns a valid reponse for Nathan id', (done) => {
       request(app)

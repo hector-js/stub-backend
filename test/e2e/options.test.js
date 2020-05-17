@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('OPTIONS - stub backend project', () => {
+describe('@E2E- OPTIONS - stub backend project', () => {
   it('returns a 204 status', (done) => {
     request(app)
         .options('/story/nathan')

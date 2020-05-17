@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('UI', () => {
+describe('@E2E- UI', () => {
   describe('html', () => {
     it('returns a html for a "/"', (done) => {
       request(app)

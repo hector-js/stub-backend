@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('TRACE - stub backend project', () => {
+describe('@E2E- TRACE - stub backend project', () => {
   it('returns a 200 status', (done) => {
     request(app)
         .trace('/story/nathan')

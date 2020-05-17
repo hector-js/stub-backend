@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('PUT - stub backend project', () => {
+describe('@E2E- PUT - stub backend project', () => {
   describe('without Authentication', () => {
     context('when the url doesnt contain any id', ()=>{
       it('returns a valid reponse', (done) => {

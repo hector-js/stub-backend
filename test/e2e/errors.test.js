@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const expect = chai.expect;
 
-describe('GET - stub backend project', () => {
+describe('@E2E- GET - stub backend project', () => {
   describe('resource not well format', () => {
     context('when the json is not well formatted', ()=>{
       it('returns an invalid response ', (done) => {
