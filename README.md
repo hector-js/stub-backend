@@ -656,7 +656,7 @@ Expecify the port. It is 3005 by default.
 
 # Compatibility
 
- It requires 0.21.0 or newer versions of @hectorjs/cli.
+ It requires 1.0.0 or newer versions of @hectorjs/cli.
 
 # Respository
 
