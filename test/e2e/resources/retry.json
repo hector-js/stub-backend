@@ -1,0 +1,41 @@
+{
+    "_get": {
+        "/customers/{id1}/country/{id2}": [
+            {
+                "_req": {
+                    "_id1": "A123",
+                    "_id2": "B123"
+                },
+                "_res": {
+                    "_body": {
+                        "code": "SP"
+                    }
+                },
+                "_retry": 1,
+                "_resRetry": [
+                    {
+                        "_body": {
+                            "code": "GB"
+                        }
+                    },
+                    {
+                        "_body": {
+                            "code": "NG"
+                        }
+                    }
+                ]
+            },
+            {
+                "_req": {
+                    "_id1": "A321",
+                    "_id2": "B321"
+                },
+                "_res": {
+                    "_body": {
+                        "code": "NG"
+                    }
+                }
+            }
+        ]
+    }
+}
