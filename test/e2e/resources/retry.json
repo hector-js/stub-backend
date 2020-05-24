@@ -11,7 +11,7 @@
                         "code": "SP"
                     }
                 },
-                "_retry": 1,
+                "_retry": 2,
                 "_resRetry": [
                     {
                         "_body": {
@@ -21,7 +21,15 @@
                     {
                         "_body": {
                             "code": "NG"
-                        }
+                        },
+                        "_headers": {
+                            "header-res-1": "header-res-1-value"
+                        },
+                        "_cookies": {
+                            "cookie-res-1": "cookie-res-1-value"
+                        },
+                        "_status": 201,
+                        "_delay": 2500
                     }
                 ]
             },
