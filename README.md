@@ -615,6 +615,72 @@ For an existing project:
 For a new mock service:
   * ```hjs new --banner``` create project with a custom banner.
 
+## Retry opts
+
+A possible scenario including retry options could be:
+
+```json
+{
+  "_get": {
+    "/customers/{id}": [{
+        "_req": {
+          "_id": "2"
+        },
+        "_retry": 2,
+        "_res": {
+          "_body": {
+            "any": "dummy response"
+          }
+        },
+        "_resRetry": [{
+            "_body": {
+              "any": "body for first try"
+            },
+            "_headers": [ "header for first try"]
+          },
+          {
+            "_body": {
+              "any": "body for second try"
+            },
+            "_headers": [ "header for second try"]
+          }]
+      }]
+    }
+}
+```
+Where ```_retry``` fields means the number of retries for that specific request and ```_resRetry``` will be an array of different responses scenarios.
+
+For the example, the first request will optain a response:
+
+```json
+{
+  "_body": {
+    "any": "dummy response"
+  }
+}
+```
+2 request:
+```json
+{
+  "_body": {
+    "any": "body for first try"
+  },
+  "_headers": [ "header for first try"]
+}
+```
+
+3 request: 
+```json
+{
+  "_body": {
+    "any": "body for second try"
+  },
+  "_headers": [ "header for second try"]
+}
+```
+
+If you make again a request it will start from the beginning as you have achieved the number of retries.
+
 ## Config file
 
 You can add your config file in the root of the mock service or in the root of the project. The name of the file must be _.hjs.config.json_
