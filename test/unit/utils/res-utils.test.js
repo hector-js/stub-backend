@@ -26,7 +26,7 @@ describe('response utils', () => {
           _res: { _headers: ['key1', 'key2'] }
         };
 
-        ResUtils.setHeadersScenarioToResponse(scenario, res);
+        ResUtils.setHeadersScenarioToResponse(scenario._res, res, scenario && scenario._res);
 
         expect(db).to.deep.equal([
           { key: 'key1', value: 'key1-value' },
@@ -43,7 +43,7 @@ describe('response utils', () => {
           }
         };
 
-        ResUtils.setHeadersScenarioToResponse(scenario, res);
+        ResUtils.setHeadersScenarioToResponse(scenario._res, res, scenario && scenario._res);
 
         expect(db).to.deep.equal([
           { key: 'key1', value: 'val1' },
@@ -53,9 +53,7 @@ describe('response utils', () => {
     });
 
     [
-      undefined,
       [],
-      null,
       'fd',
       '',
       { res: { _headers: undefined } },
@@ -66,7 +64,7 @@ describe('response utils', () => {
     ].forEach((value) => {
       context(`when headers field is coming with ${JSON.stringify(value)}`, () => {
         it('does not update any headers', () => {
-          ResUtils.setHeadersScenarioToResponse(value, res);
+          ResUtils.setHeadersScenarioToResponse(value, res, scenario && scenario._res);
 
           expect(db).to.deep.equal([]);
         });
@@ -94,7 +92,7 @@ describe('response utils', () => {
           _res: { _cookies: ['key1', 'key2'] }
         };
 
-        ResUtils.setHeadersScenarioToResponse(scenario, res);
+        ResUtils.setHeadersScenarioToResponse(scenario._res, res, scenario && scenario._res);
 
         expect(db).to.deep.equal([
           { key: 'key1', value: 'key1-value' },
@@ -111,7 +109,7 @@ describe('response utils', () => {
           }
         };
 
-        ResUtils.setHeadersScenarioToResponse(scenario, res);
+        ResUtils.setHeadersScenarioToResponse(scenario._res, res, scenario && scenario._res);
 
         expect(db).to.deep.equal([
           { key: 'key1', value: 'val1' },

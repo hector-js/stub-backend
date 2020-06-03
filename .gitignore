@@ -3,3 +3,5 @@
 .nyc_output
 /coverage/
 coverage.lcov
+/test/e2e/resources/temp
+/test/unit/data/temp

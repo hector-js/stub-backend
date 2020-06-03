@@ -1,0 +1,49 @@
+{
+    "_get": {
+        "/customers/{id1}/country/{id2}": [
+            {
+                "_req": {
+                    "_id1": "A123",
+                    "_id2": "B123"
+                },
+                "_res": {
+                    "_body": {
+                        "code": "SP"
+                    }
+                },
+                "_retry": 2,
+                "_resRetry": [
+                    {
+                        "_body": {
+                            "code": "GB"
+                        }
+                    },
+                    {
+                        "_body": {
+                            "code": "NG"
+                        },
+                        "_headers": {
+                            "header-res-1": "header-res-1-value"
+                        },
+                        "_cookies": {
+                            "cookie-res-1": "cookie-res-1-value"
+                        },
+                        "_status": 201,
+                        "_delay": 2500
+                    }
+                ]
+            },
+            {
+                "_req": {
+                    "_id1": "A321",
+                    "_id2": "B321"
+                },
+                "_res": {
+                    "_body": {
+                        "code": "NG"
+                    }
+                }
+            }
+        ]
+    }
+}
