@@ -31,7 +31,7 @@
   },
   "scripts": {
     "hjs": "hjs",
-    "start": "set NODE_ENV=test & nodemon lib/app.js --profile test --logs tiny --port 3005",
+    "start": "set NODE_ENV=test & nodemon lib/server.js --profile test --logs tiny --port 3005",
     "test": "env KEY=test mocha --recursive --exit",
     "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
