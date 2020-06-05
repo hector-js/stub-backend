@@ -15,6 +15,7 @@
         "**/lib/environment/*.js",
         "**/index.js",
         "**/app.js",
+        "**/server.js",
         "**/main.js",
         "**/development.js"
     ]
