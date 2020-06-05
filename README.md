@@ -202,6 +202,36 @@ Set the key value headers manually.
 
 _NOTE:_ If the scenario does not contain any headers section, the service won't check anything. Capital letters are not allow in headers section.
 
+#### Content-type
+
+By default all the requests are based on json.
+
+If you include in your header the following options:
+
+1. multipart/form-data 
+  
+  The values keyName=ValueName will be matching in the body section like:
+
+  ```
+  {
+    _body:{
+      [keyName]:[ValueName]
+    }  
+  }
+  ```
+
+2. application/x-www-form-urlencoded
+  
+  The values keyName=ValueName will be matching in the body section like:
+
+  ```
+  {
+    _body:{
+      [keyName]:[ValueName]
+    }  
+  }
+  ```
+
 ### _cookies
 
 There are two different ways to match the cookies:

@@ -1,0 +1,36 @@
+{
+    "_post": {
+      "/health/status": [
+        {
+          "_req": {
+            "_headers": {
+              "content-type": "application/x-www-form-urlencoded"
+            },
+            "_body": {
+              "name": "Mateo"
+            }
+          },
+          "_res": {
+            "_body": {
+              "status": "healthier"
+            }
+          }
+        },
+        {
+          "_req": {
+            "_headers": {
+              "content-type": "multipart/form-data"
+            },
+            "_body": {
+              "name": "Super Mateo"
+            }
+          },
+          "_res": {
+            "_body": {
+              "status": "Super healthier"
+            }
+          }
+        }
+      ]
+    }
+  }
