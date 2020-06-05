@@ -4,6 +4,8 @@
  - ![](https://github.com/HecJimSan/stub-backend/workflows/eslint%2Dconfig%2Dgoogle/badge.svg) ![](https://github.com/HecJimSan/stub-backend/workflows/Unit%20tests/badge.svg) ![](https://github.com/HecJimSan/stub-backend/workflows/Coverage/badge.svg) [![codecov](https://codecov.io/gh/HecJimSan/stub-backend/branch/development/graph/badge.svg)](https://codecov.io/gh/HecJimSan/stub-backend)
  - ![](https://img.shields.io/npm/v/@hectorjs/stub-backend?label=version&logo=npm) ![](https://img.shields.io/npm/dt/@hectorjs/stub-backend?logo=npm&logoColor=blue) ![](https://img.shields.io/snyk/vulnerabilities/npm/@hectorjs/stub-backend?logo=snyk) ![](https://img.shields.io/github/last-commit/HecJimSan/stub-backend?logo=github)
 
+ [Releases documentation](https://github.com/HecJimSan/stub-backend/releases)
+
 # Description
 
 The aim of this project is to mock the backend services based on a *JSON* configuration. You don't need to do anything programmatically.
