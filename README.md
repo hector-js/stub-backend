@@ -177,8 +177,21 @@ It is an array of header keys. Basically, it will match if the request contains 
   }
 ]
 ```
-
 _cli_ ```hjs generate get customers/{id}/data --headers authorization,client_Id```
+
+#### Match by key or match by value
+
+Header can match key or values for specific fields also where required.
+
+```json
+"/customers/{id}/data" : [
+  {
+    "_req":{
+      "_headers": ["authorization", {"client_Id": "expected_value"}]
+    }
+  }
+]
+```
 
 #### Match by key and value
 
@@ -322,6 +335,25 @@ Example:
   }
 ]
 ```
+
+_bodyPaths can be an array also as an option to validate a field or value.
+
+```json
+"/customers/{id}/data" : [
+  {
+    "_req": {
+      "_bodyPaths": [
+        "$.heroes": { "name": "superman"}, 
+        "$.cities[0].name"
+      ]
+    },
+    "_res":{
+    },
+    "_description":"secure scenario given an authorization header"
+  }
+]
+```
+
 
 _NOTE:_ bodyPaths and body section can not be at the same time.
 
