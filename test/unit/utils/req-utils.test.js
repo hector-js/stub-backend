@@ -69,6 +69,43 @@ describe('request utils', () => {
           });
         });
       });
+
+      context('when the request matches key and value elements', () => {
+        it(`should return true when it matches key & value`, () => {
+          elementsArr = [{ session: '1234' }, 'content-type'];
+          elementsReq = { 'session': '1234', 'content-type': 'application/json' };
+
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
+
+          expect(result).to.be.false;
+        });
+        it(`should return true when it matches only key`, () => {
+          elementsArr = ['content-type'];
+          elementsReq = { 'session': '1234', 'content-type': 'application/json' };
+
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
+
+          expect(result).to.be.false;
+        });
+      });
+      context('when the request does not match key and value elements', () => {
+        it(`should return false for mismatch object value`, () => {
+          elementsArr = [{ session: '1235' }, 'content-type'];
+          elementsReq = { 'session': '1234', 'content-type': 'application/json' };
+
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
+
+          expect(result).to.be.true;
+        });
+        it(`should return false for mismatch object key`, () => {
+          elementsArr = [{ session: '1234' }, 'invalid-type'];
+          elementsReq = { 'session': '1234', 'content-type': 'application/json' };
+
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
+
+          expect(result).to.be.true;
+        });
+      });
     });
 
     describe('key', ()=>{

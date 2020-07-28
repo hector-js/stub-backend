@@ -38,6 +38,27 @@ describe('bodyPathUtils', () => {
           });
         });
 
+        context('when json A matches with the path of checking object', () => {
+          it('returns true', () => {
+            jsonA = {
+              var1: 'var-1',
+              var2: {
+                var3: 'var-3',
+                var4: { var5: 'var-5' },
+                var6: { var7: 'var-6' }
+              }
+            };
+            paths = [
+              '$.var2.var4',
+              { '$.var2.var4.var5': 'var-5' },
+              '$.var2.var6.var7'
+            ];
+            jsonExcludePaths = null;
+            result = PathUtils.comparePathBody(jsonA, paths, jsonExcludePaths);
+            expect(result).to.be.true;
+          });
+        });
+
         describe('exclude paths', () => {
           context('when jsonA part is excluded and path is validating the exclusion', () => {
             it('returns true', () => {
@@ -118,6 +139,27 @@ describe('bodyPathUtils', () => {
 
             result = PathUtils.comparePathBody(jsonA, paths, jsonExcludePaths);
 
+            expect(result).to.be.false;
+          });
+        });
+
+        context('when json A does matches with the path of checking object', () => {
+          it('returns false', () => {
+            jsonA = {
+              var1: 'var-1',
+              var2: {
+                var3: 'var-3',
+                var4: { var5: 'var-5' },
+                var6: { var7: 'var-6' }
+              }
+            };
+            paths = [
+              '$.var2.var4',
+              { '$.var2.var4.var5': 'invalid value' },
+              '$.var2.var6.var7'
+            ];
+            jsonExcludePaths = null;
+            result = PathUtils.comparePathBody(jsonA, paths, jsonExcludePaths);
             expect(result).to.be.false;
           });
         });
