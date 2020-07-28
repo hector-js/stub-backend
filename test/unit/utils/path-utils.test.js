@@ -45,7 +45,7 @@ describe('bodyPathUtils', () => {
               var2: {
                 var3: 'var-3',
                 var4: { var5: 'var-5' },
-                var6: { var7: 'var-6' },
+                var6: { var7: 'var-6' }
               }
             };
             paths = [
