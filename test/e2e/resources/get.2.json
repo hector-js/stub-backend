@@ -118,6 +118,30 @@
         },
         "_description": "ANY DESCRIPTION"
       }
+    ],
+    "/wildcard/{id1}/{id2}/whatever":[
+      {
+        "_req":{
+          "_id1":"1",
+          "_id2":"2"
+        },
+        "_res":{
+          "_body":{
+            "scenario":"1"
+          }
+        }
+      },
+      {
+        "_req":{
+          "_id1":"1",
+          "_id2":"*"
+        },
+        "_res":{
+          "_body":{
+            "scenario":"2"
+          }
+        }
+      }
     ]
   }
 }
