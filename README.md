@@ -160,6 +160,10 @@ It will choose the first scenario when _id1_ is Chris and _id2_ is 1 and the sec
 
 _cli_ ```hjs generate get customers/{id1}/data/{id2}```
 
+_NOTE:_ If you include ```*``` as a value, it will work as a wildcard.
+
+For example, given the example above when the request is ```/customers/chris/data/*```, it will choose the first scenario.
+
 ### _headers
 
 There are two different ways to match by headers:

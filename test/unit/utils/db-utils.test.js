@@ -46,6 +46,15 @@ describe('db utils', () => {
 
       expect(result).to.be.false;
     });
+
+    it(`should return true when the req string is the wildcard '*'`, () => {
+      const stringOne = `*`;
+      const stringTwo = `anything`;
+
+      const result = DBUtils.isEq(stringOne, stringTwo);
+
+      expect(result).to.be.true;
+    });
   });
 });
 
