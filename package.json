@@ -52,7 +52,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/HecJimSan/stub-backend.git"
+    "url": "git://github.com/hector-js/stub-backend.git"
   },
   "homepage": "https://hectorjs.herokuapp.com"
 }
