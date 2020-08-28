@@ -133,5 +133,29 @@ module.exports = db = {
         }
       }
     }
+  ],
+  '/two/same/request': [
+    {
+      _id: '1',
+      _req: {
+
+      },
+      _res: {
+        _body: {
+          scenario: 1
+        }
+      }
+    },
+    {
+      _id: '2',
+      _req: {
+
+      },
+      _res: {
+        _body: {
+          scenario: 2
+        }
+      }
+    }
   ]
 };

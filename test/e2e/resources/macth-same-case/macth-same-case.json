@@ -1,0 +1,54 @@
+{
+    "_get": {
+        "/two/common/scenarios": [
+            {
+                "_id": "1",
+                "_req": {},
+                "_res": {
+                    "_body": {
+                        "scenario": "1"
+                    }
+                }
+            },
+            {
+                "_id": "2",
+                "_req": {},
+                "_res": {
+                    "_body": {
+                        "scenario": "2"
+                    }
+                }
+            }
+        ]
+    },
+    "_post": {
+        "/two/common/scenarios": [
+            {
+                "_id": "3",
+                "_req": {
+                    "_body":{ 
+                        "firstName": "Mateo"
+                    }
+                },
+                "_res": {
+                    "_body": {
+                        "scenario": "3"
+                    }
+                }
+            },
+            {
+                "_id": "4",
+                "_req": {
+                    "_body":{ 
+                        "firstName": "Mateo"
+                    }
+                },
+                "_res": {
+                    "_body": {
+                        "scenario": "4"
+                    }
+                }
+            }
+        ]
+    }
+}
