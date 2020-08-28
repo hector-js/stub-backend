@@ -340,6 +340,29 @@ describe('scenario provider', () => {
       });
     });
 
+    describe('multiple scenarios match', () => {
+      describe('_scenario is set to 1', () => {
+        it('returns the scenarios for that specific scenario', () => {
+          const request = '/two/same/request';
+          const contextMatcher = new ScenarioProvider(request, db, null, null, '1');
+          const endpoint = contextMatcher.isInDB();
+
+          const scenario = contextMatcher.getScenario(endpoint);
+
+          expect(scenario).to.deep.equal({
+            _id: '1',
+            _req: {
+            },
+            _res: {
+              _body: {
+                scenario: 1
+              }
+            }
+          });
+        });
+      });
+    });
+
     describe('xml', () => {
       context('when xml flag is set to true', () => {
         it('should return cases filtered by xml', () => {

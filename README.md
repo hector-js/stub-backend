@@ -645,6 +645,12 @@ The response will be like this:
 
 # Advance options
 
+- [Xml](#Xml)
+- [Banner](#Banner)
+- [Retry opts](#Retry&nbsp;opts)
+- [Same request different response](#Same&nbsp;request&nbsp;different&nbsp;response)
+- [Config file](#Config&nbsp;file)
+
 ## Xml
 
 This section is in progress. At this moment, the user can response a xml setting the **_xml** flag to true like the following scenario:
@@ -749,13 +755,78 @@ For the example, the first request will optain a response:
 
 If you make again a request it will start from the beginning as you have achieved the number of retries.
 
+## Same request different response
+
+There are scenarios where the user wants to provide different responses for the same request. The library provide the following feature to be able to do it.
+
+It needs to add a custom id in the root of the scenario like the example below:
+
+```json
+{
+  "_get": {
+    "/customers":[
+      {
+        "_id": "ID_1",
+        "_req":{},
+        "_res":{
+          "_body": {
+            "size":100
+          }
+        }
+      },
+      {
+        "_id": "ID_2",
+        "_req":{},
+        "_res":{
+          "_body": {
+            "size":200
+          }
+        }
+      }
+    ]
+}
+```
+Basically, it requires to tell to the library which id to use before making the request.
+
+The library expose three endpoints to deal with the id.
+
+- POST "/__scenario" body: ```{ id: 'CUSTOM_ID' }```
+  This request sets the id in the library. For the example above, if we want to response the first scenario, we should make the next request before the mock is executed:
+
+  ```curl
+  curl -X POST \
+  http://localhost:3005/__scenario \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{
+	  "id":"ID_1"
+  }'
+  ```
+
+- GET "/__scenario" response: ```{ id: 'CUSTOM_ID' }```
+  If we want to know which id is set in the library in that moment, we need to make a a get request. Using the example above:
+
+  ```curl
+  curl -X GET \
+  http://localhost:3005/__scenario \
+  ```
+
+- POST "/__scenario/reset 
+  Reset the identifier in the library
+
+  ```curl
+  curl -X POST \
+  http://localhost:3005/__scenario/reset \
+  ```
+
+
 ## Config file
 
 You can add your config file in the root of the mock service or in the root of the project. The name of the file must be _.hjs.config.json_
 
 At this moment, the developer can use the following options:
 
-### corsOptions
+### Cors Options
 
 You can add _corsOptions_ as the [cors library](https://www.npmjs.com/package/cors#configuring-cors) is doing. For example:
 
@@ -768,7 +839,7 @@ You can add _corsOptions_ as the [cors library](https://www.npmjs.com/package/co
 }
 ```
 
-### logs
+### Logs
 
 You can include the level of logs fot the mock using [morgan options](https://www.npmjs.com/package/morgan). For example: 
 
@@ -778,7 +849,7 @@ You can include the level of logs fot the mock using [morgan options](https://ww
 }
 ```
 
-#### port
+### Port
 
 Expecify the port. It is 3005 by default.
 
