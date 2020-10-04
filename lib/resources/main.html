@@ -27,13 +27,18 @@
         <table class="header">
             <tr>
                 <td>
-                    <h2>Resources</h2>
+                    <h2>Scenarios</h2>
                 </td>
                 <td align="right">
-                    <button id="buttonTest" class="common normal" onclick="runTest()" hidden>Validate mocks(under construction) &#10004;</button>
+                    <button id="buttonTest" class="common normal" onclick="runTest()">Run test &#10004;</button>
                 </td>
             </tr>
         </table>
+        <h3>Tests results</h3>
+        <pre id="testResult">
+            <div class="loader"></div>
+        </pre>
+        <h3>Resources</h3>
         <pre id="json">
             <div class="loader"></div>
         </pre>
