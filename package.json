@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.6.0",
+    "@hectorjs/stub-cli": "^1.7.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -28,6 +28,7 @@
     "eslint-config-google": "^0.14.0",
     "mocha": "^7.2.0",
     "nyc": "^14.1.1",
+    "husky": "^4.3.0",
     "supertest": "^3.4.2"
   },
   "scripts": {
@@ -37,7 +38,7 @@
     "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "test-all": "rm -rf node_modules && npm i && npm audit && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
+    "test-all": "sh scripts/banners/cup-tea.sh && rm -rf node_modules && npm i && npm audit && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
@@ -54,5 +55,11 @@
     "type": "git",
     "url": "git://github.com/hector-js/stub-backend.git"
   },
-  "homepage": "https://hectorjs.herokuapp.com"
+  "homepage": "https://hectorjs.herokuapp.com",
+  "husky": {
+    "hooks": {
+      "pre-commit": "sh scripts/banners/earth.sh",
+      "pre-push": "npm run test-all"
+    }
+  }
 }

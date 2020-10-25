@@ -6,6 +6,7 @@
 /coverage/
 /.nyc_output/
 /.github/
+/scripts/
 CODE_OF_CONDUCT.md
 changelog.md
 initializer.sh
