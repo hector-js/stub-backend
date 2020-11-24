@@ -1,14 +1,15 @@
 {
-    "branches": 85,
-    "lines": 85,
-    "functions": 85,
-    "statements": 85,
+    "branches": 90,
+    "lines": 95,
+    "functions": 95,
+    "statements": 95,
     "all": true,
     "check-coverage": true,
     "include": [
         "lib/**"
     ],
     "exclude": [
+        "lib/resources/**",
         "**/node_modules/**",
         "**/test/**",
         "**/tests/**",
