@@ -6,6 +6,10 @@
   padding: 10px;
 }
 
+.header {
+  padding-bottom: 16px;
+}
+
 .icon {
     display: block;
     margin-left: auto;
@@ -133,7 +137,7 @@ pre {
 
 .terminal{
   font-family: monospace;
-  font-size: 1.8rem;
+  font-size: 0.8rem;
   color: #6FC38E;
   font-style: normal;
   border-radius: 4px;
