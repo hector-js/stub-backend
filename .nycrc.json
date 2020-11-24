@@ -1,5 +1,5 @@
 {
-    "branches": 80,
+    "branches": 90,
     "lines": 95,
     "functions": 95,
     "statements": 95,
@@ -9,6 +9,7 @@
         "lib/**"
     ],
     "exclude": [
+        "lib/resources/**",
         "**/node_modules/**",
         "**/test/**",
         "**/tests/**",

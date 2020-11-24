@@ -4,39 +4,42 @@
 <head>
     <link rel="stylesheet" href="./_css/main.css">
     <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="./_js/terminal.js"></script>
     <script type="text/javascript" src="./_js/main.js"></script>
 </head>
 
 <body onload="welcome()">
     <div class="container">
-        <table>
-            <tr>
-                <td rowspan="2" style="width: 90px;">
-                    <img class="icon" src="/_assets/Icon.png">
-                </td>
-                <td class="header-title">
-                    @hectorjs/stub-backend
-                </td>
-            </tr>
-            <tr>
-                <td><img
-                        src="https://github.com/hector-js/stub-backend/workflows/%40hectorjs%2Fstub%2Dbackend/badge.svg">
-                </td>
-            </tr>
-        </table>
+        <div class="header">
+            <table>
+                <tr>
+                    <td rowspan="2" style="width: 90px;">
+                        <img class="icon" src="/_assets/Icon.png">
+                    </td>
+                    <td class="header-title">
+                        @hectorjs/stub-backend
+                    </td>
+                </tr>
+                <tr>
+                    <td><img
+                            src="https://github.com/hector-js/stub-backend/workflows/%40hectorjs%2Fstub%2Dbackend/badge.svg">
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div class="terminal">
-            <input type="code" class="input-terminal" placeholder="$">
+            <input type="code" class="input-terminal" placeholder="$" id="inputTerminal">
             <div id="displayConsole">
-                <pre class="result-terminal">
+                <pre class="result-terminal" id="terminalDisplay">
    .------\ /------.
    |       -       |
    |               |
-   |               |
-   |               |
-_______________________ Feature under construction.
-===========.=========== Wait for next release! :)
-  / ~~~~~     ~~~~~ \
- /|     |     |\
+   |               |       
+   |               |     .----------------------------.
+_______________________  ¦ Feature under construction.¦
+===========.===========  ¦  Just give it a try! :)    ¦
+  / ~~~~~     ~~~~~ \    ¦ .--------------------------'
+ /|     |     |\         ¦/    
  W   ---  / \  ---   W
  \.      |o o|      ./
   |                 |
