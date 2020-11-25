@@ -1,8 +1,14 @@
+body {
+  background: #78899A;
+  color:#b3b3b3;
+  font-family: monospace;
+}
+
 .container {
   margin: auto;
   min-width: 210px;
   max-width: 700px;
-  background:beige;
+  background:#4b4f5c;
   padding: 10px;
 }
 
@@ -52,7 +58,7 @@ pre {
 .green {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  background: green;
+  background: #6FC38E;
   color: white;
 }
 
@@ -72,7 +78,8 @@ pre {
 .normal{
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  background: lightblue;
+  background: #b3b3b3;
+  border-color:  #6FC38E;
 }
 
 .common {
@@ -81,7 +88,6 @@ pre {
   width: 150px;
   border-radius: 5px;
   cursor: pointer;
-  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
 }
@@ -136,13 +142,12 @@ pre {
 
 
 .terminal{
-  font-family: monospace;
   font-size: 0.8rem;
   color: #6FC38E;
   font-style: normal;
   border-radius: 4px;
   padding: 3px;
-  background-color: #4b4f5c;
+  background-color: #050705;
 }
 
 .input-terminal{
