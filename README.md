@@ -646,6 +646,7 @@ The response will be like this:
 # Advance options
 
 - [Xml](#Xml)
+- [Avoid delays](#Avoid&nbsp;Delays)
 - [Banner](#Banner)
 - [Retry opts](#Retry&nbsp;opts)
 - [Same request different response](#Same&nbsp;request&nbsp;different&nbsp;response)
@@ -673,6 +674,11 @@ This section is in progress. At this moment, the user can response a xml setting
   }
 }
 ```
+
+## Avoid Delays
+You have the option to avoid all the delays. By default, it will execute the mocks with delays, but you can add ```--no_delay``` arg and the application won't add delays.
+
+Example: ```hjs start --no_delay```
 
 ## Banner
 You can use your own banner instead of hectorjs one. You just need to add a file called ```.hjs.banner.js``` in the roor of your project. Have a look to the following example:
