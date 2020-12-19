@@ -1,5 +1,5 @@
 {
-    "branches": 90,
+    "branches": 85,
     "lines": 95,
     "functions": 95,
     "statements": 95,
@@ -18,6 +18,7 @@
         "**/app.js",
         "**/server.js",
         "**/main.js",
+        "lib/app/utils/files-utils.js",
         "**/development.js"
     ]
 }
