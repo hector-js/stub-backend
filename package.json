@@ -34,8 +34,8 @@
   "scripts": {
     "hjs": "hjs",
     "start": "set NODE_ENV=test & nodemon lib/server.js --profile test --logs tiny --port 3005",
-    "test": "env KEY=test mocha --recursive --exit",
-    "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit",
+    "test": "env KEY=test mocha --recursive --exit --ui-enable",
+    "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit --ui-enable",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test-all": "sh scripts/banners/cup-tea.sh && rm -rf node_modules && npm i && npm audit && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
