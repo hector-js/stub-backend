@@ -36,6 +36,12 @@ jobs:
         npm run coverage
       env:
         CI: true
+    - name: Audit
+      run: |
+        npm ci
+        npm audit
+      env:
+        CI: true
     - name: Code quality
       run: |
         npm run eslint
