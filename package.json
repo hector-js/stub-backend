@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "fast-xml-parser": "^3.17.4",
     "formidable": "^1.2.2",
-    "jsonpath": "^1.0.2",
+    "jsonpath": "^1.1.1",
     "minimist": "^1.2.2",
     "morgan": "^1.10.0",
     "shelljs": "^0.8.4",
