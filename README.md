@@ -864,6 +864,17 @@ Expecify the port. It is 3005 by default.
   "port": 8081
 }
 ```
+### UI
+
+Expecify if you want to enable the ui. By default is disabled.
+
+```json
+{
+  "ui": {
+    "enable": true
+  }
+}
+```
 
 # Compatibility
 
