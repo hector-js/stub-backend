@@ -155,6 +155,17 @@ describe('request utils', () => {
         });
       });
 
+      context('when case ignore', () => {
+        it(`should return false`, () => {
+          elementsArr = ['NewUniFun'];
+          elementsReq = { 'NewUniFun': 'anyValue' };
+
+          result = ReqUtils.hasInvalidElements(elementsArr, elementsReq);
+
+          expect(result).to.be.false;
+        });
+      });
+
       context('when one element is not a string', () => {
         it(`should return false`, () => {
           elementsArr = ['session', {}];
