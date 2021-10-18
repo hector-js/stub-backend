@@ -26,19 +26,19 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Unit test
       run: |
-        npm ci
+        npm i
         npm run test
       env:
         CI: true
     - name: Coverage
       run: |
-        npm ci
+        npm i
         npm run coverage
       env:
         CI: true
     - name: Audit
       run: |
-        npm ci
+        npm i
         npm audit
       env:
         CI: true
