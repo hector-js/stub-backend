@@ -1,6 +1,6 @@
 {
   "name": "@hectorjs/stub-backend",
-  "version": "1.26.0",
+  "version": "1.26.1",
   "description": "Stub a service",
   "main": "index.js",
   "directories": {
@@ -27,8 +27,12 @@
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.0",
     "mocha": "^9.1.2",
+    "npm-force-resolutions": "^0.0.10",
     "nyc": "^15.1.0",
     "supertest": "^3.4.2"
+  },
+  "resolutions": {
+    "ansi-regex": "5.0.1"
   },
   "scripts": {
     "hjs": "hjs",
@@ -37,7 +41,8 @@
     "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit --ui-enable",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "test-all": "sh scripts/banners/cup-tea.sh && rm -rf node_modules && npm i && npm audit && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
+    "test-all": "sh scripts/banners/cup-tea.sh && rm -rf node_modules && npm i && npm audit && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage",
+    "preinstall": "npx npm-force-resolutions"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",

@@ -26,8 +26,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Unit test
       run: |
-        npm i
-        npm run test
+        npm ci
+        npm test
       env:
         CI: true
         
