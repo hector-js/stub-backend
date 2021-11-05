@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.23.0",
+    "@hectorjs/stub-cli": "^1.25.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "deep-equal": "^1.1.1",
@@ -31,9 +31,6 @@
     "nyc": "^15.1.0",
     "supertest": "^3.4.2"
   },
-  "resolutions": {
-    "ansi-regex": "5.0.1"
-  },
   "scripts": {
     "hjs": "hjs",
     "start": "set NODE_ENV=test & nodemon lib/server.js --profile test --logs tiny --port 3005",
@@ -41,8 +38,7 @@
     "coverage": "env KEY=test nyc --reporter=html --reporter=text-summary mocha --recursive --exit --ui-enable",
     "eslint": "eslint ./lib/**/*.js ./test/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "test-all": "sh scripts/banners/cup-tea.sh && rm -rf node_modules && npm i && npm audit && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage",
-    "preinstall": "npx npm-force-resolutions"
+    "test-all": "sh scripts/banners/cup-tea.sh && rm -rf node_modules && npm i && eslint ./lib/**/*.js ./test/**/*.js && npm run coverage"
   },
   "author": "Hector Jimenez Sanchez",
   "license": "MIT",
