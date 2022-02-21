@@ -1,13 +1,13 @@
 {
   "name": "@hectorjs/stub-backend",
-  "version": "1.26.1",
+  "version": "1.29.0",
   "description": "Stub a service",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.27.0",
+    "@hectorjs/stub-cli": "^1.28.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "deep-equal": "^1.1.1",
