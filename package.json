@@ -55,7 +55,7 @@
     "type": "git",
     "url": "git://github.com/hector-js/stub-backend.git"
   },
-  "homepage": "https://hectorjs.herokuapp.com",
+  "homepage": "https://hectorjs.com",
   "husky": {
     "hooks": {
       "pre-commit": "sh scripts/banners/earth.sh",
