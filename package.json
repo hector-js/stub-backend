@@ -7,15 +7,15 @@
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.33.0",
+    "@hectorjs/stub-cli": "^1.34.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "deep-equal": "^1.1.1",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "fast-xml-parser": "^3.21.1",
     "formidable": "^2.0.1",
     "jsonpath": "^1.1.1",
-    "minimist": "^1.2.6",
+    "minimist": "^1.2.7",
     "morgan": "^1.10.0",
     "shelljs": "^0.8.5",
     "socket.io": "^4.5.2",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.6",
-    "eslint": "^8.23.0",
+    "eslint": "^8.25.0",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.0",
     "mocha": "^9.2.2",
@@ -55,7 +55,7 @@
     "type": "git",
     "url": "git://github.com/hector-js/stub-backend.git"
   },
-  "homepage": "https://hectorjs.herokuapp.com",
+  "homepage": "https://hectorjs.com",
   "husky": {
     "hooks": {
       "pre-commit": "sh scripts/banners/earth.sh",
