@@ -1,6 +1,6 @@
 {
   "name": "@hectorjs/stub-backend",
-  "version": "1.36.0",
+  "version": "1.37.0",
   "description": "Stub a service",
   "main": "index.js",
   "directories": {
