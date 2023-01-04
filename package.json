@@ -7,7 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.38.0",
+    "@hectorjs/stub-cli": "^1.39.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "deep-equal": "^1.1.1",
