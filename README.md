@@ -358,6 +358,22 @@ _bodyPaths can be an array also as an option to validate a field or value.
 ]
 ```
 
+Also, you can include a regex to check different values. Example:
+```json
+"/customers/{id}/data" : [
+  {
+    "_req": {
+      "_bodyPaths": {
+        "$.id": "^[v].*[3]$"
+      }
+    },
+    "_res":{
+    }
+  }
+]
+```
+Above expresion will check id which starts with v and ends with 3
+
 
 _NOTE:_ bodyPaths and body section can not be at the same time.
 
