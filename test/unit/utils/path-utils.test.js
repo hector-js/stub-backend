@@ -192,6 +192,20 @@ describe('bodyPathUtils', () => {
           });
         });
       });
+
+      describe('regex', ()=>{
+        context('the value is a regex and it matched', ()=>{
+          it('return true', ()=>{
+            jsonA = { var1: 'var-1', var2: { var3: 'var-3', var4: { var5: 'var-5' } } };
+            paths = { '$.var2.var3': '^[v].*[3]$' };
+            jsonExcludePaths = null;
+
+            result = PathUtils.comparePathBody(jsonA, paths, jsonExcludePaths);
+
+            expect(result).to.be.true;
+          });
+        });
+      });
     });
   });
 });
