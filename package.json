@@ -7,12 +7,12 @@
     "test": "test"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.41.0",
+    "@hectorjs/stub-cli": "^1.45.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "deep-equal": "^1.1.1",
     "express": "^4.18.2",
-    "fast-xml-parser": "^4.2.4",
+    "fast-xml-parser": "^4.2.5",
     "formidable": "^2.1.1",
     "jsonpath": "^1.1.1",
     "minimist": "^1.2.7",
