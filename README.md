@@ -2,7 +2,7 @@
 
 ![](https://github.com/hector-js/stub-backend/workflows/%40hectorjs%2Fstub%2Dbackend/badge.svg)
  - ![](https://github.com/hector-js/stub-backend/workflows/eslint%2Dconfig%2Dgoogle/badge.svg) ![](https://github.com/hector-js/stub-backend/workflows/Unit%20tests/badge.svg) ![](https://github.com/hector-js/stub-backend/workflows/Coverage/badge.svg) [![codecov](https://codecov.io/gh/hector-js/stub-backend/branch/development/graph/badge.svg)](https://codecov.io/gh/hector-js/stub-backend)
- - ![](https://img.shields.io/npm/v/@hectorjs/stub-backend?label=version&logo=npm) ![](https://img.shields.io/npm/dt/@hectorjs/stub-backend?logo=npm&logoColor=blue) ![](https://img.shields.io/snyk/vulnerabilities/npm/@hectorjs/stub-backend?logo=snyk) ![](https://img.shields.io/github/last-commit/hector-js/stub-backend?logo=github)
+ - ![](https://img.shields.io/npm/v/@hectorjs/stub-backend?label=version&logo=npm) ![](https://img.shields.io/npm/dt/@hectorjs/stub-backend?logo=npm&logoColor=blue) ![](https://img.shields.io/github/last-commit/hector-js/stub-backend?logo=github)
 
  [Releases documentation](https://github.com/hector-js/stub-backend/releases)
 

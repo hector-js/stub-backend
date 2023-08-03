@@ -6,6 +6,10 @@
   "directories": {
     "test": "test"
   },
+  "overrides": {
+    "optionator": "0.9.3",
+    "word-wrap": "npm:@aashutoshrathi/word-wrap"
+  },
   "dependencies": {
     "@hectorjs/stub-cli": "^1.45.0",
     "cookie-parser": "^1.4.6",
