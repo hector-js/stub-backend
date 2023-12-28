@@ -11,7 +11,7 @@
     "word-wrap": "npm:@aashutoshrathi/word-wrap"
   },
   "dependencies": {
-    "@hectorjs/stub-cli": "^1.47.0",
+    "@hectorjs/stub-cli": "^1.47.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "deep-equal": "^1.1.2",
