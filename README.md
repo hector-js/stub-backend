@@ -822,7 +822,7 @@ The library expose three endpoints to deal with the id.
   -H 'content-type: application/json' \
   -d '{
 	  "id": "ID_1",
-    "path": "/some/path"
+	  "path": "/some/path"
   }'
   ```
 
@@ -841,7 +841,7 @@ The library expose three endpoints to deal with the id.
   http://localhost:3005/__scenario \
   -H 'content-type: application/json' \
   -d '{
-    "path": "/some/path"
+	  "path": "/some/path"
   }'
   ```
 
@@ -860,7 +860,7 @@ The library expose three endpoints to deal with the id.
   http://localhost:3005/__scenario/reset \
   -H 'content-type: application/json' \
   -d '{
-    "path": "/some/path"
+	  "path": "/some/path"
   }'
   ```
 
