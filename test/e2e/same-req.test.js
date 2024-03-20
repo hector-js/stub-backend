@@ -62,6 +62,23 @@ describe('@E2E - same request', () => {
           .get('/__scenario');
       expect(response.status).to.equal(200);
       expect(response.body).to.deep.equal({});
+
+      response = await request(app)
+          .post('/__scenario')
+          .send({ id: '2', path: '/two/common/scenarios' });
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equal({});
+
+      response = await request(app)
+          .get('/__scenario');
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equal({ idMap: { '/two/common/scenarios': '2' } });
+
+      response = await request(app)
+          .post('/__scenario/reset')
+          .send({ path: '/two/common/scenarios' });
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equal({});
     });
   });
 
@@ -75,7 +92,6 @@ describe('@E2E - same request', () => {
       response = await request(app)
           .post('/__scenario')
           .send({ id: '3' });
-
       expect(response.status).to.equal(200);
       expect(response.body).to.deep.equal({});
 

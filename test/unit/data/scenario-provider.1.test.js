@@ -27,7 +27,7 @@ module.exports = db = {
   '/customers/{id}': [
     {
       _req: {
-        id_: 'Nathan',
+        _id: 'Nathan',
         _headers: []
       },
       _res: {
@@ -38,7 +38,7 @@ module.exports = db = {
     },
     {
       _req: {
-        id_: 'mark',
+        _id: 'mark',
         _headers: []
       },
       _res: {
