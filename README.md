@@ -853,7 +853,7 @@ The library expose three endpoints to deal with the id.
   http://localhost:3005/__scenario/reset \
   ```
 
-  Or, for a specific request path:
+  For a specific request path:
 
   ```curl
   curl -X GET \
@@ -864,6 +864,11 @@ The library expose three endpoints to deal with the id.
   }'
   ```
 
+  Or, to reset all custom scenarios:
+
+  ```curl
+  curl http://localhost:3005/__scenario/reset-all
+  ```
 
 ## Config file
 

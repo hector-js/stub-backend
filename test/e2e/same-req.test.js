@@ -79,6 +79,11 @@ describe('@E2E - same request', () => {
           .send({ path: '/two/common/scenarios' });
       expect(response.status).to.equal(200);
       expect(response.body).to.deep.equal({});
+
+      response = await request(app)
+          .get('/__scenario');
+      expect(response.status).to.equal(200);
+      expect(response.body).to.deep.equal({});
     });
   });
 
