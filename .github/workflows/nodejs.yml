@@ -49,7 +49,7 @@ jobs:
         CI: true
     - name: Publish resport coverage
       run: |
-        npm -g i codecov@3.6.1
+        npm -g i codecov@3.8.3
         npm run report-coverage -- -t ${{ secrets.CODECOV_TOKEN }}
       env:
         CI: true
