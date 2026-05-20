@@ -812,7 +812,7 @@ Basically, it requires to tell to the library which id to use before making the 
 
 The library expose three endpoints to deal with the id.
 
-- POST "/__scenario" body: ```{ id: 'CUSTOM_ID' }```
+- POST "/__scenario" body: ```{ id: 'CUSTOM_ID', path?: 'REQUEST_PATH' }```
   This request sets the id in the library. For the example above, if we want to response the first scenario, we should make the next request before the mock is executed:
 
   ```curl
@@ -821,16 +821,28 @@ The library expose three endpoints to deal with the id.
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{
-	  "id":"ID_1"
+	  "id": "ID_1",
+	  "path": "/some/path"
   }'
   ```
 
-- GET "/__scenario" response: ```{ id: 'CUSTOM_ID' }```
-  If we want to know which id is set in the library in that moment, we need to make a a get request. Using the example above:
+- GET "/__scenario" response: ```{ id: 'CUSTOM_ID', path?: 'REQUEST_PATH' }```
+  If we want to know which id is set in the library in that moment, we need to make a a get request. Using the example below:
 
   ```curl
   curl -X GET \
   http://localhost:3005/__scenario \
+  ```
+
+  Or, for a specific request path:
+
+  ```curl
+  curl -X GET \
+  http://localhost:3005/__scenario \
+  -H 'content-type: application/json' \
+  -d '{
+	  "path": "/some/path"
+  }'
   ```
 
 - POST "/__scenario/reset 
@@ -841,6 +853,22 @@ The library expose three endpoints to deal with the id.
   http://localhost:3005/__scenario/reset \
   ```
 
+  For a specific request path:
+
+  ```curl
+  curl -X GET \
+  http://localhost:3005/__scenario/reset \
+  -H 'content-type: application/json' \
+  -d '{
+	  "path": "/some/path"
+  }'
+  ```
+
+  Or, to reset all custom scenarios:
+
+  ```curl
+  curl http://localhost:3005/__scenario/reset-all
+  ```
 
 ## Config file
 
